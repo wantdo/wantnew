@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="default" extends="struts-default">
+	<interceptors>
+		<interceptor name="loginIntercepter" class="com.wantdo.interceptor.CheckLoginInterceptor"></interceptor>
+		<interceptor-stack name="loginStack">  
+                <interceptor-ref name="defaultStack" />  
+                <interceptor-ref name="loginIntercepter" />  
+            </interceptor-stack>
+	</interceptors>
+	<global-results>
+		<result name="sql">/WEB-INF/exception/sql.jsp</result>
+		<result name="null">/WEB-INF/exception/null.jsp</result>
+		<result name="all">/WEB-INF/exception/all.jsp</result>
+	</global-results>
+	<global-exception-mappings>
+		<exception-mapping result="sql" exception="java.sql.SQLException"></exception-mapping>
+		<exception-mapping result="null"
+			exception="java.lang.NullPointerException"></exception-mapping>
+		<exception-mapping result="all"
+			exception="java.lang.Exception"></exception-mapping>
+	</global-exception-mappings>
+		<action name="CusFeedbackAction" class="CusFeedbackAction">
+			<interceptor-ref name="defaultStack">
+			</interceptor-ref>
+			<interceptor-ref name="execAndWait">
+				<param name="delaySleepInterval">500</param>
+			</interceptor-ref>
+			<result>/WEB-INF/cusfeedback/cusresult.jsp</result>
+			<result name="wait">/WEB-INF/cusfeedback/cuswait.jsp</result>
+			<result name="error">/WEB-INF/cusfeedback/cuserror.jsp</result>
+			<result name="null">/WEB-INF/cusfeedback/cusnull.jsp</result>
+			<exception-mapping result="null" exception="java.lang.NullPointerException"></exception-mapping>
+		</action>
+		<action name="CusSubAction" class="CusSubAction">
+			<interceptor-ref name="defaultStack">
+			</interceptor-ref>
+			<result>/WEB-INF/cussub/cusresult.jsp</result>
+			<result name="error">/WEB-INF/cussub/cuserror.jsp</result>
+		</action>
+		<action name="ProcessedAction" class="ProcessedAction">
+			<result>/WEB-INF/processed/proresult.jsp</result>
+			<result name="error">/WEB-INF/processed/proerror.jsp</result>
+		</action>
+		<action name="DownloadAction" class="DownloadAction">
+			<result type="stream">
+				<param name="contentType">application/vnd.ms-excel;charset=UTF-8</param>
+				<param name="inputName">downloadFile</param>
+				<param name="contentDisposition">attachment;filename="customer.xls"</param>
+				<param name="bufferSize">4096</param>
+			</result>
+		</action>
+		<action name="CusEditAction" class="CusEditAction" >
+			<interceptor-ref name="loginStack" />
+			<result>/WEB-INF/cusedit/list.jsp</result>
+			<result name = "login">/WEB-INF/cusedit/login.jsp</result>
+			<result name = "wait">/WEB-INF/cusedit/cuswait.jsp</result>
+			<result name = "add">/WEB-INF/cusedit/add.jsp</result>
+			<result name = "update">/WEB-INF/cusedit/update.jsp</result>
+		</action>
+		<action name="loginaction" class="LoginAction">
+			<interceptor-ref name="loginStack" />
+			<result>/WEB-INF/cusedit/list.jsp</result>
+			<result name = "login">/WEB-INF/cusedit/login.jsp</result>
+			<!-- <result name="input">/WEB-INF/content/login.jsp</result>
+			<result name="error">/WEB-INF/content/login.jsp</result> -->
+		</action>
+	</package>
+</struts>    

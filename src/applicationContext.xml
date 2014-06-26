@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"></property>
+		<property name="url" value="jdbc:sqlserver://localhost:1433;"></property>
+		<property name="username" value="sa"></property>
+		<property name="password" value="wantdo123"></property>
+	</bean>
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.SQLServerDialect
+				</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>  
+			</props>
+		</property>
+		<property name="mappingResources">
+			<list>
+				<value>com/wantdo/domain/Person.hbm.xml</value>
+				<value>com/wantdo/domain/WspOrdermst.hbm.xml</value>
+				<value>com/wantdo/domain/EcEordermst.hbm.xml</value>
+				<value>com/wantdo/domain/WspPlatform.hbm.xml</value>
+				<value>com/wantdo/domain/WspShops.hbm.xml</value>
+				<value>com/wantdo/domain/WspItemspecification.hbm.xml</value>
+				<value>com/wantdo/domain/EcEorderdtl.hbm.xml</value>
+				<value>com/wantdo/domain/CusDesc.hbm.xml</value>
+				<value>com/wantdo/domain/CusDetail.hbm.xml</value>
+				<value>com/wantdo/domain/CusOrdermst.hbm.xml</value>
+				<value>com/wantdo/domain/CusOrderdtl.hbm.xml</value>
+				<value>com/wantdo/domain/CusShops.hbm.xml</value></list>
+		</property></bean>
+	<bean id="LoginAction" class="com.wantdo.action.LoginAction">
+		<property name="personService">
+			<ref bean="PersonService"/>
+		</property>
+		<property name="ecEordermstService">
+			<ref bean="EcEordermstService"/>
+		</property>
+	</bean>
+	<bean id="PersonDAO" class="com.wantdo.dao.impl.PersonDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="PersonService" class="com.wantdo.service.impl.PersonService">
+		<property name="personDAO">
+			<ref bean="PersonDAO"/>
+		</property>
+	</bean>
+	<bean id = "CusEditAction" class = "com.wantdo.action.CusEditAction" scope="prototype">
+		<property name="ecEordermstService">
+			<ref bean="EcEordermstService"/>
+		</property>
+		<property name="cusDetailService">
+			<ref bean = "CusDetailService"/>
+		</property>
+		<property name="cusDescService">
+			<ref bean = "CusDescService"/>
+		</property>
+	</bean>
+	<bean id="CusFeedbackAction" class="com.wantdo.action.CusFeedbackAction" scope="prototype">
+		<property name="ecEordermstService">
+			<ref bean="EcEordermstService"/>
+		</property>
+	</bean>
+	<bean id="CusSubAction" class="com.wantdo.action.CusSubAction" scope="prototype">
+		<property name="cusOrdermstService">
+			<ref bean="CusOrdermstService"/>
+		</property>
+		<property name="cusOrderdtlService">
+			<ref bean="CusOrderdtlService"/>
+		</property>
+		<property name="mailService">
+			<ref bean="MailService"/>
+		</property>
+	</bean>
+	<bean id="ProcessedAction" class="com.wantdo.action.ProcessedAction" scope="prototype">
+		<property name="cusOrdermstService">
+			<ref bean="CusOrdermstService"/>
+		</property>
+	</bean>
+	<bean id="DownloadAction" class="com.wantdo.action.DownloadAction" scope="prototype">
+		<property name="cusOrdermstService">
+			<ref bean="CusOrdermstService"/>
+		</property>
+	</bean>
+	<bean id="WspOrdermstDAO"
+		class="com.wantdo.dao.impl.WspOrdermstDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="EcEordermstDAO"
+		class="com.wantdo.dao.impl.EcEordermstDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="EcEordermstService"
+		class="com.wantdo.service.impl.EcEordermstService">
+		<property name="ecEordermstDAO">
+			<ref bean="EcEordermstDAO" />
+		</property>
+	</bean>
+	<bean id="CusOrdermstService"
+		class="com.wantdo.service.impl.CusOrdermstService">
+		<property name="cusOrdermstDAO">
+			<ref bean="CusOrdermstDAO" />
+		</property>
+	</bean>
+	<bean id="CusOrderdtlService"
+		class="com.wantdo.service.impl.CusOrderdtlService">
+		<property name="cusOrderdtlDAO">
+			<ref bean="CusOrderdtlDAO" />
+		</property>
+	</bean>
+	<bean id="WspPlatformDAO"
+		class="com.wantdo.dao.impl.WspPlatformDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="WspShopsDAO" class="com.wantdo.dao.impl.WspShopsDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="WspItemspecificationDAO"
+		class="com.wantdo.dao.impl.WspItemspecificationDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="EcEorderdtlDAO"
+		class="com.wantdo.dao.impl.EcEorderdtlDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="CusDescService" class="com.wantdo.service.impl.CusDescService">
+		<property name="cusDescDAO">
+			<ref bean="CusDescDAO" />
+		</property>
+	</bean>
+	<bean id="CusDescDAO" class="com.wantdo.dao.impl.CusDescDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id = "CusDetailService" class = "com.wantdo.service.impl.CusDetailService">
+		<property name="cusDetailDAO">
+			<ref bean = "CusDetailDAO"/>
+		</property>
+	</bean>
+	<bean id="CusDetailDAO" class="com.wantdo.dao.impl.CusDetailDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="CusOrdermstDAO"
+		class="com.wantdo.dao.impl.CusOrdermstDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="CusOrderdtlDAO"
+		class="com.wantdo.dao.impl.CusOrderdtlDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
+	<bean id="CusShopsDAO" class="com.wantdo.dao.impl.CusShopsDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean></beans>
