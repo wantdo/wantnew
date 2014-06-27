@@ -1,5 +1,6 @@
 package com.wantdo.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -369,8 +370,20 @@ public class EcEordermstDAO extends HibernateDaoSupport implements IEcEordermstD
     	HibernateCallback callback=new HibernateCallback() {
 			public Object doInHibernate(Session session) throws HibernateException {
 				Query queryObject = session.createQuery("from CusDesc");
-				List<CusDesc>list= queryObject.list();			
-				return list;
+				List<CusDesc>list= queryObject.list();	
+				List<CusDesc> templist = new ArrayList<CusDesc>();
+				for(int i=0;i<list.size();i++){
+					if(!list.get(i).getDescription().equals("其他")){
+						templist.add(list.get(i));
+					}
+				}
+				for(int i=0;i<list.size();i++){
+					if(list.get(i).getDescription().equals("其他")){
+						templist.add(list.get(i));
+					}
+				}
+				
+				return templist;
 			}
 		};
     	return (List) getHibernateTemplate().execute(callback);

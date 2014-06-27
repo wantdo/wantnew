@@ -35,23 +35,37 @@ public class CusEditAction extends ActionSupport {
 	}
 	@Override
 	public String execute() throws Exception {
-		//System.out.println("*********************");
+		System.out.println("*********************");
 		//System.out.println(edit);
 		proList=ecEordermstService.getAllProblems();
+		proList.remove(proList.size() - 1);
 		if(edit == null){
 			return "login";
 		}
 		if(edit.equals("add")){
 			return "add";
 		}
-		if(edit.equals("addimpl") && cusDetail != null){
-			//System.out.println(cusDetail.getDetail());
-			//System.out.println(cusDetail.getCusDesc().getId());
-			cusDetailService.save(cusDetail);
+		if(edit.equals("addimpl") && cusDetail != null && !cusDetail.getDetail().equals("")){
+			System.out.println(cusDetail.getCusDesc().getId());
+			try{
+				
+				cusDetailService.save(cusDetail);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			return "wait";
 		}
-		if(edit.equals("delete")){
-			//System.out.println(cusDetail.getId());
+		if(edit.equals("addimpl") && cusDesc != null && !cusDesc.getDescription().equals("")){
+			cusDescService.save(cusDesc);
+			return "wait";
+		}
+		if(edit.equals("delete") && cusDetail != null){
 			cusDetailService.delete(cusDetail);
+			return "wait";
+		}
+		if(edit.equals("delete") && cusDesc != null){
+			cusDescService.delete(cusDesc);
+			return "wait";
 		}
 		if(edit.equals("update") && cusDetail != null){
 			cusDetail = cusDetailService.findById(cusDetail.getId());
@@ -66,9 +80,11 @@ public class CusEditAction extends ActionSupport {
 		}
 		if(edit.equals("updateimpl") && cusDetail != null){
 			cusDetailService.update(cusDetail);
+			return "wait";
 		}
 		if(edit.equals("updateimpl") && cusDesc != null){
 			cusDescService.update(cusDesc);
+			return "wait";
 		}
 		return "wait";
 	}

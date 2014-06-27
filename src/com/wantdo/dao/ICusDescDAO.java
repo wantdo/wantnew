@@ -11,5 +11,9 @@ public interface ICusDescDAO {
 	public abstract List findByDescription(Object description);
 
 	public void update(CusDesc updateInstance);
+	
+	public void save(CusDesc saveInstance);
+	
+	public void delete(CusDesc deleteInstance);
 
 }

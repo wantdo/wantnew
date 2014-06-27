@@ -99,7 +99,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			margin-left:20px;cursor:pointer;}
 		#header{padding:4px 10px 5px 0px;height:20px;float:left;width:100%;border-bottom: 1px solid #069;}
 		#home{float:left;font:16px #036 'Microsoft YaHei',微软雅黑,Verdana,arial,sans-serif;}
-		#desc_8{display:none;position:relative;}
+		/* #desc_8{display:none;position:relative;} */
 	</style>
 	<!--  
 	<script type="text/javascript">
@@ -592,11 +592,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   									<div id="desc_<s:property value='#S.index'/>">
   										<div class="form-special-wrap">
   												<s:if test="#proDesc.description=='其他'" >
-  													<input class="form-input" type="hidden" name="inStr" id="inStr"/>
+  													<input class="form-input" type="text" name="inStr" id="inStr" disabled/>
   												</s:if>
   												<s:else>
   													<s:iterator value="#proDesc.cusDetails" id="proDetail" status="T">
-												<input id="checkradio2" checked="checked"
+													<input id="checkradio2" checked="checked"
 													class="form-checkbox" type="radio" name="cusDetail.id"
 													value="<s:property value="#proDetail.id"/>" onclick="radioChange2()"/>
 												<s:property value="#proDetail.detail"/>				

@@ -50,10 +50,11 @@ public class LoginAction extends ActionSupport{
 	public String execute() throws Exception {
 		/*logger.info("Person [username="+person.getUsername()+
 				",password="+person.getPassword()+"]");*/
-		System.out.println("------------------->LoginAction");
-		System.out.println(ServletActionContext.getRequest().getSession().getAttribute("username"));
+		//System.out.println("------------------->LoginAction");
+		//System.out.println(ServletActionContext.getRequest().getSession().getAttribute("username"));
 		if(ServletActionContext.getRequest().getSession().getAttribute("username") != null){
 			proList=ecEordermstService.getAllProblems();
+			proList.remove(proList.size() - 1);
 			return SUCCESS;
 		}
 		if (personService.checkLogin(person)) {
@@ -62,7 +63,7 @@ public class LoginAction extends ActionSupport{
 	        HttpSession session =request.getSession();
 	        session.setAttribute("username", person.getUsername());*/
 			ServletActionContext.getRequest().getSession().setAttribute("username", person.getUsername());
-			System.out.println("----------------->–¥»Îsession ");
+			//System.out.println("----------------->–¥»Îsession ");
 			person = new Person();
 			//ActionContext.getContext().getSession().put("username", person.getUsername());
 			//System.out.println("----------------->–¥»Îsession "+ActionContext.getContext().getSession().get("username"));

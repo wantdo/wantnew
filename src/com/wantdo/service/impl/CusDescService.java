@@ -14,6 +14,14 @@ public class CusDescService implements ICusDescService {
 	public void update(CusDesc updateInstance) {
 		cusDescDAO.update(updateInstance);
 	}
+	@Override
+	public void save(CusDesc saveInstance) {
+		cusDescDAO.save(saveInstance);
+	}
+	@Override
+	public void delete(CusDesc deleteInstance) {
+		cusDescDAO.delete(deleteInstance);
+	}
 	
 	public ICusDescDAO getCusDescDAO() {
 		return cusDescDAO;

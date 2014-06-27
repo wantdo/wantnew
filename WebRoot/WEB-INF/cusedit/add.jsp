@@ -99,6 +99,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			margin-left:20px;cursor:pointer;}
 		#header{padding:4px 10px 5px 0px;height:20px;float:left;width:100%;border-bottom: 1px solid #069;}
 		#home{float:left;font:16px #036 'Microsoft YaHei',微软雅黑,Verdana,arial,sans-serif;}
+		/* #desc_8{display:none;position:relative;} */
 	</style>
 	<!--  
 	<script type="text/javascript">
@@ -364,7 +365,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    		return false;
 	    	}
 	    }
-	   
+	    function opinionChange(){
+	    	if(document.getElementById("leibie").value==""){
+	    		document.getElementById("cusDesc.description").style.display="none";
+	    		document.getElementById("cusDesc.description").disabled=true;
+	    		document.getElementById("cusDetail.cusDesc.id").style.display="none";
+	    		document.getElementById("cusDetail.cusDesc.id").value="";
+	    		document.getElementById("cusDetail.cusDesc.id").disabled=true;
+	    		document.getElementById("cusDetail.detail").style.display="none";
+	    		document.getElementById("cusDetail.detail").disabled=true;
+	    	}else if(document.getElementById("leibie").value=="小类别"){
+	    		document.getElementById("cusDetail.cusDesc.id").style.display="block";
+	    		document.getElementById("cusDetail.cusDesc.id").disabled=false;
+	    		document.getElementById("cusDetail.cusDesc.id").options[0].selected=true;
+	    		document.getElementById("cusDesc.description").style.display="none";
+	    		document.getElementById("cusDesc.description").disabled=true;
+	    		document.getElementById("cusDetail.detail").style.display="block";
+	    		document.getElementById("cusDetail.detail").disabled=false;
+	    	}else if(document.getElementById("leibie").value=="大类别"){
+	    		document.getElementById("cusDetail.cusDesc.id").style.display="none";
+	    		document.getElementById("cusDetail.cusDesc.id").disabled=true;
+	    		document.getElementById("cusDesc.description").style.display="block";
+	    		document.getElementById("cusDesc.description").disabled=false;
+	    		document.getElementById("cusDetail.detail").style.display="none";
+	    		document.getElementById("cusDetail.detail").disabled=true;
+	    	}
+	    }
 		
 	</script>
 
@@ -389,17 +415,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   							<s:iterator value="proList" id="proDesc" status="S">
   								<li class="option_b" >
   									<h4 id="desc_<s:property value='#S.index'/>">
+  									<input id="checkradio1" class="form-checkbox" type="radio"
+										name="cusDesc.id" value="<s:property value="#proDesc.id"/>" disabled/>
   										<s:property value="#proDesc.description"/>
   									</h4>
-  									<div>
+  									<div id="desc_<s:property value='#S.index'/>">
   										<div class="form-special-wrap">
-  										<s:if test="#proDesc.description=='其他'">
-  													<input class="form-input" type="hidden" name="inStr" id="inStr"/>
+  										<s:if test="#proDesc.description=='其他'" >
+  													<input class="form-input" type="text" name="inStr" id="inStr" disabled/>
   												</s:if>
   												<s:else>
   													<s:iterator value="#proDesc.cusDetails" id="proDetail" status="T">
   													<input class="form-checkbox" type="radio" name="check_<s:property value='#S.index'/>"  
-  														value="<s:property value="#proDetail.detail"/>" />
+  														value="<s:property value="#proDetail.detail"/>" disabled/>
   													<s:property value="#proDetail.detail"/>	
   													<s:property value="#proDetail.descid"/>	
   													</s:iterator>
@@ -413,23 +441,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   						<input type="hidden" name="cusOrdermst.cusdesc" id="desc"/>
   						<input type="hidden" name="cusOrdermst.cusdetail" id="detail"/> -->
   						<!-- <input type = "text" name = "cusDetail.cusDesc.id" id = "cusDetail.cusDesc.id"/> -->
-  						类别：<select name = "cusDetail.cusDesc.id" id = "cusDetail.cusDesc.id">
+  						
+  						<span class="label">类别：</span>
+  							<select id = "leibie" name = "leibie" onchange="opinionChange()">
+  								<option selected value="">请选择:</option>
+  								<option value= "大类别">大类别</option>
+  								<option value= "小类别">小类别</option>
+  							</select>
+  							<span id = "cusDesc.description" class="labelDis" style="display:none;">添加大类：<input type = "text" name = "cusDesc.description" id = "cusDesc.description"/></span>
+  							<select name = "cusDetail.cusDesc.id" id = "cusDetail.cusDesc.id" style="display:none;" >
   							<s:iterator value="proList" id="proDesc" status="S">
-  									<option value="<s:property value='#S.index+1'/>"><s:property value="#proDesc.description"/></option>
+  									<option value="<s:property value='#proDesc.id'/>">
+  										<s:property value="#proDesc.description"/>
+  									</option>
   							</s:iterator>
   							</select>
-  						<%-- 类别：<select name = "cusDetail.cusDesc.id" id = "cusDetail.cusDesc.id">
-  									<option selected value="">请选择:</option>
-  									<option value="1">产品描述问题</option>
-  									<option value="2">少发或多发</option>
-  									<option value="3">错发</option>
-  									<option value="4">质量问题</option>
-  									<option value="5">运输问题</option>
-  									<option value="6">拒收</option>
-  									<option value="7">顾客问题</option>
-  									<option value="8">服务问题</option>
-  								</select> --%>
-  						添加小类：<input type = "text" name = "cusDetail.detail" id = "cusDetail.detail"/>
+  						<span id = "cusDetail.detail" class="labelDis" style="display:none;">添加小类：<input type = "text" name = "cusDetail.detail" id = "cusDetail.detail"/></span>
   						<div class="opa">
   							<input type="hidden" name="edit" value = "addimpl"/>
   							<input id="btn" class="btn" type="submit" value="确认" onclick = "return check()"></input>
