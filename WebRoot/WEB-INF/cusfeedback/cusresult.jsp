@@ -63,7 +63,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		.form-checkbox{vertical-align:middle;margin:0px 5px 0px 0px;padding:0px;width:20px;height:16px;}
 		.form-input {vertical-align:middle;margin:0px 5px 0px 0px;padding:0px;min-width:600px;height:30px;
 			font:16px 'Microsoft YaHei',微软雅黑,Verdana,arial,sans-serif;}
-		.form-opp {vertical-align:middle;margin:0px 5px 0px 0px;padding:0px;min-width:50px;height:25px;width:100px;
+		.form-opp {vertical-align:middle;margin:0px 5px 0px 0px;padding:0px;min-width:50px;height:25px;width:110px;
 			font:16px 'Microsoft YaHei',微软雅黑,Verdana,arial,sans-serif;}
 		.form-remark {vertical-align:middle;margin:0px 5px 0px 0px;padding:0px;width:420px;min-width:300px;height:25px;
 			font:16px 'Microsoft YaHei',微软雅黑,Verdana,arial,sans-serif;}
@@ -877,7 +877,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   						</div>
   						<div class="opa">
   							<span>
-  							来电号码：<input class="form-opp" type="text" name="cusOrdermst.incomingNo" id="cusOrdermst.incomingNo" value="<s:property value='#array[12]'/>"></input>
+  							来电号码：<input class="form-opp"  type="text" name="cusOrdermst.incomingNo" id="cusOrdermst.incomingNo" value="<s:property value='#array[12]'/>"></input>
   							</span>
   							<span>
   								操作人：

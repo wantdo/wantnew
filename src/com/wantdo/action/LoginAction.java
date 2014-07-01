@@ -59,6 +59,7 @@ public class LoginAction extends ActionSupport{
 		}
 		if (personService.checkLogin(person)) {
 			proList=ecEordermstService.getAllProblems();
+			proList.remove(proList.size() - 1);
 			/*HttpServletRequest request=ServletActionContext.getRequest();
 	        HttpSession session =request.getSession();
 	        session.setAttribute("username", person.getUsername());*/

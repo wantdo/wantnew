@@ -35,7 +35,7 @@ public class CusEditAction extends ActionSupport {
 	}
 	@Override
 	public String execute() throws Exception {
-		System.out.println("*********************");
+		//System.out.println("*********************");
 		//System.out.println(edit);
 		proList=ecEordermstService.getAllProblems();
 		proList.remove(proList.size() - 1);
@@ -46,13 +46,7 @@ public class CusEditAction extends ActionSupport {
 			return "add";
 		}
 		if(edit.equals("addimpl") && cusDetail != null && !cusDetail.getDetail().equals("")){
-			System.out.println(cusDetail.getCusDesc().getId());
-			try{
-				
-				cusDetailService.save(cusDetail);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+			cusDetailService.save(cusDetail);
 			return "wait";
 		}
 		if(edit.equals("addimpl") && cusDesc != null && !cusDesc.getDescription().equals("")){

@@ -136,6 +136,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   					</div>
   					<div id="orderProcessed"   >
 						<div id="proLink" onmouseover="proLinkOver()">
+  						<!-- <a href="CusShopsAction.action">店铺名同步</a> -->
 							<a href="<%=basePath%>ProcessedAction.action?startTime=
 							<%SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd");%>
 								<%=sdf.format(new Date()) %>&&endTime=<%=sdf.format(new Date()) %>" 

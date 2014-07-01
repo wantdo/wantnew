@@ -11,5 +11,7 @@ public interface IWspShopsDAO {
 	public abstract List findBySysid(Object sysid);
 
 	public abstract List findByShopname(Object shopname);
+	
+	public List findAll();
 
 }

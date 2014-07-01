@@ -56,6 +56,17 @@ public class CusShopsDAO extends HibernateDaoSupport implements ICusShopsDAO{
 			throw re;
 		}
 	}
+	
+	public void update(CusShops updateInstance) {
+        log.debug("updating CusShops instance");
+        try {
+            getHibernateTemplate().update(updateInstance);
+            log.debug("update successful");
+        } catch (RuntimeException re) {
+            log.error("update failed", re);
+            throw re;
+        }
+    }
 
 	public CusShops findById(java.lang.Integer id) {
 		log.debug("getting CusShops instance with id: " + id);

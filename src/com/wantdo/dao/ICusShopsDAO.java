@@ -15,5 +15,9 @@ public interface ICusShopsDAO {
 	public abstract List findByShopmanager(Object shopmanager);
 
 	public abstract List findAll();
+	
+	public abstract void delete(CusShops transientInstance);
+	
+	public void update(CusShops updateInstance);
 
 }
