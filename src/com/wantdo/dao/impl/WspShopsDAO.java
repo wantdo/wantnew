@@ -1,10 +1,15 @@
 package com.wantdo.dao.impl;
 
+import java.sql.SQLException;
 import java.util.List;
+
+import org.hibernate.HibernateException;
 import org.hibernate.LockMode;
+import org.hibernate.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
+import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.wantdo.dao.IWspShopsDAO;
@@ -104,12 +109,19 @@ public class WspShopsDAO extends HibernateDaoSupport implements IWspShopsDAO {
 	* @see com.wantdo.dao.impl.IWspShopsDAO#findById(java.lang.Integer) 
 	*/ 
 	@Override
-	public WspShops findById(java.lang.Integer id) {
+	public List findById(java.lang.Integer id) {
 		log.debug("getting WspShops instance with id: " + id);
 		try {
-			WspShops instance = (WspShops) getHibernateTemplate().get(
-					"com.wantdo.domain.WspShops", id);
-			return instance;
+			final String queryString = " SELECT wsp.id AS wspid,wsp.systemname,wsp.shopname AS wspname,cus.shopname AS cusname,cus.shopmanager,cus.shopemail,cus.shopno,cus.shopindustry,cus.wspshopid,cus.id AS cusid FROM	(SELECT NG0001.dbo.wsp_shops.id,NG0001.dbo.wsp_shops.shopname,NG0001.dbo.wsp_platform.systemname	FROM NG0001.dbo.wsp_shops,NG0001.dbo.wsp_platform	WHERE	NG0001.dbo.wsp_shops.sysid = NG0001.dbo.wsp_platform.id AND NG0001.dbo.wsp_shops.id = "+id+") AS wsp LEFT JOIN wantdo.dbo.cus_shops AS cus ON wsp.id = cus.wspshopid ";
+			return getHibernateTemplate().execute(new HibernateCallback() {
+
+				@Override
+				public List doInHibernate(Session session)
+						throws HibernateException, SQLException {
+					return session.createSQLQuery(queryString).list();
+				}
+				
+			});
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
 			throw re;
@@ -335,12 +347,21 @@ public class WspShopsDAO extends HibernateDaoSupport implements IWspShopsDAO {
 	public List findAll() {
 		log.debug("finding all WspShops instances");
 		try {
-			String queryString = "from WspShops";
-			return getHibernateTemplate().find(queryString);
+			final String queryString = " SELECT wsp.id AS wspid,wsp.systemname,wsp.shopname AS wspname,cus.shopname AS cusname,cus.shopmanager,cus.shopemail,cus.shopno,cus.shopindustry,cus.wspshopid,cus.id AS cusid FROM	(SELECT NG0001.dbo.wsp_shops.id,NG0001.dbo.wsp_shops.shopname,NG0001.dbo.wsp_platform.systemname	FROM NG0001.dbo.wsp_shops,NG0001.dbo.wsp_platform	WHERE	NG0001.dbo.wsp_shops.sysid = NG0001.dbo.wsp_platform.id) AS wsp LEFT JOIN wantdo.dbo.cus_shops AS cus ON wsp.id = cus.wspshopid ";
+			return getHibernateTemplate().execute(new HibernateCallback() {
+
+				@Override
+				public List doInHibernate(Session session)
+						throws HibernateException, SQLException {
+					return session.createSQLQuery(queryString).list();
+				}
+				
+			});
 		} catch (RuntimeException re) {
 			log.error("find all failed", re);
 			throw re;
 		}
+		
 	}
 
 	public WspShops merge(WspShops detachedInstance) {

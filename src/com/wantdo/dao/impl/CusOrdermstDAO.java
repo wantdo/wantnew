@@ -283,7 +283,7 @@ public class CusOrdermstDAO extends HibernateDaoSupport implements ICusOrdermstD
 		try {
 			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm");
 			String queryString="from CusOrdermst as mst,CusOrderdtl as dtl,CusShops shops where mst.operatedate " +
-					"between ? and ? and mst.cusid=dtl.cusid and mst.shopname=shops.shopname order by mst.operatedate asc";
+					"between ? and ? and mst.cusid=dtl.cusid and mst.wspshopid=shops.wspshopid order by mst.operatedate asc";
 			return getHibernateTemplate().find(queryString, new Date[]{sdf.parse(startTime),sdf.parse(endTime)});
 		} catch (RuntimeException re) {
 			// TODO: handle exception
@@ -294,7 +294,7 @@ public class CusOrdermstDAO extends HibernateDaoSupport implements ICusOrdermstD
 	public List findShopname() {
 		log.debug("finding all CusOrdermst instances");
 		try {
-			String queryString = "from CusOrdermst as mst,CusShops as shop where mst.shopname=shop.shopname";
+			String queryString = "from CusOrdermst as mst,CusShops as shop where mst.wspshopid=shop.wspshopid";
 			return getHibernateTemplate().find(queryString);
 		} catch (RuntimeException re) {
 			log.error("find all failed", re);

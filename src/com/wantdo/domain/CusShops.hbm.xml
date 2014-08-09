@@ -25,5 +25,10 @@
         <property name="shopindustry" type="java.lang.String">
             <column name="shopindustry" length="50" />
         </property>
+        <property name="wspshopid" type="java.lang.String">
+            <column name="wspshopid" length="20" />
+        </property>
+        <!-- <many-to-one name="wspShops" class="com.wantdo.domain.WspShops" column="wspshopid" 
+         insert="false" update="false"/> -->
     </class>
 </hibernate-mapping>

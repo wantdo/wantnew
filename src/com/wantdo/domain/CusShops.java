@@ -14,6 +14,8 @@ public class CusShops implements java.io.Serializable {
 	private String shopemail;
 	private String shopno;
 	private String shopindustry;
+	private String wspshopid;
+	//private WspShops wspShops;
 
 	// Constructors
 
@@ -23,12 +25,13 @@ public class CusShops implements java.io.Serializable {
 
 	/** full constructor */
 	public CusShops(String shopname, String shopmanager, String shopemail,
-			String shopno,String shopindustry) {
+			String shopno,String shopindustry,String wspshopid) {
 		this.shopname = shopname;
 		this.shopmanager = shopmanager;
 		this.shopemail = shopemail;
 		this.shopno = shopno;
 		this.shopindustry = shopindustry;
+		this.wspshopid = wspshopid;
 	}
 
 	// Property accessors
@@ -81,5 +84,12 @@ public class CusShops implements java.io.Serializable {
 		this.shopindustry = shopindustry;
 	}
 
+	public String getWspshopid() {
+		return wspshopid;
+	}
+
+	public void setWspshopid(String wspshopid) {
+		this.wspshopid = wspshopid;
+	}
 
 }

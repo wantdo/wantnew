@@ -1,5 +1,7 @@
 package com.wantdo.domain;
 
+import java.util.Set;
+
 /**
  * WspShops entity. @author MyEclipse Persistence Tools
  */
@@ -52,6 +54,7 @@ public class WspShops implements java.io.Serializable {
 	private String hdlogistic;
 	private String dealerflag;
 	private String refreshtoken;
+	//private Set<CusShops> cusShops;
 
 	// Constructors
 

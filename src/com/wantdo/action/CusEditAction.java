@@ -40,7 +40,7 @@ public class CusEditAction extends ActionSupport {
 		proList=ecEordermstService.getAllProblems();
 		proList.remove(proList.size() - 1);
 		if(edit == null){
-			return "login";
+			return SUCCESS;
 		}
 		if(edit.equals("add")){
 			return "add";

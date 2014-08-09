@@ -1,13 +1,10 @@
 package com.wantdo.test;
 
 
-import java.sql.Timestamp;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.Map.Entry;
 
 import org.junit.Test;
 import org.springframework.beans.factory.xml.XmlBeanFactory;
@@ -16,10 +13,10 @@ import org.springframework.core.io.ClassPathResource;
 import com.wantdo.dao.ICusOrderdtlDAO;
 import com.wantdo.dao.ICusOrdermstDAO;
 import com.wantdo.dao.IEcEordermstDAO;
+import com.wantdo.dao.IWspShopsDAO;
 import com.wantdo.domain.CusDesc;
 import com.wantdo.domain.CusDetail;
 import com.wantdo.domain.CusOrderdtl;
-import com.wantdo.domain.CusOrdermst;
 
 public class DaoTest {
 
@@ -92,6 +89,15 @@ public class DaoTest {
 		XmlBeanFactory factory=new XmlBeanFactory(new ClassPathResource("applicationContext.xml"));
 		ICusOrdermstDAO dao=(ICusOrdermstDAO)factory.getBean("CusOrdermstDAO");
 		List list=dao.findAllByOpDate("2014-03-21 00:00","2014-03-24 23:59");
+		System.out.println(list.size());
+	}
+	
+	
+	@Test
+	public void testFindAll()  throws Exception{
+		XmlBeanFactory factory=new XmlBeanFactory(new ClassPathResource("applicationContext.xml"));
+		IWspShopsDAO dao=(IWspShopsDAO)factory.getBean("WspShopsDAO");
+		List list=dao.findById(1);
 		System.out.println(list.size());
 	}
 	

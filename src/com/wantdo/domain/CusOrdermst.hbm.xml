@@ -94,5 +94,11 @@
         <property name="shopno" type="java.lang.String">
             <column name="shopno" length="60" />
         </property>
+        <property name="waybill" type="java.lang.String">
+            <column name="waybill" length="60" />
+        </property>
+        <property name="wspshopid" type="java.lang.String">
+            <column name="wspshopid" length="20" />
+        </property>
     </class>
 </hibernate-mapping>

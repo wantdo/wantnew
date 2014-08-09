@@ -615,6 +615,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   							<input  class="btn" type="Submit" value="新增" onClick="editChange('add')"></input>
   							<input  class="btn" type="Submit" value="修改" onClick="editChange('update')"></input>
   							<input  class="btn" type="Submit" value="删除" onClick="return checkdelete()"></input>
+  							<input type="button" class="btn" onclick="history.go(-1)" value="返回"></input>
   						</div>
   					
   					</div> 					

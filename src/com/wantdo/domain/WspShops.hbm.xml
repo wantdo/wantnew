@@ -139,5 +139,9 @@
         <property name="refreshtoken" type="java.lang.String">
             <column name="refreshtoken" length="500" />
         </property>
+        <!-- <set name="cusShops">
+      		<key column="wspshopid"></key>
+     		<one-to-many class="com.wantdo.domain.CusShops" not-found="ignore"/>
+   		</set> -->
     </class>
 </hibernate-mapping>

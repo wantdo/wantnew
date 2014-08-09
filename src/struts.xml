@@ -61,12 +61,13 @@
 		</action>
 		<action name="loginaction" class="LoginAction">
 			<interceptor-ref name="loginStack" />
-			<result>/WEB-INF/cusedit/list.jsp</result>
+			<result>/WEB-INF/cusedit/sort.jsp</result>
 			<result name = "login">/WEB-INF/cusedit/login.jsp</result>
 			<!-- <result name="input">/WEB-INF/content/login.jsp</result>
 			<result name="error">/WEB-INF/content/login.jsp</result> -->
 		</action>
 		<action name="CusShopsAction" class="CusShopsAction">
+			<interceptor-ref name="loginStack" />
 			<result>/WEB-INF/cusshops/list.jsp</result>
 			<result name = "login">/WEB-INF/cusshops/login.jsp</result>
 			<result name = "wait">/WEB-INF/cusshops/cuswait.jsp</result>

@@ -6,7 +6,7 @@ import com.wantdo.domain.WspShops;
 
 public interface IWspShopsDAO {
 
-	public abstract WspShops findById(java.lang.Integer id);
+	public abstract List findById(java.lang.Integer id);
 
 	public abstract List findBySysid(Object sysid);
 

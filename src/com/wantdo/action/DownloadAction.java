@@ -26,7 +26,7 @@ public class DownloadAction extends ActionSupport {
 		"序号","日期","订单状态","店铺编号","店铺名称",
 		"所属行业","订单号","订单情况","退换货反馈","问题细化分类","线上线下","金额",
 		"运费","差价","发货情况","商品名称","姓名","手机号","商品数量","商品货号",
-		"备注","处理人员","店铺负责人" 
+		"运单号","备注","处理人员","店铺负责人" 
 	};
 	
 	private String startTime;
@@ -52,7 +52,7 @@ public class DownloadAction extends ActionSupport {
 			CusOrdermst cusOrdermst=(CusOrdermst)cusMstDtlList.get(i)[0];
 			CusOrderdtl cusOrderdtl=(CusOrderdtl)cusMstDtlList.get(i)[1];
 			CusShops cusShops=(CusShops)cusMstDtlList.get(i)[2];
-			if(cusOrdermst.getShopname().equals(cusShops.getShopname())){
+			if(cusOrdermst.getWspshopid().equals(cusShops.getWspshopid())){
 				cusOrdermst.setShopindustry(cusShops.getShopindustry());
 				cusOrdermst.setShopno(cusShops.getShopno());
 			}
@@ -93,7 +93,7 @@ public class DownloadAction extends ActionSupport {
 						cusOrdermst.getRefamount(),cusOrdermst.getFreight(),cusOrdermst.getPricedisparity(),
 						cusOrdermst.getSendflg(),cusDtlList.get(0).getProname(),cusOrdermst.getLinkman(),
 						cusOrdermst.getHandset(),cusDtlList.get(0).getProqty(),
-						cusDtlList.get(0).getItemno(),cusOrdermst.getOperateremark(),
+						cusDtlList.get(0).getItemno(),cusOrdermst.getWaybill(),cusOrdermst.getOperateremark(),
 						cusOrdermst.getOperateman(),cusOrdermst.getShopmanager()
 					};
 				}else {

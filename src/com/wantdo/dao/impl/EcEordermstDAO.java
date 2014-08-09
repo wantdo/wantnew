@@ -334,7 +334,7 @@ public class EcEordermstDAO extends HibernateDaoSupport implements IEcEordermstD
     	try {
     		StringBuffer sBuffer=new StringBuffer("select wsp.mstid,ec.sendflg,ec.orderid, " +
     				"platform.systemname,shops.shopname,cshops.shopmanager,cshops.shopemail,ec.dealerflag,ec.goodsendtype,wsp.orderpaysum,wsp.orderdate,wsp.linkman," +
-    				"wsp.handset,wsp.recaddr,wsp.relid " +
+    				"wsp.handset,wsp.recaddr,wsp.relid,shops.id " +
     				"from EcEordermst ec,WspOrdermst wsp,WspPlatform platform,WspShops shops,CusShops cshops ");
     		for(Entry<String, String> entry:map.entrySet()){
     			if (sBuffer.indexOf("where")==-1) {
@@ -344,7 +344,7 @@ public class EcEordermstDAO extends HibernateDaoSupport implements IEcEordermstD
 				}
     			sBuffer.append("wsp.").append(entry.getKey()).append("='").append(entry.getValue()).append("' ");
     		}
-    		sBuffer.append(") and ec.relid=wsp.relid and wsp.sysid=platform.id and wsp.shopid=shops.id and shops.shopname=cshops.shopname");
+    		sBuffer.append(") and ec.relid=wsp.relid and wsp.sysid=platform.id and wsp.shopid=shops.id and shops.id=cshops.wspshopid");
     		System.out.println(sBuffer.toString());
     		return getHibernateTemplate().find(sBuffer.toString());
 		} catch (RuntimeException re) {

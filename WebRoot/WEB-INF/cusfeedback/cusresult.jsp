@@ -392,10 +392,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		        		"\n来电号码："+document.getElementById("cusOrdermst.incomingNo").value+
 		        		"\n备注："+document.getElementById("cusOrdermst.operateremark").value+
 		        		"\n操作人："+document.getElementById("cusOrdermst.operateman").value;
-					}else if (document.getElementById("cusOrdermst.operateopinion").value=="催货") {
+					}else if (document.getElementById("cusOrdermst.operateopinion").value=="维修") {
 						text="该订单存在："+document.getElementById("desc").value+
 		        		"\n具体为："+document.getElementById("detail").value+
-		        		"\n操作意见：催货"+
+		        		"\n操作意见：维修"+
 		        		"\n来电号码："+document.getElementById("cusOrdermst.incomingNo").value+
 		        		"\n备注："+document.getElementById("cusOrdermst.operateremark").value+
 		        		"\n操作人："+document.getElementById("cusOrdermst.operateman").value;
@@ -513,7 +513,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    		document.getElementById("cusOrdermst.pricedisparity").disabled=true;
 	    		document.getElementById("orderpayshow").style.display="block";
 	    		document.getElementById("cusOrdermst.orderpayshow").disabled=false;
-	    	}else if(document.getElementById("cusOrdermst.operateopinion").value=="催货"||
+	    	}else if(document.getElementById("cusOrdermst.operateopinion").value=="维修"||
 	    			document.getElementById("cusOrdermst.operateopinion").value=="补发"){
 	    		document.getElementById("cusOrdermst.onlineflag").style.display="none";
 	    		document.getElementById("cusOrdermst.onlineflag").disabled=true;
@@ -667,6 +667,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   								<s:property value='#array[4]'/>
   								<input type="hidden" name="cusOrdermst.shopname" class="od_readonly"  
   								id="shopname_<s:property value='#L.index'/>" value="<s:property value='#array[4]'/>"></input>
+  								<input type="hidden" name="cusOrdermst.wspshopid" class="od_readonly"  
+  								id="wspshopid_<s:property value='#L.index'/>" value="<s:property value='#array[15]'/>"></input>
   							</td>
   							<th class="od_th">店铺负责人</th>
   							<td>
@@ -847,7 +849,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   									<option selected value="">请选择:</option>
   									<option value="换货">换货</option>
   									<option value="退货">退货</option>
-  									<option value="催货">催货</option>
+  									<option value="维修">维修</option>
   									<option value="补发">补发</option>
   									<!-- <option value="订单挽回">订单挽回</option> -->
   								</select>
@@ -883,6 +885,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   								操作人：
   								<input class="form-opp" type="text" name="cusOrdermst.operateman" id="cusOrdermst.operateman" ></input>
   							</span>  			
+  						</div>
+  						<div class="opa">
+  							<span>
+  								运单号：<input class="form-opp" type="text" name="cusOrdermst.waybill" id="cusOrdermst.waybill" ></input>
+  							</span>
   						</div>
   						<div class="opa">
   							<span>
