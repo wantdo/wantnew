@@ -437,11 +437,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   								</li>
   							</s:iterator>
   						</ol>
-  						<!-- <input type="hidden" name="newTag"  id="newTag"/>
-  						<input type="hidden" name="cusOrdermst.cusdesc" id="desc"/>
-  						<input type="hidden" name="cusOrdermst.cusdetail" id="detail"/> -->
-  						<!-- <input type = "text" name = "cusDetail.cusDesc.id" id = "cusDetail.cusDesc.id"/> -->
-  						
   						<span class="label">类别：</span>
   							<select id = "leibie" name = "leibie" onchange="opinionChange()">
   								<option selected value="">请选择:</option>

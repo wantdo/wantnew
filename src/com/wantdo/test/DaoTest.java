@@ -10,6 +10,8 @@ import org.junit.Test;
 import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.core.io.ClassPathResource;
 
+import com.wantdo.dao.ICusCollectDAO;
+import com.wantdo.dao.ICusLogisticsDAO;
 import com.wantdo.dao.ICusOrderdtlDAO;
 import com.wantdo.dao.ICusOrdermstDAO;
 import com.wantdo.dao.IEcEordermstDAO;
@@ -98,6 +100,21 @@ public class DaoTest {
 		XmlBeanFactory factory=new XmlBeanFactory(new ClassPathResource("applicationContext.xml"));
 		IWspShopsDAO dao=(IWspShopsDAO)factory.getBean("WspShopsDAO");
 		List list=dao.findById(1);
+		System.out.println(list.size());
+	}
+	
+	@Test
+	public void testCusLogisticsDAO()  throws Exception{
+		XmlBeanFactory factory=new XmlBeanFactory(new ClassPathResource("applicationContext.xml"));
+		ICusLogisticsDAO dao=(ICusLogisticsDAO)factory.getBean("CusLogisticsDAO");
+		List list=dao.findAll();
+		System.out.println(list.size());
+	}
+	@Test
+	public void testCusCollectDAO()  throws Exception{
+		XmlBeanFactory factory=new XmlBeanFactory(new ClassPathResource("applicationContext.xml"));
+		ICusCollectDAO dao=(ICusCollectDAO)factory.getBean("CusCollectDAO");
+		List list=dao.findAll();
 		System.out.println(list.size());
 	}
 	

@@ -41,8 +41,29 @@
 				<value>com/wantdo/domain/CusDetail.hbm.xml</value>
 				<value>com/wantdo/domain/CusOrdermst.hbm.xml</value>
 				<value>com/wantdo/domain/CusOrderdtl.hbm.xml</value>
-				<value>com/wantdo/domain/CusShops.hbm.xml</value></list>
+				<value>com/wantdo/domain/CusShops.hbm.xml</value>
+				<value>com/wantdo/domain/CusLogistics.hbm.xml</value>
+				<value>com/wantdo/domain/CusCollect.hbm.xml</value>
+			</list>
 		</property></bean>
+	<bean id="CusCollectService" class="com.wantdo.service.impl.CusCollectService">
+	<property name="cusCollectDAO">
+		<ref bean="CusCollectDAO"/>
+	</property>
+	</bean>
+	<bean id="CusBackstageAction" class="com.wantdo.action.CusBackstageAction">
+		<property name="cusLogisticsService">
+			<ref bean="CusLogisticsService"/>
+		</property>
+		<property name="cusCollectService">
+			<ref bean="CusCollectService"/>
+		</property>
+	</bean>
+	<bean id="CusLogisticsService" class="com.wantdo.service.impl.CusLogisticsService">
+	<property name="cusLogisticsDAO">
+		<ref bean="CusLogisticsDAO"/>
+	</property>
+	</bean>
 	<bean id="CusShopsAction" class="com.wantdo.action.CusShopsAction">
 		<property name="cusShopsService">
 			<ref bean="CusShopsService"/>
@@ -99,6 +120,9 @@
 		</property>
 		<property name="mailService">
 			<ref bean="MailService"/>
+		</property>
+		<property name="cusLogisticsService">
+			<ref bean="CusLogisticsService"/>
 		</property>
 	</bean>
 	<bean id="ProcessedAction" class="com.wantdo.action.ProcessedAction" scope="prototype">
@@ -203,6 +227,17 @@
 	</bean>
 	
 	<bean id="CusShopsDAO" class="com.wantdo.dao.impl.CusShopsDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="CusLogisticsDAO"
+		class="com.wantdo.dao.impl.CusLogisticsDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="CusCollectDAO" class="com.wantdo.dao.impl.CusCollectDAO">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>

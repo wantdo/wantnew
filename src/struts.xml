@@ -74,5 +74,11 @@
 			<result name = "add">/WEB-INF/cusshops/add.jsp</result>
 			<result name = "update">/WEB-INF/cusshops/update.jsp</result>
 		</action>
+		<action name="CusBackstageAction" class="CusBackstageAction">
+			<!-- <interceptor-ref name="loginStack" /> -->
+			<result>/WEB-INF/cuslogistics/list.jsp</result>
+			<result name = "logisticsdetail">/WEB-INF/cuslogistics/logisticsdetail.jsp</result>
+			<result name = "cuscollect">/WEB-INF/cuscollect/list.jsp</result>
+		</action>
 	</package>
 </struts>    

@@ -133,10 +133,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   			<div id="home">
   						<a href="<%=basePath%>">主页</a>
   						<a href="loginaction.action">编辑</a>
+  						<!-- <input type="hidden" name="variable" id="variable" value="logistics" /> -->
+  						<a href="CusBackstageAction.action?variable=logistics">物流</a>
+  						<a href="CusBackstageAction.action?variable=cuscollect">反馈结果</a>
   					</div>
   					<div id="orderProcessed"   >
 						<div id="proLink" onmouseover="proLinkOver()">
-  						<!-- <a href="CusShopsAction.action">店铺编辑</a> -->
 							<a href="<%=basePath%>ProcessedAction.action?startTime=
 							<%SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd");%>
 								<%=sdf.format(new Date()) %>&&endTime=<%=sdf.format(new Date()) %>" 
