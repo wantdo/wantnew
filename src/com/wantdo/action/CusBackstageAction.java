@@ -10,6 +10,8 @@ import com.wantdo.domain.CusLogistics;
 import com.wantdo.service.impl.CusCollectService;
 import com.wantdo.service.impl.CusLogisticsService;
 
+
+//客服-->采购or物流
 public class CusBackstageAction extends ActionSupport {
 	
 	private String variable;
@@ -28,11 +30,13 @@ public class CusBackstageAction extends ActionSupport {
 	public String execute() throws Exception {
 		//System.out.println("*********************");
 		System.out.println(variable);
+		//查询所有客服处理过的自发订单信息
 		if(variable.equals("logistics")){
 			variable=null;
 			logisticsList = cusLogisticsService.findAll();
 			return SUCCESS;
 		}
+		//显示对应的自发订单详情
 		if(variable.equals("logisticsdetail")){
 			variable=null;
 			logisticsList.clear();
@@ -42,6 +46,7 @@ public class CusBackstageAction extends ActionSupport {
 			logisticsList.add(getCusLogistics());
 			return "logisticsdetail";
 		}
+		//插入物流处理意见
 		if(variable.equals("backresult")){
 			variable=null;
 			System.out.println(cusLogistics.getBackresult());
@@ -50,6 +55,7 @@ public class CusBackstageAction extends ActionSupport {
 			cusCollectService.save(cusCollect);
 			return SUCCESS;
 		}
+		//客服端查看物流处理结果
 		if(variable.equals("cuscollect")){
 			variable=null;
 			collectList = cusCollectService.findAll();

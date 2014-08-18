@@ -18,6 +18,7 @@ import com.wantdo.dao.IEcEordermstDAO;
 import com.wantdo.dao.IWspShopsDAO;
 import com.wantdo.domain.CusDesc;
 import com.wantdo.domain.CusDetail;
+import com.wantdo.domain.CusLogistics;
 import com.wantdo.domain.CusOrderdtl;
 
 public class DaoTest {
@@ -107,8 +108,8 @@ public class DaoTest {
 	public void testCusLogisticsDAO()  throws Exception{
 		XmlBeanFactory factory=new XmlBeanFactory(new ClassPathResource("applicationContext.xml"));
 		ICusLogisticsDAO dao=(ICusLogisticsDAO)factory.getBean("CusLogisticsDAO");
-		List list=dao.findAll();
-		System.out.println(list.size());
+		CusLogistics cusLogistics=dao.findById(1);
+		System.out.println(cusLogistics.getLinkman());
 	}
 	@Test
 	public void testCusCollectDAO()  throws Exception{
