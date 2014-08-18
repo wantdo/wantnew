@@ -15,7 +15,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
   <head>
     
-    <title>物流</title><%-- <%=request.getSession().getAttribute("username") %>，您好 --%>
+    <title>物流</title><%=request.getSession().getAttribute("username") %>，您好
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -99,81 +99,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			margin-left:20px;cursor:pointer;}
 		#header{padding:4px 10px 5px 0px;height:20px;float:left;width:100%;border-bottom: 1px solid #069;}
 		#home{float:left;font:16px #036 'Microsoft YaHei',微软雅黑,Verdana,arial,sans-serif;}
-		table.hovertable {
-			text-align:center;
-			font-family: verdana,arial,sans-serif;
-			font-size:16px;
-			color:#333333;
-			border-width: 1px;
-			border-color: #999999;
-			border-collapse: collapse;
-		}
-		table.hovertable th {
-			background-color:#c3dde0;
-			border-width: 1px;
-			padding: 8px;
-			border-style: solid;
-			border-color: #a9c6c9;
-		}
-		table.hovertable tr {
-			background-color:#d4e3e5;
-		}
-		table.hovertable td {
-			border-width: 1px;
-			padding: 8px;
-			border-style: solid;
-			border-color: #a9c6c9;
-		}
+		/* #desc_8{display:none;position:relative;} */
 	</style>
 	
-	<script src="<%=request.getContextPath()%>/js/My97DatePicker/WdatePicker.js"  type="text/javascript"></script>
-	<script src="<%=request.getContextPath()%>/js/ZeroClipboard.js"  type="text/javascript"></script>
-	<script type="text/javascript">
-	
-		/* function delHtmlTag (str)
-		{
-	          var str=str.replace (/<\/?[^>]*>/gim, "");//去掉所有的html标签
-	        var result=str.replace(/(\s*)|(\s*$)/g, "");//去掉前后空格    
-	        return  result.replace (/\s/g,"");//去除中间的空格
-		}
-	
-		
-		function editChange(str){
-			var str;
-			if(str=="add"){
-				document.getElementById("edit").value="add";
-			};
-			if(str=="update"){
-				document.getElementById("edit").value="update";
-			};
-		}
-		function checkdelete(){
-			document.getElementById("edit").value="delete";
-			if(confirm("确定要删除么")){
-				return true;
-			}else{
-				return false;
-			}
-		}
-		function radioChange1(){
-			  var arr = document.all('checkradio2');
-			  for (var i = 0; i < arr.length; i++) {
-			    arr[i].checked = false;
-			  };
-			}
-		function radioChange2(){
-			  var arr = document.all('checkradio1');
-			  for (var i = 0; i < arr.length; i++) {
-			    arr[i].checked = false;
-			  };
-			}
-		function load(){
-			document.getElementById("desc_8")
-		} */
-		function getRowID(rowID){
-			document.getElementById("cusRowID").value = rowID;
-		}
-	</script>
 
   </head>
   
@@ -187,38 +115,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   				</div>
   			</div>
   			<div id="body_wrapper">
-  				<form action="CusBackstageAction" method="post" name = "form1">
-  					<div id="op">
-  						<div class="noavatar">
-  							<h3>物流</h3>
-  						</div>
-  						<ol id="option">
-  							<table class="hovertable" >
-  									<thead><tr onmouseover="this.style.backgroundColor='#ffff66';" onmouseout="this.style.backgroundColor='#d4e3e5';"><td>快递单号</td><td>收件人</td><td>手机号</td><td>地址</td><td></td><td></td></tr></thead>
-  									<s:iterator value="logisticsList" id="logisticsList" >
-  										<tr onmouseover="this.style.backgroundColor='#ffff66';" onmouseout="this.style.backgroundColor='#d4e3e5';">
-											<td><s:property value="#logisticsList.waybill"/></td>
-											<td><s:property value="#logisticsList.linkman"/></td>
-											<td><s:property value="#logisticsList.handset"/></td>
-											<td><s:property value="#logisticsList.recaddr"/></td>
-											<td class="opa"><input  class="btn" type="Submit" value="详情" onclick="getRowID(<s:property value="#logisticsList.id"/>)" /></td>
-											<s:if test="#logisticsList.backresult == null"><td style="color:red">（未处理）</td></s:if><s:else><td style="color:green">（已处理）</td></s:else>
-  										</tr>
-  									</s:iterator>
-  								</table>
-  						</ol>
-						<input type="hidden" name="cusRowID"  id="cusRowID" value=""/> 
-						<input type="hidden" name="variable" id="variable" value="logisticsdetail" />
-  						<!-- <div class="opa">
-  							<input type="hidden" name = "edit" id = "edit" value="" />
-  							<input  class="btn" type="Submit" value="新增" onClick="editChange('add')"></input>
-  							<input  class="btn" type="Submit" value="修改" onClick="editChange('update')"></input>
-  							<input  class="btn" type="Submit" value="删除" onClick="return checkdelete()"></input>
-  							<input type="button" class="btn" onclick="history.go(-1)" value="返回"></input>
-  						</div> -->
-  					
-  					</div> 					
-  				</form>
+  				<a href="CusBackstageAction.action?variable=">客服-->采购</a>
+  			</div>
+  			<div id="body_wrapper">
+  				<a href="CusBackAction.action?variable=purchase">采购-->物流</a>
   			</div>
   		</div>
   </body>

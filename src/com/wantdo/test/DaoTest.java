@@ -109,6 +109,7 @@ public class DaoTest {
 		XmlBeanFactory factory=new XmlBeanFactory(new ClassPathResource("applicationContext.xml"));
 		ICusLogisticsDAO dao=(ICusLogisticsDAO)factory.getBean("CusLogisticsDAO");
 		CusLogistics cusLogistics=dao.findById(5);
+//		CusLogistics cusLogistics=dao.findById(1);
 		System.out.println(cusLogistics.getLinkman());
 	}
 	@Test
