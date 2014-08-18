@@ -46,6 +46,8 @@
 				<value>com/wantdo/domain/CusCollect.hbm.xml</value>
 			</list>
 		</property></bean>
+	<bean id="CusBackAction" class="com.wantdo.action.CusBackAction">
+	</bean>
 	<bean id="CusCollectService" class="com.wantdo.service.impl.CusCollectService">
 	<property name="cusCollectDAO">
 		<ref bean="CusCollectDAO"/>

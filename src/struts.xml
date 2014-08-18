@@ -80,5 +80,10 @@
 			<result name = "logisticsdetail">/WEB-INF/cuslogistics/logisticsdetail.jsp</result>
 			<result name = "cuscollect">/WEB-INF/cuscollect/list.jsp</result>
 		</action>
+		<action name="CusBackAction" class="CusBackAction">
+			<!-- <interceptor-ref name="loginStack" /> -->
+			<result>/WEB-INF/cuspurchase/upload.jsp</result>
+			<result name = "wait">/WEB-INF/cuspurchase/success.jsp</result>
+		</action>
 	</package>
 </struts>    
