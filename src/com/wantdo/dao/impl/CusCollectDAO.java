@@ -1,11 +1,16 @@
 package com.wantdo.dao.impl;
 
+import java.sql.SQLException;
 import java.util.List;
 
+import org.hibernate.HibernateException;
 import org.hibernate.LockMode;
+import org.hibernate.Query;
+import org.hibernate.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
+import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.wantdo.dao.ICusCollectDAO;
@@ -214,5 +219,34 @@ public class CusCollectDAO extends HibernateDaoSupport implements ICusCollectDAO
 
 	public static CusCollectDAO getFromApplicationContext(ApplicationContext ctx) {
 		return (CusCollectDAO) ctx.getBean("CusCollectDAO");
+	}
+	
+	public List queryForPage(final String hql,final int offset,final int length){  
+		 
+		return this.getHibernateTemplate().executeFind(new HibernateCallback(){               
+        	public Object doInHibernate(Session session) throws HibernateException,SQLException{                   
+        		Query query = session.createQuery(hql);                  
+        		query.setFirstResult(offset);                  
+        		query.setMaxResults(length);    
+        		List list = query.list();
+        		return list;              
+        		}          
+        	});           
+    }
+	
+//	public List getList(final PageBean p) {      
+//	          return this.getHibernateTemplate().executeFind(new HibernateCallback(){      
+//	        	  public Object doInHibernate(Session session){     
+//	        		  Query q = session.createQuery(p.getListSQL());   
+//	        		  q.setFirstResult((p.getPage() - 1) * p.getPageSize());    
+//	        		  q.setMaxResults(p.getPageSize());     
+//	        		  return q.list();    
+//	        		  }   
+//	        	  });     
+//	          }   
+
+	@Override
+	public int getAllRowCount(String hql) {
+		return getHibernateTemplate().find(hql).size();
 	}
 }

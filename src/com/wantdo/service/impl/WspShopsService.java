@@ -3,7 +3,10 @@ package com.wantdo.service.impl;
 import java.util.List;
 
 import com.wantdo.dao.IWspShopsDAO;
+import com.wantdo.dao.impl.WspShopsDAO;
+import com.wantdo.domain.WspShops;
 import com.wantdo.service.IWspShopsService;
+import com.wantdo.utils.PageModel;
 
 public class WspShopsService implements IWspShopsService {
 	private IWspShopsDAO wspShopsDAO;
@@ -24,10 +27,5 @@ public class WspShopsService implements IWspShopsService {
 	public void setWspShopsDAO(IWspShopsDAO wspShopsDAO) {
 		this.wspShopsDAO = wspShopsDAO;
 	}
-
-
-
-
-	
 
 }

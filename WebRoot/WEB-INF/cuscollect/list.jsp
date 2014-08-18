@@ -190,7 +190,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   							<h3>物流</h3>
   						</div>
   						<ol id="option">
-  							<table class="hovertable" >
+  							<%-- <table class="hovertable" >
   									<thead><tr onmouseover="this.style.backgroundColor='#ffff66';" onmouseout="this.style.backgroundColor='#d4e3e5';"><td>快递单号</td><td>收件人</td><td>手机号</td><td>地址</td><td>订单编号</td><td>平台</td><td>店铺名</td><td>订单日期</td><td>反馈结果</td><td></td></tr></thead>
   									<s:iterator value="collectList" id="collectList" >
   										<tr onmouseover="this.style.backgroundColor='#ffff66';" onmouseout="this.style.backgroundColor='#d4e3e5';">
@@ -206,9 +206,47 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											<td class="opa"><input  class="btn" type="Submit" value="详情" /></td>
   										</tr>
   									</s:iterator>
-  								</table>
+  								</table> --%>
+  								
+  								 <table class="hovertable" >
+  									<thead><tr onmouseover="this.style.backgroundColor='#ffff66';" onmouseout="this.style.backgroundColor='#d4e3e5';"><td>快递单号</td><td>收件人</td><td>手机号</td><td>地址</td><td>订单编号</td><td>平台</td><td>店铺名</td><td>订单日期</td><td>反馈结果</td><td></td></tr></thead>
+  									<s:iterator value="pageBean.list" id="wspListPM">              
+  									<s:property value="title"/>   
+  									    <tr onmouseover="this.style.backgroundColor='#ffff66';" onmouseout="this.style.backgroundColor='#d4e3e5';">
+											<td><s:property value="#wspListPM.waybill"/></td>
+											<td><s:property value="#wspListPM.linkman"/></td>
+											<td><s:property value="#wspListPM.handset"/></td>
+											<td><s:property value="#wspListPM.recaddr"/></td>
+											<td><s:property value="#wspListPM.relid"/></td>
+											<td><s:property value="#wspListPM.sysname"/></td>
+											<td><s:property value="#wspListPM.shopname"/></td>
+											<td><s:property value="#wspListPM.orderdate"/></td>
+											<td><s:property value="#wspListPM.backresult"/> </td>
+											<td class="opa"><input  class="btn" type="Submit" value="详情" /></td>
+  										</tr>
+  									</s:iterator>           
+  									
+  									</table>
+  									共<s:property value="pageBean.allRow"/> 条记录         
+  									 共<s:property value="pageBean.totalPage"/> 页           
+  									 当前第<s:property value="pageBean.currentPage"/>页<br/>                     
+  									 <s:if test="%{pageBean.currentPage == 1}">             
+  									  第一页 上一页         
+  									  </s:if>          
+  									  <s:else>               
+  									  <a href="CusBackstageAction.action?page=1">第一页</a>              
+  									 <a href="CusBackstageAction.action?page=<s:property value="%{pageBean.currentPage-1}"/>">上一页</a>         
+  									  </s:else>           
+  									  <s:if test="%{pageBean.currentPage != pageBean.totalPage}">               
+  									  <a href="CusBackstageAction.action?page=<s:property value="%{pageBean.currentPage+1}"/>">下一页</a>               
+  									  <a href="CusBackstageAction.action?page=<s:property value="pageBean.totalPage"/>">最后一页</a>          
+  									  </s:if>          
+  									  <s:else>               
+  									  下一页 最后一页         
+  									   </s:else> 
+  									   
   						</ol>
-						<%-- <input type="hidden" name="cusLogistics.id"  id="cusLogistics.id" value="<s:property value="#collectList.id"/>"/>
+						<%-- <input type="hidden" name="cusLogistics.id"  id="cusLogistics.id" value="<s:property value="#wspListPM.id"/>"/>
 						<input type="hidden" name="variable" id="variable" value="logisticsdetail" /> --%>
   						<!-- <div class="opa">
   							<input type="hidden" name = "edit" id = "edit" value="" />

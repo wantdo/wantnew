@@ -135,7 +135,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   						<a href="loginaction.action">编辑</a>
   						<!-- <input type="hidden" name="variable" id="variable" value="logistics" /> -->
   						<a href="CusBackstageAction.action?variable=logistics">物流</a>
-  						<a href="CusBackstageAction.action?variable=cuscollect">反馈结果</a>
+  						<a href="CusBackstageAction.action?varpage=cuscollect&&variable=a">反馈结果</a>
   					</div>
   					<div id="orderProcessed"   >
 						<div id="proLink" onmouseover="proLinkOver()">

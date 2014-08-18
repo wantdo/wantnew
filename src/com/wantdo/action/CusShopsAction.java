@@ -3,14 +3,17 @@ package com.wantdo.action;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.struts2.ServletActionContext;
+
 import com.opensymphony.xwork2.ActionSupport;
 import com.wantdo.domain.CusShops;
 import com.wantdo.domain.WspShops;
 import com.wantdo.service.ICusShopsService;
 import com.wantdo.service.IWspShopsService;
+import com.wantdo.utils.PageModel;
 
 public class CusShopsAction extends ActionSupport {
-	
+
 	private String edit;
 	private ICusShopsService cusShopsService;
 	private IWspShopsService wspShopsService;
@@ -23,11 +26,12 @@ public class CusShopsAction extends ActionSupport {
 	
 	public CusShopsAction() {
 		super();
-		cusList=new ArrayList<CusShops>();
-		tempList=new ArrayList<CusShops>();
-		updateList=new ArrayList<Object[]>();
-		wspList=new ArrayList<WspShops>();
+		cusList = new ArrayList<CusShops>();
+		tempList = new ArrayList<CusShops>();
+		updateList = new ArrayList<Object[]>();
+		wspList = new ArrayList<WspShops>();
 	}
+
 	@Override
 	public String execute() throws Exception {
 		//System.out.println("*********************");
@@ -70,56 +74,71 @@ public class CusShopsAction extends ActionSupport {
 		}
 		return SUCCESS;
 	}
-	
-	
+
 	public String getEdit() {
 		return edit;
 	}
+
 	public void setEdit(String edit) {
 		this.edit = edit;
 	}
+
 	public ICusShopsService getCusShopsService() {
 		return cusShopsService;
 	}
+
 	public void setCusShopsService(ICusShopsService cusShopsService) {
 		this.cusShopsService = cusShopsService;
 	}
+
 	public IWspShopsService getWspShopsService() {
 		return wspShopsService;
 	}
+
 	public void setWspShopsService(IWspShopsService wspShopsService) {
 		this.wspShopsService = wspShopsService;
 	}
+
 	public CusShops getCusShops() {
 		return cusShops;
 	}
+
 	public void setCusShops(CusShops cusShops) {
 		this.cusShops = cusShops;
 	}
+
 	public WspShops getWspShops() {
 		return wspShops;
 	}
+
 	public void setWspShops(WspShops wspShops) {
 		this.wspShops = wspShops;
 	}
+
 	public List<CusShops> getCusList() {
 		return cusList;
 	}
+
 	public void setCusList(List<CusShops> cusList) {
 		this.cusList = cusList;
 	}
+
 	public List<Object[]> getUpdateList() {
 		return updateList;
 	}
+
 	public void setUpdateList(List<Object[]> updateList) {
 		this.updateList = updateList;
 	}
-	public List<WspShops> getWspList() {
-		return wspList;
-	}
+
 	public void setWspList(List<WspShops> wspList) {
 		this.wspList = wspList;
 	}
+
+	public List<WspShops> getWspList() {
+		return wspList;
+	}
+
 
 
 }

@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.hibernate.HibernateException;
 import org.hibernate.LockMode;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -402,4 +403,23 @@ public class WspShopsDAO extends HibernateDaoSupport implements IWspShopsDAO {
 	public static IWspShopsDAO getFromApplicationContext(ApplicationContext ctx) {
 		return (IWspShopsDAO) ctx.getBean("WspShopsDAO");
 	}
+
+	
+//	public List queryForPage(final String hql,final int offset,final int length) {
+//		List list = getHibernateTemplate().executeFind(new HibernateCallback() {
+//			public Object doInHibernate(Session session) throws HibernateException,SQLException{
+//				Query query = session.createQuery(hql);
+//				query.setFirstResult(offset);
+//				query.setMaxResults(length);
+//				List list = query.list();
+//				return list;
+//			}
+//		});
+//		return list;
+//	}
+//
+//	@Override
+//	public int getAllRowCount(String hql) {
+//		return getHibernateTemplate().find(hql).size();
+//	}
 }

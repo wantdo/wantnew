@@ -183,6 +183,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   								</table> --%>
   								<table class="hovertable" >
   									<thead><tr onmouseover="this.style.backgroundColor='#ffff66';" onmouseout="this.style.backgroundColor='#d4e3e5';"><td></td><td>平台</td><td>ERP店铺名</td><td>本地店铺名</td><td>店铺负责人</td><td>店铺邮箱</td><td>店铺编号</td><td>所属行业</td></tr></thead>
+  									
   									<s:iterator value="wspList" id="wspList" >
   										<tr onmouseover="this.style.backgroundColor='#ffff66';" onmouseout="this.style.backgroundColor='#d4e3e5';">
   											<td><input id="checkradio" checked="checked" class="form-checkbox" type="radio" name="wspShops.id" value="<s:property value="#wspList[0]"/>" /></td>

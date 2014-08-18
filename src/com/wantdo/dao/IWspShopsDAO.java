@@ -13,5 +13,5 @@ public interface IWspShopsDAO {
 	public abstract List findByShopname(Object shopname);
 	
 	public List findAll();
-
+	
 }

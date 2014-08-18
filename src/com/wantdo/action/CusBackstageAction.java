@@ -9,16 +9,22 @@ import com.wantdo.domain.CusCollect;
 import com.wantdo.domain.CusLogistics;
 import com.wantdo.service.impl.CusCollectService;
 import com.wantdo.service.impl.CusLogisticsService;
+import com.wantdo.utils.PageBean;
+import com.wantdo.utils.PageModel;
 
 public class CusBackstageAction extends ActionSupport {
 	
 	private String variable;
+	private String varpage;
 	private CusLogistics cusLogistics;
 	private CusCollect cusCollect;
 	private CusLogisticsService cusLogisticsService;
 	private CusCollectService cusCollectService;
 	private List<CusLogistics> logisticsList;
 	private List<CusCollect> collectList;
+	private int page;    //第几页             
+	private PageBean pageBean;    //包含分布信息的bean 
+
 	
 	public CusBackstageAction() {
 		super();
@@ -28,6 +34,7 @@ public class CusBackstageAction extends ActionSupport {
 	public String execute() throws Exception {
 		//System.out.println("*********************");
 		System.out.println(variable);
+		System.out.println(varpage);
 		if(variable.equals("logistics")){
 			variable=null;
 			logisticsList = cusLogisticsService.findAll();
@@ -50,9 +57,10 @@ public class CusBackstageAction extends ActionSupport {
 			cusCollectService.save(cusCollect);
 			return SUCCESS;
 		}
-		if(variable.equals("cuscollect")){
-			variable=null;
+		if(varpage.equals("cuscollect")){
+			//variable=null;
 			collectList = cusCollectService.findAll();
+			this.pageBean = cusCollectService.queryForPage(3, page);
 			return "cuscollect";
 		}
 		return SUCCESS;
@@ -101,5 +109,24 @@ public class CusBackstageAction extends ActionSupport {
 	public void setCollectList(List<CusCollect> collectList) {
 		this.collectList = collectList;
 	}
+	public int getPage() {
+		return page;
+	}
+	public void setPage(int page) {
+		this.page = page;
+	}
+	public PageBean getPageBean() {
+		return pageBean;
+	}
+	public void setPageBean(PageBean pageBean) {
+		this.pageBean = pageBean;
+	}
+	public String getVarpage() {
+		return varpage;
+	}
+	public void setVarpage(String varpage) {
+		this.varpage = varpage;
+	}
+	
 	
 }
