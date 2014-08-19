@@ -22,14 +22,12 @@ import com.wantdo.utils.ExcelUtil;
 public class CusBackAction extends ActionSupport {
 	
 	private String variable;
-	private ServletContext context;
 	private File temp;
 	private File upload;
 	private String uploadFileName;
 	
 	public CusBackAction() {
 		super();
-		//context=ServletActionContext.getServletContext();
 	}
 	@Override
 	public String execute() throws Exception {
@@ -46,10 +44,11 @@ public class CusBackAction extends ActionSupport {
 			OutputStream out=null;
 			try {
 				System.out.println(upload);
-				String uploadDir=context.getRealPath("upload");
+				String uploadDir=ServletActionContext.getServletContext().getRealPath("/")+"upload";
+				System.out.println(uploadDir);
 				if (!(new File(uploadDir).isDirectory())) {
 					new File(uploadDir).mkdirs();
-					uploadDir=context.getRealPath("upload");
+					uploadDir=ServletActionContext.getServletContext().getRealPath("upload");
 				}
 				temp=new File(uploadDir+File.separator+uploadFileName);
 				if (!temp.exists()) {
@@ -98,12 +97,6 @@ public class CusBackAction extends ActionSupport {
 	}
 	public void setVariable(String variable) {
 		this.variable = variable;
-	}
-	public ServletContext getContext() {
-		return context;
-	}
-	public void setContext(ServletContext context) {
-		this.context = context;
 	}
 	public File getTemp() {
 		return temp;
