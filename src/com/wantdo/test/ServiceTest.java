@@ -17,6 +17,7 @@ import com.wantdo.domain.CusOrdermst;
 import com.wantdo.domain.Email;
 import com.wantdo.service.ICusOrderdtlService;
 import com.wantdo.service.ICusOrdermstService;
+import com.wantdo.service.ICusPurchaseService;
 import com.wantdo.service.IEcEordermstService;
 import com.wantdo.service.impl.MailService;
 
@@ -118,6 +119,13 @@ public class ServiceTest {
 		Email email=new Email("sw@wantdo.cn", "luanx@wantdo.com;826141705@qq.com", 
 				"¿Í»§·´À¡", service.getMessage(map));
 		service.sendMessage(email);
+	}
+	@Test
+	public void testCusPurchaseService() throws Exception{
+		XmlBeanFactory factory=new XmlBeanFactory(new ClassPathResource("applicationContext.xml"));
+		ICusPurchaseService service=(ICusPurchaseService)factory.getBean("CusPurchaseService");
+		List list=service.findAll();
+		System.out.println(list.size());
 	}
 	
 }

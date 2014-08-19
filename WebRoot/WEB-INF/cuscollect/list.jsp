@@ -15,7 +15,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
   <head>
     
-    <title>物流</title><%-- <%=request.getSession().getAttribute("username") %>，您好 --%>
+    <title>物流处理结果</title><%-- <%=request.getSession().getAttribute("username") %>，您好 --%>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -187,7 +187,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   				<form action="CusBackstageAction" method="post" name = "form1">
   					<div id="op">
   						<div class="noavatar">
-  							<h3>物流</h3>
+  							<h3>物流处理结果</h3>
   						</div>
   						<ol id="option">
   							<%-- <table class="hovertable" >

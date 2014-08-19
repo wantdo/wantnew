@@ -100,5 +100,8 @@
         <property name="wspshopid" type="java.lang.String">
             <column name="wspshopid" length="20" />
         </property>
+        <property name="address" type="java.lang.String">
+            <column name="address" length="200" />
+        </property>
     </class>
 </hibernate-mapping>

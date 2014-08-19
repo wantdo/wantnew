@@ -3,10 +3,10 @@ package com.wantdo.domain;
 import java.sql.Timestamp;
 
 /**
- * CusLogistics entity. @author MyEclipse Persistence Tools
+ * CusPurchase entity. @author MyEclipse Persistence Tools
  */
 
-public class CusLogistics implements java.io.Serializable {
+public class CusPurchase implements java.io.Serializable {
 
 	// Fields
 
@@ -28,20 +28,21 @@ public class CusLogistics implements java.io.Serializable {
 	private String relid;
 	private String goodsendtype;
 	private String backresult;
-	private String address;
+	private String image;
 
 	// Constructors
 
 	/** default constructor */
-	public CusLogistics() {
+	public CusPurchase() {
 	}
 
 	/** full constructor */
-	public CusLogistics(String waybill, String linkman, String handset,
+	public CusPurchase(String waybill, String linkman, String handset,
 			String recaddr, String ecid, String sysname, String shopname,
 			Timestamp orderdate, Timestamp operatedate, String cusdesc,
 			String cusdetail, String operateopinion, String operateman,
-			String operateremark, String relid, String goodsendtype,String backresult,String address) {
+			String operateremark, String relid, String goodsendtype,
+			String backresult, String image) {
 		this.waybill = waybill;
 		this.linkman = linkman;
 		this.handset = handset;
@@ -59,7 +60,7 @@ public class CusLogistics implements java.io.Serializable {
 		this.relid = relid;
 		this.goodsendtype = goodsendtype;
 		this.backresult = backresult;
-		this.address = address;
+		this.image = image;
 	}
 
 	// Property accessors
@@ -201,19 +202,19 @@ public class CusLogistics implements java.io.Serializable {
 	}
 
 	public String getBackresult() {
-		return backresult;
+		return this.backresult;
 	}
 
 	public void setBackresult(String backresult) {
 		this.backresult = backresult;
 	}
 
-	public String getAddress() {
-		return address;
+	public String getImage() {
+		return this.image;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 }

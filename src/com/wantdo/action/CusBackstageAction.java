@@ -7,10 +7,10 @@ import java.util.List;
 import com.opensymphony.xwork2.ActionSupport;
 import com.wantdo.domain.CusCollect;
 import com.wantdo.domain.CusLogistics;
-import com.wantdo.service.impl.CusCollectService;
-import com.wantdo.service.impl.CusLogisticsService;
+import com.wantdo.service.ICusCollectService;
+import com.wantdo.service.ICusLogisticsService;
+import com.wantdo.service.ICusPurchaseService;
 import com.wantdo.utils.PageBean;
-import com.wantdo.utils.PageModel;
 
 
 //客服-->采购or物流
@@ -20,8 +20,9 @@ public class CusBackstageAction extends ActionSupport {
 	private String varpage;
 	private CusLogistics cusLogistics;
 	private CusCollect cusCollect;
-	private CusLogisticsService cusLogisticsService;
-	private CusCollectService cusCollectService;
+	private ICusLogisticsService cusLogisticsService;
+	private ICusCollectService cusCollectService;
+	private ICusPurchaseService cusPurchaseService;
 	private List<CusLogistics> logisticsList;
 	private List<CusCollect> collectList;
 	private String cusRowID;
@@ -32,11 +33,13 @@ public class CusBackstageAction extends ActionSupport {
 	public CusBackstageAction() {
 		super();
 		logisticsList=new ArrayList<CusLogistics>();
+		collectList=new ArrayList<CusCollect>();
 	}
 	@Override
 	public String execute() throws Exception {
 		//System.out.println("*********************");
 		System.out.println(variable);
+		System.out.println(varpage);
 		//查询所有客服处理过的自发订单信息
 		if(variable.equals("logistics")){
 			variable=null;
@@ -61,9 +64,10 @@ public class CusBackstageAction extends ActionSupport {
 			cusCollectService.save(cusCollect);
 			return SUCCESS;
 		}
+		//客服端查看物流处理结果
 		if(varpage.equals("cuscollect")){
 			//variable=null;
-		//客服端查看物流处理结果
+			//varpage = null;
 			collectList = cusCollectService.findAll();
 			this.pageBean = cusCollectService.queryForPage(3, page);
 			return "cuscollect";
@@ -72,11 +76,18 @@ public class CusBackstageAction extends ActionSupport {
 	}
 	
 	
+	
 	public String getVariable() {
 		return variable;
 	}
 	public void setVariable(String variable) {
 		this.variable = variable;
+	}
+	public String getVarpage() {
+		return varpage;
+	}
+	public void setVarpage(String varpage) {
+		this.varpage = varpage;
 	}
 	public CusLogistics getCusLogistics() {
 		return cusLogistics;
@@ -84,11 +95,29 @@ public class CusBackstageAction extends ActionSupport {
 	public void setCusLogistics(CusLogistics cusLogistics) {
 		this.cusLogistics = cusLogistics;
 	}
-	public CusLogisticsService getCusLogisticsService() {
+	public CusCollect getCusCollect() {
+		return cusCollect;
+	}
+	public void setCusCollect(CusCollect cusCollect) {
+		this.cusCollect = cusCollect;
+	}
+	public ICusLogisticsService getCusLogisticsService() {
 		return cusLogisticsService;
 	}
-	public void setCusLogisticsService(CusLogisticsService cusLogisticsService) {
+	public void setCusLogisticsService(ICusLogisticsService cusLogisticsService) {
 		this.cusLogisticsService = cusLogisticsService;
+	}
+	public ICusCollectService getCusCollectService() {
+		return cusCollectService;
+	}
+	public void setCusCollectService(ICusCollectService cusCollectService) {
+		this.cusCollectService = cusCollectService;
+	}
+	public ICusPurchaseService getCusPurchaseService() {
+		return cusPurchaseService;
+	}
+	public void setCusPurchaseService(ICusPurchaseService cusPurchaseService) {
+		this.cusPurchaseService = cusPurchaseService;
 	}
 	public List<CusLogistics> getLogisticsList() {
 		return logisticsList;
@@ -96,23 +125,17 @@ public class CusBackstageAction extends ActionSupport {
 	public void setLogisticsList(List<CusLogistics> logisticsList) {
 		this.logisticsList = logisticsList;
 	}
-	public CusCollect getCusCollect() {
-		return cusCollect;
-	}
-	public void setCusCollect(CusCollect cusCollect) {
-		this.cusCollect = cusCollect;
-	}
-	public CusCollectService getCusCollectService() {
-		return cusCollectService;
-	}
-	public void setCusCollectService(CusCollectService cusCollectService) {
-		this.cusCollectService = cusCollectService;
-	}
 	public List<CusCollect> getCollectList() {
 		return collectList;
 	}
 	public void setCollectList(List<CusCollect> collectList) {
 		this.collectList = collectList;
+	}
+	public String getCusRowID() {
+		return cusRowID;
+	}
+	public void setCusRowID(String cusRowID) {
+		this.cusRowID = cusRowID;
 	}
 	public int getPage() {
 		return page;
@@ -126,18 +149,5 @@ public class CusBackstageAction extends ActionSupport {
 	public void setPageBean(PageBean pageBean) {
 		this.pageBean = pageBean;
 	}
-	public String getVarpage() {
-		return varpage;
-	}
-	public void setVarpage(String varpage) {
-		this.varpage = varpage;
-	}
-	public String getCusRowID() {
-		return cusRowID;
-	}
-	public void setCusRowID(String cusRowID) {
-		this.cusRowID = cusRowID;
-	}
-	
 	
 }

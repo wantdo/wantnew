@@ -33,7 +33,18 @@ public class CusSubAction extends ActionSupport {
 			return ERROR;
 		}
 		if(cusOrdermst.getGoodsendtype().equals("×Ô·¢")){
-			CusLogistics cusLogistics = new CusLogistics(cusOrdermst.getWaybill(), cusOrdermst.getLinkman(), cusOrdermst.getHandset(), cusOrdermst.getRecaddr(), cusOrdermst.getEcid(), cusOrdermst.getSysname(), cusOrdermst.getShopname(), cusOrdermst.getOrderdate(), cusOrdermst.getOperatedate(), cusOrdermst.getCusdesc(), cusOrdermst.getCusdetail(), cusOrdermst.getOperateopinion(), cusOrdermst.getOperateman(), cusOrdermst.getOperateremark(), cusOrdermst.getRelid(), cusOrdermst.getGoodsendtype(),null);
+			CusLogistics cusLogistics = new CusLogistics(
+					cusOrdermst.getWaybill(), cusOrdermst.getLinkman(),
+					cusOrdermst.getHandset(), cusOrdermst.getRecaddr(),
+					cusOrdermst.getEcid(), cusOrdermst.getSysname(),
+					cusOrdermst.getShopname(), cusOrdermst.getOrderdate(),
+					cusOrdermst.getOperatedate(), cusOrdermst.getCusdesc(),
+					cusOrdermst.getCusdetail(),
+					cusOrdermst.getOperateopinion(),
+					cusOrdermst.getOperateman(),
+					cusOrdermst.getOperateremark(), cusOrdermst.getRelid(),
+					cusOrdermst.getGoodsendtype(), null,
+					cusOrdermst.getAddress());
 			//cusLogistics.setOperatedate(new Timestamp(new Date().getTime()));
 			cusLogisticsService.save(cusLogistics);
 		}

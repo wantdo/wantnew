@@ -265,6 +265,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		}
 		
 		function init() {
+			goodsendtypeChange();
 	    	document.getElementById("cusOrdermst.operateopinion").options[0].selected=true;
 	        //引入 Zero Clipboard flash文件
 	        ZeroClipboard.setMoviePath( "<%=request.getContextPath()%>/js/ZeroClipboard.swf" );
@@ -422,6 +423,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	        });
 	        //绑定触发对象按钮ID
 	      clip.glue("btn");
+	      
 	    }
 	    
 	    
@@ -525,6 +527,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    		document.getElementById("cusOrdermst.pricedisparity").disabled=true;
 	    		document.getElementById("orderpayshow").style.display="none";
 	    		document.getElementById("cusOrdermst.orderpayshow").disabled=true;
+	    	}
+	    }
+	    
+	    function goodsendtypeChange(){
+	    	if(document.getElementById("cusOrdermst.goodsendtype").value=="自发"){
+	    		document.getElementById("cusOrdermst.daifaaddress").disabled=true;
+	    		document.getElementById("daifaaddress").style.display="none";
+	    		document.getElementById("cusOrdermst.zifaaddress").disabled=false;
+	    		document.getElementById("zifaaddress").style.display="block";
+	    	}else if(document.getElementById("cusOrdermst.goodsendtype").value=="代发"){
+	    		document.getElementById("cusOrdermst.zifaaddress").disabled=true;
+	    		document.getElementById("zifaaddress").style.display="none";
+	    		document.getElementById("cusOrdermst.daifaaddress").disabled=false;
+	    		document.getElementById("daifaaddress").style.display="block";
 	    	}
 	    }
 	    
@@ -702,11 +718,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   								<s:elseif test='#array[8]=="2"'>
   									代发
   								</s:elseif>
-  								<input type="hidden" name="cusOrdermst.goodsendtype" 
+  								<input type="hidden"  
   								id="goodsendtype_<s:property value='#L.index'/>" class="od_readonly"  
-  								<s:if test='#array[8]=="1"'>value="自发"</s:if>
-  								<s:elseif test='#array[8]=="2"'>value="代发"</s:elseif>
   								/>
+  								<%-- <s:if test='#array[8]=="1"'>value="自发"</s:if>
+  								<s:elseif test='#array[8]=="2"'>value="代发"</s:elseif> --%>
   							</td>
   						</tr>
   						<tr>
@@ -873,8 +889,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   								</span>
   								<%-- <span id="orderpayshow" class="labelDis">
   									订单金额：<input class="form-opp" type="text"  id="cusOrdermst.orderpayshow"
-  										value="<s:property value='#array[9]'/>"></input>
-  								</span> --%>
+  										value="<s:property value='#array[9]'/>"></input> --%>
+  								</span>
   											
   						</div>
   						<div class="opa">
@@ -893,7 +909,46 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   						</div>
   						<div class="opa">
   							<span>
+  							图片：<%-- <s:form action="CusBackAction" method="post" enctype="multipart/form-data" 
+					  					cssStyle="padding:5px;" onsubmit = "return CheckForm()">
+					  				<s:label value="上传文件(注：仅支持以xls,xlsx后缀的excel文件，请按照指定格式上传)">
+					  				</s:label>
+					  				<s:label cssStyle="height:0px;"/>
+					  				<s:file label="文件" name="imagekefu" cssStyle="width:100%;"></s:file>
+					  				<s:submit value="提交" cssStyle="width:70px;"/>
+					  			</s:form> --%>
+  							</span>
+  						</div>
+  						<div class="opa">
+  							<span>
   							备注：<input class="form-remark" type="text" name="cusOrdermst.operateremark" id="cusOrdermst.operateremark"></input>
+  							</span>
+  						</div>
+  						<div class="opa">
+  							<span>
+  								<span class="label">发货方式：</span>
+  								<select name="cusOrdermst.goodsendtype" id="cusOrdermst.goodsendtype"
+  									onchange="goodsendtypeChange()" >
+  									<!-- <option selected value="">请选择:</option> -->
+  									<s:if test='#array[8]=="1"'>
+  										<option selected value="自发">自发</option>
+  										<option value="代发">代发</option>
+  									</s:if>
+  									<s:if test='#array[8]=="2"'>
+  										<option selected value="代发">代发</option>
+  										<option value="自发">自发</option>
+  									</s:if>
+  								</select>
+  							<!-- 发货方式：<input class="btn" type="radio" id="cusOrdermst.goodsendtype" name="cusOrdermst.goodsendtype" <s:if test='#array[8]=="1"'>value="自发" checked="checked" </s:if> onchange="goodsendtypeChange()"/> 自发
+  							<input class="btn" type="radio" id="cusOrdermst.goodsendtype" name="cusOrdermst.goodsendtype" <s:if test='#array[8]=="2"'>value="代发" checked="checked" </s:if> onchange="goodsendtypeChange()"/> 代发 -->
+  							</span>
+  							<span id="zifaaddress" class="labelDis">
+  									地址：<input style="width:700px" class="form-opp" type="text" name="cusOrdermst.address" id="cusOrdermst.zifaaddress"
+  										value="浙江省杭州市滨江区白马湖路15号王道电子商务"></input>
+  							</span>
+  							<span id="daifaaddress" class="labelDis">
+  									地址：<input style="width:700px" class="form-opp" type="text" name="cusOrdermst.address" id="cusOrdermst.daifaaddress"
+  										value="(供应商地址)" onfocus="if (value =='(供应商地址)'){value =''}"onblur="if (value ==''){value='(供应商地址)'}"/></input>
   							</span>
   						</div>
   						<div class="opa">
@@ -901,7 +956,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   						</div>
   						</div>
   					</div>
-  					</div> 					
+  					</div>
   				</form>
   			</div>
   		</div>
