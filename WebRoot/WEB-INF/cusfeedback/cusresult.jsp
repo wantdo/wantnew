@@ -615,7 +615,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
   			</div>
   			<div id="body_wrapper">
-  				<form action="CusSubAction" method="post"  id="cusForm" onkeydown="if(event.keyCode==13){return false;}">
+  				<form action="CusSubAction" method="post"  id="cusForm" onkeydown="if(event.keyCode==13){return false;}" enctype="multipart/form-data" >
   					<div id=page_title>
   						<h2>订单详情如下</h2>
   					</div>
@@ -909,14 +909,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   						</div>
   						<div class="opa">
   							<span>
-  							图片：<%-- <s:form action="CusBackAction" method="post" enctype="multipart/form-data" 
-					  					cssStyle="padding:5px;" onsubmit = "return CheckForm()">
-					  				<s:label value="上传文件(注：仅支持以xls,xlsx后缀的excel文件，请按照指定格式上传)">
-					  				</s:label>
-					  				<s:label cssStyle="height:0px;"/>
-					  				<s:file label="文件" name="imagekefu" cssStyle="width:100%;"></s:file>
-					  				<s:submit value="提交" cssStyle="width:70px;"/>
-					  			</s:form> --%>
+  							图片：
+			  				<s:label value="上传文件(注：仅支持以xls,xlsx后缀的excel文件，请按照指定格式上传)">
+			  				</s:label>
+			  				<s:label cssStyle="height:0px;"/>
+			  				<s:file label="文件" name="upload" cssStyle="width:100%;"></s:file> 
+			  				<input type="hidden" name="variable" id="variable" value="upload" />
+			  				
+			  				 <%--  <s:file name ="myFile" label ="Image File" /> 
+       						 <s:textfield name ="caption" label ="Caption" />    --%>     
   							</span>
   						</div>
   						<div class="opa">

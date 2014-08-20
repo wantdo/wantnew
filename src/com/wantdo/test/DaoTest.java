@@ -126,6 +126,13 @@ public class DaoTest {
 		List list=dao.findAll();
 		System.out.println(list.size());
 	}
+	@Test
+	public void testCusOrdermstDAO()  throws Exception{
+		XmlBeanFactory factory=new XmlBeanFactory(new ClassPathResource("applicationContext.xml"));
+		ICusOrdermstDAO dao=(ICusOrdermstDAO)factory.getBean("CusOrdermstDAO");
+		List list=dao.findAll();
+		System.out.println(list.size());
+	}
 	
 	
 }

@@ -45,7 +45,7 @@ public class CusBackAction extends ActionSupport {
 			try {
 				System.out.println(upload);
 				String uploadDir=ServletActionContext.getServletContext().getRealPath("/")+"upload";
-				System.out.println(uploadDir);
+				System.out.println(uploadFileName);
 				if (!(new File(uploadDir).isDirectory())) {
 					new File(uploadDir).mkdirs();
 					uploadDir=ServletActionContext.getServletContext().getRealPath("upload");
