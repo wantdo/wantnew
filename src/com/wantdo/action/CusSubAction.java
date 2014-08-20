@@ -44,7 +44,7 @@ public class CusSubAction extends ActionSupport {
 					cusOrdermst.getOperateman(),
 					cusOrdermst.getOperateremark(), cusOrdermst.getRelid(),
 					cusOrdermst.getGoodsendtype(), null,
-					cusOrdermst.getAddress());
+					cusOrdermst.getAddress(),cusOrdermst.getImage());
 			//cusLogistics.setOperatedate(new Timestamp(new Date().getTime()));
 			cusLogisticsService.save(cusLogistics);
 		}
