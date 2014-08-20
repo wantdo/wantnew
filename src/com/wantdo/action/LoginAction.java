@@ -48,18 +48,20 @@ public class LoginAction extends ActionSupport{
 	}
 	@Override
 	public String execute() throws Exception {
+		String result = person.getUsername();
+		
 		/*logger.info("Person [username="+person.getUsername()+
 				",password="+person.getPassword()+"]");*/
 		//System.out.println("------------------->LoginAction");
 		//System.out.println(ServletActionContext.getRequest().getSession().getAttribute("username"));
-		if(ServletActionContext.getRequest().getSession().getAttribute("username") != null){
+		/*if(ServletActionContext.getRequest().getSession().getAttribute("username") != null){
 			proList=ecEordermstService.getAllProblems();
 			proList.remove(proList.size() - 1);
-			return SUCCESS;
-		}
+			return result;
+		}*/
 		if (personService.checkLogin(person)) {
-			proList=ecEordermstService.getAllProblems();
-			proList.remove(proList.size() - 1);
+			//proList=ecEordermstService.getAllProblems();
+			//proList.remove(proList.size() - 1);
 			/*HttpServletRequest request=ServletActionContext.getRequest();
 	        HttpSession session =request.getSession();
 	        session.setAttribute("username", person.getUsername());*/
@@ -68,9 +70,11 @@ public class LoginAction extends ActionSupport{
 			person = new Person();
 			//ActionContext.getContext().getSession().put("username", person.getUsername());
 			//System.out.println("----------------->–¥»Îsession "+ActionContext.getContext().getSession().get("username"));
-			return SUCCESS;
+			return result;
 		}
-		return "login";
+		
+		
+		return result;
 	}
 
 	public Person getPerson() {

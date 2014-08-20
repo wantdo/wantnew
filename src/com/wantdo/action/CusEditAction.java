@@ -42,6 +42,9 @@ public class CusEditAction extends ActionSupport {
 		if(edit == null){
 			return SUCCESS;
 		}
+		if(edit.equals("editing")){
+			return "editing";
+		}
 		if(edit.equals("add")){
 			return "add";
 		}
