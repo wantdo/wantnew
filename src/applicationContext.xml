@@ -45,9 +45,18 @@
 				<value>com/wantdo/domain/CusLogistics.hbm.xml</value>
 				<value>com/wantdo/domain/CusCollect.hbm.xml</value>
 				<value>com/wantdo/domain/CusPurchase.hbm.xml</value>
+				<value>com/wantdo/domain/CusOrderback.hbm.xml</value>
 			</list>
 		</property></bean>
 	<bean id="CusBackAction" class="com.wantdo.action.CusBackAction">
+		<property name="cusOrderbackService">
+			<ref bean="CusOrderbackService"/>
+		</property>
+	</bean>
+	<bean id="CusOrderbackService" class="com.wantdo.service.impl.CusOrderbackService">
+	<property name="cusOrderbackDAO">
+		<ref bean="CusOrderbackDAO"/>
+	</property>
 	</bean>
 	<bean id="CusPurchaseService" class="com.wantdo.service.impl.CusPurchaseService">
 	<property name="cusPurchaseDAO">
@@ -255,6 +264,12 @@
 	</bean>
 	<bean id="CusPurchaseDAO"
 		class="com.wantdo.dao.impl.CusPurchaseDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="CusOrderbackDAO"
+		class="com.wantdo.dao.impl.CusOrderbackDAO">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>

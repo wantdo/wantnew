@@ -1,7 +1,5 @@
 package com.wantdo.test;
 
-import java.sql.Timestamp;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,9 +10,10 @@ import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.core.io.ClassPathResource;
 
 import com.wantdo.domain.CusDesc;
+import com.wantdo.domain.CusOrderback;
 import com.wantdo.domain.CusOrderdtl;
-import com.wantdo.domain.CusOrdermst;
 import com.wantdo.domain.Email;
+import com.wantdo.service.ICusOrderbackService;
 import com.wantdo.service.ICusOrderdtlService;
 import com.wantdo.service.ICusOrdermstService;
 import com.wantdo.service.ICusPurchaseService;
@@ -126,6 +125,14 @@ public class ServiceTest {
 		ICusPurchaseService service=(ICusPurchaseService)factory.getBean("CusPurchaseService");
 		List list=service.findAll();
 		System.out.println(list.size());
+	}
+	@Test
+	public void testCusOrderbackService() throws Exception{
+		XmlBeanFactory factory=new XmlBeanFactory(new ClassPathResource("applicationContext.xml"));
+		ICusOrderbackService service=(ICusOrderbackService)factory.getBean("CusOrderbackService");
+		CusOrderback cusOrderback = new CusOrderback();
+		service.save(cusOrderback);
+		//System.out.println(list.size());
 	}
 	
 }

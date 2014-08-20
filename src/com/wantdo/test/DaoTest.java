@@ -12,6 +12,7 @@ import org.springframework.core.io.ClassPathResource;
 
 import com.wantdo.dao.ICusCollectDAO;
 import com.wantdo.dao.ICusLogisticsDAO;
+import com.wantdo.dao.ICusOrderbackDAO;
 import com.wantdo.dao.ICusOrderdtlDAO;
 import com.wantdo.dao.ICusOrdermstDAO;
 import com.wantdo.dao.ICusPurchaseDAO;
@@ -19,7 +20,6 @@ import com.wantdo.dao.IEcEordermstDAO;
 import com.wantdo.dao.IWspShopsDAO;
 import com.wantdo.domain.CusDesc;
 import com.wantdo.domain.CusDetail;
-import com.wantdo.domain.CusLogistics;
 import com.wantdo.domain.CusOrderdtl;
 
 public class DaoTest {
@@ -123,6 +123,13 @@ public class DaoTest {
 	public void testCusPurchaseDAO()  throws Exception{
 		XmlBeanFactory factory=new XmlBeanFactory(new ClassPathResource("applicationContext.xml"));
 		ICusPurchaseDAO dao=(ICusPurchaseDAO)factory.getBean("CusPurchaseDAO");
+		List list=dao.findAll();
+		System.out.println(list.size());
+	}
+	@Test
+	public void testCusOrderbackDAO()  throws Exception{
+		XmlBeanFactory factory=new XmlBeanFactory(new ClassPathResource("applicationContext.xml"));
+		ICusOrderbackDAO dao=(ICusOrderbackDAO)factory.getBean("CusOrderbackDAO");
 		List list=dao.findAll();
 		System.out.println(list.size());
 	}
