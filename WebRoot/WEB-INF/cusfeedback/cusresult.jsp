@@ -913,7 +913,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			  				<s:label value="上传文件(注：仅支持以xls,xlsx后缀的excel文件，请按照指定格式上传)">
 			  				</s:label>
 			  				<s:label cssStyle="height:0px;"/>
-			  				<s:file label="文件" name="upload" cssStyle="width:100%;"></s:file> 
+			  				<s:file label="文件" name="imgkefu" cssStyle="width:100%;"></s:file> 
 			  				<input type="hidden" name="variable" id="variable" value="upload" />
 			  				
 			  				 <%--  <s:file name ="myFile" label ="Image File" /> 

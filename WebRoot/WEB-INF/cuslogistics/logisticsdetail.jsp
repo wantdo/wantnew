@@ -215,6 +215,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   								</table>
   						</ol>
   						<ol id="option">
+  							 <img src ='<%=request.getContextPath()%>/<s:property value ="#logisticsList.imglog" /> ' />
+  							 
+  						</ol>
+  						<ol id="option">
   						<table class="hovertable" >
   							<thead><tr><td>反馈信息</td></tr></thead>
   							<tr><td>

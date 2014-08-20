@@ -42,6 +42,7 @@ public class CusOrdermst implements java.io.Serializable {
 	private String waybill;
 	private String wspshopid;
 	private String address;
+	private String image;
 	
 
 	// Constructors
@@ -59,7 +60,9 @@ public class CusOrdermst implements java.io.Serializable {
 			String operateman, String operateremark, String incomingNo,
 			String relid, String dealerflag, String goodsendtype,
 			String onlineflag, String refamount, String freight,
-			String pricedisparity, String shopemail,String shopindustry,String shopno,String waybill,String wspshopid,String address) {
+			String pricedisparity, String shopemail, String shopindustry,
+			String shopno, String waybill, String wspshopid, String address,
+			String image) {
 		this.wspid = wspid;
 		this.sendflg = sendflg;
 		this.ecid = ecid;
@@ -91,6 +94,7 @@ public class CusOrdermst implements java.io.Serializable {
 		this.waybill = waybill;
 		this.wspshopid = wspshopid;
 		this.address = address;
+		this.image = image;
 	}
 
 	// Property accessors
@@ -349,6 +353,14 @@ public class CusOrdermst implements java.io.Serializable {
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 }

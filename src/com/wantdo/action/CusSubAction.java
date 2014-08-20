@@ -1,15 +1,14 @@
 package com.wantdo.action;
 
 import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -24,7 +23,6 @@ import com.wantdo.service.ICusLogisticsService;
 import com.wantdo.service.ICusOrderdtlService;
 import com.wantdo.service.ICusOrdermstService;
 import com.wantdo.service.impl.MailService;
-import com.wantdo.utils.ExcelUtil;
 
 public class CusSubAction extends ActionSupport {
 
@@ -37,8 +35,9 @@ public class CusSubAction extends ActionSupport {
 	private MailService mailService;
 	private String variable;
 	private File temp;
-	private File upload;
-	private String uploadFileName;
+	private File imgkefu;
+	private String imgkefuFileName;
+	private String imgpath;
 
 	@Override
 	public String execute() throws Exception {
@@ -47,20 +46,21 @@ public class CusSubAction extends ActionSupport {
 			InputStream in=null;
 			OutputStream out=null;
 			try {
-				System.out.println(upload);
-				String uploadDir=ServletActionContext.getServletContext().getRealPath("/")+"upload";
-				System.out.println(uploadFileName);
+				String uploadDir=ServletActionContext.getServletContext().getRealPath("/")+"uploadimg";
 				if (!(new File(uploadDir).isDirectory())) {
 					new File(uploadDir).mkdirs();
-					uploadDir=ServletActionContext.getServletContext().getRealPath("upload");
+					uploadDir=ServletActionContext.getServletContext().getRealPath("uploadimg");
 				}
-				System.out.println(uploadDir);
-				temp=new File(uploadDir+File.separator+uploadFileName);
+				
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss"); 
+				 
+				imgkefuFileName = sdf.format(new Date())+imgkefuFileName;
+				temp=new File(uploadDir+File.separator+imgkefuFileName);
 				if (!temp.exists()) {
 					temp.createNewFile();
 				}
-				System.out.println(temp);
-				in=new BufferedInputStream(new FileInputStream(upload));
+				imgpath = "uploadimg/" + imgkefuFileName;
+				in=new BufferedInputStream(new FileInputStream(imgkefu));
 				out=new FileOutputStream(temp);
 				byte[] b=new byte[1024];
 				int len=0;
@@ -103,9 +103,7 @@ public class CusSubAction extends ActionSupport {
 					cusOrdermst.getOperateopinion(),
 					cusOrdermst.getOperateman(),
 					cusOrdermst.getOperateremark(), cusOrdermst.getRelid(),
-					cusOrdermst.getGoodsendtype(), null,
-					cusOrdermst.getAddress());
-			// cusLogistics.setOperatedate(new Timestamp(new Date().getTime()));
+					cusOrdermst.getGoodsendtype(), null,cusOrdermst.getAddress(),imgpath);
 			cusLogisticsService.save(cusLogistics);
 		}
 		if (cusDtlList != null) {
@@ -197,20 +195,39 @@ public class CusSubAction extends ActionSupport {
 		this.temp = temp;
 	}
 
-	public File getUpload() {
-		return upload;
+
+	public File getImgkefu() {
+		return imgkefu;
 	}
 
-	public void setUpload(File upload) {
-		this.upload = upload;
+
+
+	public void setImgkefu(File imgkefu) {
+		this.imgkefu = imgkefu;
 	}
 
-	public String getUploadFileName() {
-		return uploadFileName;
+
+
+	public String getImgpath() {
+		return imgpath;
 	}
 
-	public void setUploadFileName(String uploadFileName) {
-		this.uploadFileName = uploadFileName;
+
+
+	public void setImgpath(String imgpath) {
+		this.imgpath = imgpath;
+	}
+
+
+
+	public String getImgkefuFileName() {
+		return imgkefuFileName;
+	}
+
+
+
+	public void setImgkefuFileName(String imgkefuFileName) {
+		this.imgkefuFileName = imgkefuFileName;
 	}
 
 

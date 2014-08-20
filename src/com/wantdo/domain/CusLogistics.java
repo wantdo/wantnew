@@ -29,6 +29,7 @@ public class CusLogistics implements java.io.Serializable {
 	private String goodsendtype;
 	private String backresult;
 	private String address;
+	private String imglog;
 
 	// Constructors
 
@@ -41,7 +42,7 @@ public class CusLogistics implements java.io.Serializable {
 			String recaddr, String ecid, String sysname, String shopname,
 			Timestamp orderdate, Timestamp operatedate, String cusdesc,
 			String cusdetail, String operateopinion, String operateman,
-			String operateremark, String relid, String goodsendtype,String backresult,String address) {
+			String operateremark, String relid, String goodsendtype,String backresult,String address,String imglog) {
 		this.waybill = waybill;
 		this.linkman = linkman;
 		this.handset = handset;
@@ -60,6 +61,7 @@ public class CusLogistics implements java.io.Serializable {
 		this.goodsendtype = goodsendtype;
 		this.backresult = backresult;
 		this.address = address;
+		this.imglog = imglog;
 	}
 
 	// Property accessors
@@ -214,6 +216,14 @@ public class CusLogistics implements java.io.Serializable {
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+	public String getImglog() {
+		return imglog;
+	}
+
+	public void setImglog(String imglog) {
+		this.imglog = imglog;
 	}
 
 }

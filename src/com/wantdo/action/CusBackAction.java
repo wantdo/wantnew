@@ -9,8 +9,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-
-import javax.servlet.ServletContext;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.struts2.ServletActionContext;
 
@@ -25,9 +25,11 @@ public class CusBackAction extends ActionSupport {
 	private File temp;
 	private File upload;
 	private String uploadFileName;
+	private List<String> list;
 	
 	public CusBackAction() {
 		super();
+		list = new ArrayList<String>();
 	}
 	@Override
 	public String execute() throws Exception {
@@ -84,7 +86,9 @@ public class CusBackAction extends ActionSupport {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			excelUtil.getAllData(1);
+			List<String[]> list = excelUtil.getAllData(1);
+			System.out.println(list.get(2)[0]);
+			
 			return "wait";
 		}
 		
@@ -115,6 +119,12 @@ public class CusBackAction extends ActionSupport {
 	}
 	public void setUploadFileName(String uploadFileName) {
 		this.uploadFileName = uploadFileName;
+	}
+	public List<String> getList() {
+		return list;
+	}
+	public void setList(List<String> list) {
+		this.list = list;
 	}
 	
 }
