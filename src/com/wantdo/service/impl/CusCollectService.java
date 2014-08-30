@@ -21,7 +21,10 @@ public class CusCollectService implements ICusCollectService {
 	public void save(CusCollect cusCollect) {
 		cusCollectDAO.save(cusCollect);
 	}
-	
+	@Override
+	public CusCollect findById(Integer id) {
+		return cusCollectDAO.findById(id);
+	} 
 	
 	
 	public ICusCollectDAO getCusCollectDAO() {
@@ -53,6 +56,7 @@ public class CusCollectService implements ICusCollectService {
 		    pageBean.setList(list);         
 		    pageBean.init();         
 		    return pageBean;      
-	    } 
+	    }
+		
 
 }

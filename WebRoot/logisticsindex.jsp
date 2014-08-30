@@ -118,7 +118,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   				<a href="CusBackstageAction.action?variable=logistics">客服-->物流</a>
   			</div>
   			<div id="body_wrapper">
-  				<a href = "CusShopsAction.action">采购-->物流</a>
+  				<a href = "CusBackAction.action?variable=orderlist">采购-->物流（订单列表）</a>
+  			</div>
+  			<div id="body_wrapper">
+  				<a href = "CusBackAction.action?variable=purcomment">采购-->物流（采购处理建议）</a>
   			</div>
   		</div>
   </body>

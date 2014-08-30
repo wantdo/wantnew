@@ -28,6 +28,7 @@ public class CusCollect implements java.io.Serializable {
 	private String relid;
 	private String goodsendtype;
 	private String backresult;
+	private String image;
 
 	// Constructors
 
@@ -41,7 +42,7 @@ public class CusCollect implements java.io.Serializable {
 			Timestamp orderdate, Timestamp operatedate, String cusdesc,
 			String cusdetail, String operateopinion, String operateman,
 			String operateremark, String relid, String goodsendtype,
-			String backresult) {
+			String backresult,String image) {
 		this.waybill = waybill;
 		this.linkman = linkman;
 		this.handset = handset;
@@ -59,6 +60,7 @@ public class CusCollect implements java.io.Serializable {
 		this.relid = relid;
 		this.goodsendtype = goodsendtype;
 		this.backresult = backresult;
+		this.image = image;
 	}
 
 	// Property accessors
@@ -205,6 +207,14 @@ public class CusCollect implements java.io.Serializable {
 
 	public void setBackresult(String backresult) {
 		this.backresult = backresult;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 }

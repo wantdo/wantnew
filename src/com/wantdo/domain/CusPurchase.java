@@ -28,7 +28,8 @@ public class CusPurchase implements java.io.Serializable {
 	private String relid;
 	private String goodsendtype;
 	private String backresult;
-	private String image;
+	private String address;
+	private String imgpur;
 
 	// Constructors
 
@@ -42,7 +43,7 @@ public class CusPurchase implements java.io.Serializable {
 			Timestamp orderdate, Timestamp operatedate, String cusdesc,
 			String cusdetail, String operateopinion, String operateman,
 			String operateremark, String relid, String goodsendtype,
-			String backresult, String image) {
+			String backresult,String address, String imgpur) {
 		this.waybill = waybill;
 		this.linkman = linkman;
 		this.handset = handset;
@@ -60,7 +61,8 @@ public class CusPurchase implements java.io.Serializable {
 		this.relid = relid;
 		this.goodsendtype = goodsendtype;
 		this.backresult = backresult;
-		this.image = image;
+		this.address = address;
+		this.imgpur = imgpur;
 	}
 
 	// Property accessors
@@ -209,12 +211,21 @@ public class CusPurchase implements java.io.Serializable {
 		this.backresult = backresult;
 	}
 
-	public String getImage() {
-		return this.image;
+	public String getImgpur() {
+		return imgpur;
 	}
 
-	public void setImage(String image) {
-		this.image = image;
+	public void setImgpur(String imgpur) {
+		this.imgpur = imgpur;
 	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
 
 }

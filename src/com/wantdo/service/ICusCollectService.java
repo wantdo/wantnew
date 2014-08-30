@@ -10,5 +10,7 @@ public interface ICusCollectService {
 	
 	public void save(CusCollect cusCollect);
 	
+	public CusCollect findById(Integer id);
+	
 	public PageBean queryForPage(int pageSize,int currentPage); 
 }

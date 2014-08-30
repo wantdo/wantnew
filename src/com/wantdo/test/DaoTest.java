@@ -130,9 +130,8 @@ public class DaoTest {
 	public void testCusOrderbackDAO()  throws Exception{
 		XmlBeanFactory factory=new XmlBeanFactory(new ClassPathResource("applicationContext.xml"));
 		ICusOrderbackDAO dao=(ICusOrderbackDAO)factory.getBean("CusOrderbackDAO");
-		List list=dao.findAll();
+		List list=dao.findBySearch("123456789012");
 		System.out.println(list.size());
 	}
-	
 	
 }

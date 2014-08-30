@@ -57,6 +57,17 @@ public class CusPurchaseDAO extends HibernateDaoSupport implements ICusPurchaseD
 			throw re;
 		}
 	}
+	
+	public void update(CusPurchase updateInstance) {
+        log.debug("updating CusPurchase instance");
+        try {
+            getHibernateTemplate().update(updateInstance);
+            log.debug("update successful");
+        } catch (RuntimeException re) {
+            log.error("update failed", re);
+            throw re;
+        }
+    }
 
 	public void delete(CusPurchase persistentInstance) {
 		log.debug("deleting CusPurchase instance");

@@ -194,13 +194,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   						</div>
   						<ol id="option">
   							<table class="hovertable" >
-  									<thead><tr onmouseover="this.style.backgroundColor='#ffff66';" onmouseout="this.style.backgroundColor='#d4e3e5';"><td>快递单号</td><td>收件人</td><td>手机号</td><td>地址</td><td></td><td></td></tr></thead>
+  									<thead><tr onmouseover="this.style.backgroundColor='#ffff66';" onmouseout="this.style.backgroundColor='#d4e3e5';"><td>快递单号</td><td>收件人</td><td>手机号</td><td>地址</td><td>订单编号</td><td>平台</td><td>店铺名</td><td>订单日期</td><td>售后问题</td><td>问题详细</td><td>客服操作意见</td><td>处理人</td><td>备注</td><td>网上订单编号</td><td>发货方式</td><td></td><td></td></tr></thead>
   									<s:iterator value="logisticsList" id="logisticsList" >
   										<tr onmouseover="this.style.backgroundColor='#ffff66';" onmouseout="this.style.backgroundColor='#d4e3e5';">
 											<td><s:property value="#logisticsList.waybill"/></td>
 											<td><s:property value="#logisticsList.linkman"/></td>
 											<td><s:property value="#logisticsList.handset"/></td>
 											<td><s:property value="#logisticsList.recaddr"/></td>
+											<td><s:property value="#logisticsList.relid"/></td>
+											<td><s:property value="#logisticsList.sysname"/></td>
+											<td><s:property value="#logisticsList.shopname"/></td>
+											<td><s:property value="#logisticsList.orderdate"/></td>
+											<td><s:property value="#logisticsList.cusdesc"/></td>
+											<td><s:property value="#logisticsList.cusdetail"/></td>
+											<td><s:property value="#logisticsList.operateopinion"/></td>
+											<td><s:property value="#logisticsList.operateman"/></td>
+											<td><s:property value="#logisticsList.operateremark"/></td>
+											<td><s:property value="#logisticsList.ecid"/></td>
+											<td><s:property value="#logisticsList.goodsendtype"/></td>
 											<td class="opa"><input  class="btn" type="Submit" value="详情" onclick="getRowID(<s:property value="#logisticsList.id"/>)" /></td>
 											<s:if test="#logisticsList.backresult == null"><td style="color:red">（未处理）</td></s:if><s:else><td style="color:green">（已处理）</td></s:else>
   										</tr>
@@ -209,14 +220,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   						</ol>
 						<input type="hidden" name="cusRowID"  id="cusRowID" value=""/> 
 						<input type="hidden" name="variable" id="variable" value="logisticsdetail" />
-  						<!-- <div class="opa">
-  							<input type="hidden" name = "edit" id = "edit" value="" />
-  							<input  class="btn" type="Submit" value="新增" onClick="editChange('add')"></input>
-  							<input  class="btn" type="Submit" value="修改" onClick="editChange('update')"></input>
-  							<input  class="btn" type="Submit" value="删除" onClick="return checkdelete()"></input>
-  							<input type="button" class="btn" onclick="history.go(-1)" value="返回"></input>
-  						</div> -->
-  					
   					</div> 					
   				</form>
   			</div>

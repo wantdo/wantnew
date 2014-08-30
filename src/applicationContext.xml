@@ -144,6 +144,9 @@
 		<property name="cusLogisticsService">
 			<ref bean="CusLogisticsService"/>
 		</property>
+		<property name="cusPurchaseService">
+			<ref bean="CusPurchaseService"/>
+		</property>
 	</bean>
 	<bean id="ProcessedAction" class="com.wantdo.action.ProcessedAction" scope="prototype">
 		<property name="cusOrdermstService">

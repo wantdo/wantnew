@@ -9,6 +9,8 @@ public interface ICusCollectDAO {
 	
 	public void save(CusCollect cusCollect);
 	
+	public CusCollect findById(Integer id);
+	
 	public List queryForPage(final String hql,final int offset,final int length);
 	
 	public int getAllRowCount(String hql);

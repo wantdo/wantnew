@@ -71,6 +71,17 @@ public class CusOrderbackDAO extends HibernateDaoSupport implements ICusOrderbac
 			throw re;
 		}
 	}
+	
+	public void update(CusOrderback updateInstance) {
+        log.debug("updating CusOrderback instance");
+        try {
+            getHibernateTemplate().update(updateInstance);
+            log.debug("update successful");
+        } catch (RuntimeException re) {
+            log.error("update failed", re);
+            throw re;
+        }
+    }
 
 	public CusOrderback findById(java.lang.Integer id) {
 		log.debug("getting CusOrderback instance with id: " + id);
@@ -190,6 +201,39 @@ public class CusOrderbackDAO extends HibernateDaoSupport implements ICusOrderbac
 		log.debug("finding all CusOrderback instances");
 		try {
 			String queryString = "from CusOrderback";
+			return getHibernateTemplate().find(queryString);
+		} catch (RuntimeException re) {
+			log.error("find all failed", re);
+			throw re;
+		}
+	}
+	
+	public List findIntact() {
+		log.debug("finding all CusOrderback instances");
+		try {
+			String queryString = "from CusOrderback as cusOrderback where cusOrderback.intact=100 ";
+			return getHibernateTemplate().find(queryString);
+		} catch (RuntimeException re) {
+			log.error("find all failed", re);
+			throw re;
+		}
+	}
+	
+	public List findPurresult() {
+		log.debug("finding all CusOrderback instances");
+		try {
+			String queryString = "from CusOrderback as cusOrderback where cusOrderback.purresult is not null ";
+			return getHibernateTemplate().find(queryString);
+		} catch (RuntimeException re) {
+			log.error("find all failed", re);
+			throw re;
+		}
+	}
+	
+	public List findBySearch(String search) {
+		log.debug("finding all CusOrderback instances");
+		try {
+			String queryString = "from CusOrderback as cusOrderback where cusOrderback.waybill = "+search+" ";
 			return getHibernateTemplate().find(queryString);
 		} catch (RuntimeException re) {
 			log.error("find all failed", re);

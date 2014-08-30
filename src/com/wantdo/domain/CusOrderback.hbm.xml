@@ -73,5 +73,14 @@
         <property name="remark2" type="java.lang.String">
             <column name="remark2" />
         </property>
+        <property name="imgorder" type="java.lang.String">
+            <column name="imgorder" />
+        </property>
+        <property name="intact" type="java.lang.String">
+            <column name="intact" />
+        </property>
+        <property name="purresult" type="java.lang.String">
+            <column name="purresult" />
+        </property>
     </class>
 </hibernate-mapping>

@@ -15,7 +15,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
   <head>
     
-    <title>物流</title><%=request.getSession().getAttribute("username") %>，您好
+    <title>采购</title><%=request.getSession().getAttribute("username") %>，您好
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -115,10 +115,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   				</div>
   			</div>
   			<div id="body_wrapper">
-  				<a href="CusBackstageAction.action?variable=">客服-->采购</a>
+  				<a href="CusBackstageAction.action?variable=purchase">客服-->采购</a>
   			</div>
   			<div id="body_wrapper">
-  				<a href="CusBackAction.action?variable=purchase">采购-->物流</a>
+  				<a href="CusBackAction.action?variable=purchase">采购-->物流（上传EXCEL）</a>
+  			</div>
+  			<div id="body_wrapper">
+  				<a href="CusBackAction.action?variable=intact">采购-->物流（破损商品处理）</a>
   			</div>
   		</div>
   </body>

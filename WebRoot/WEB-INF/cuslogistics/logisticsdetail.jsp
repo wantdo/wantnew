@@ -167,9 +167,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			    arr[i].checked = false;
 			  };
 			}
-		function load(){
-			document.getElementById("desc_8")
-		}
 	</script>
 
   </head>
@@ -191,7 +188,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   						</div>
   						<ol id="option">
   							<table class="hovertable" >
-  									<thead><tr onmouseover="this.style.backgroundColor='#ffff66';" onmouseout="this.style.backgroundColor='#d4e3e5';"><td>快递单号</td><td>收件人</td><td>手机号</td><td>地址</td><td>订单编号</td><td>平台</td><td>店铺名</td><td>订单日期</td></tr></thead>
+  									<thead><tr onmouseover="this.style.backgroundColor='#ffff66';" onmouseout="this.style.backgroundColor='#d4e3e5';"><td>快递单号</td><td>收件人</td><td>手机号</td><td>地址</td><td>订单编号</td><td>平台</td><td>店铺名</td><td>订单日期</td><td>售后问题</td><td>问题详细</td><td>客服操作意见</td><td>处理人</td><td>备注</td><td>网上订单编号</td><td>发货方式</td></tr></thead>
   									<s:iterator value="logisticsList" id="logisticsList" >
   										<tr onmouseover="this.style.backgroundColor='#ffff66';" onmouseout="this.style.backgroundColor='#d4e3e5';">
 											<td><s:property value="#logisticsList.waybill"/></td>
@@ -202,6 +199,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											<td><s:property value="#logisticsList.sysname"/></td>
 											<td><s:property value="#logisticsList.shopname"/></td>
 											<td><s:property value="#logisticsList.orderdate"/></td>
+											<td><s:property value="#logisticsList.cusdesc"/></td>
+											<td><s:property value="#logisticsList.cusdetail"/></td>
+											<td><s:property value="#logisticsList.operateopinion"/></td>
+											<td><s:property value="#logisticsList.operateman"/></td>
+											<td><s:property value="#logisticsList.operateremark"/></td>
+											<td><s:property value="#logisticsList.ecid"/></td>
+											<td><s:property value="#logisticsList.goodsendtype"/></td>
   										</tr>
 										<input type="hidden" name="cusCollect.waybill"  value="<s:property value="#logisticsList.waybill"/>"/>
 										<input type="hidden" name="cusCollect.linkman"  value="<s:property value="#logisticsList.linkman"/>"/>
@@ -211,15 +215,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<input type="hidden" name="cusCollect.sysname"  value="<s:property value="#logisticsList.sysname"/>"/>
 										<input type="hidden" name="cusCollect.shopname"  value="<s:property value="#logisticsList.shopname"/>"/>
 										<input type="hidden" name="cusCollect.orderdate"  value="<s:property value="#logisticsList.orderdate"/>"/>
+										<input type="hidden" name="cusCollect.cusdesc"  value="<s:property value="#logisticsList.cusdesc"/>"/>
+										<input type="hidden" name="cusCollect.cusdetail"  value="<s:property value="#logisticsList.cusdetail"/>"/>
+										<input type="hidden" name="cusCollect.operateopinion"  value="<s:property value="#logisticsList.operateopinion"/>"/>
+										<input type="hidden" name="cusCollect.operateman"  value="<s:property value="#logisticsList.operateman"/>"/>
+										<input type="hidden" name="cusCollect.operateremark"  value="<s:property value="#logisticsList.operateremark"/>"/>
+										<input type="hidden" name="cusCollect.ecid"  value="<s:property value="#logisticsList.ecid"/>"/>
+										<input type="hidden" name="cusCollect.goodsendtype"  value="<s:property value="#logisticsList.goodsendtype"/>"/>
+										<input type="hidden" name="cusCollect.image"  value="<s:property value="#logisticsList.imglog"/>"/>
   									</s:iterator>
   								</table>
+  						</ol>
+  						<ol id="option">
+  							<img src ='<%=request.getContextPath()%>/<s:property value ="#logisticsList.imglog" /> ' />
   						</ol>
   						<ol id="option">
   						<table class="hovertable" >
   							<thead><tr><td>反馈信息</td></tr></thead>
   							<tr><td>
   							<input type="radio" name="cusLogistics.backresult" value="拒收/客户自退" />拒收/客户自退
-  							<input type="radio" name="cusLogistics.backresult" value="建议退款" />建议退款
+  							<input type="radio" name="cusLogistics.backresult" checked="checked" value="建议退款" />建议退款
   							<input type="hidden" name="cusLogistics.id"  id="cusLogistics.id" value="<s:property value="#logisticsList.id"/>"/>
   							</td></tr>
   						</table>

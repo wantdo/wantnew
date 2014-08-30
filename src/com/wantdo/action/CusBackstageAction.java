@@ -7,6 +7,7 @@ import java.util.List;
 import com.opensymphony.xwork2.ActionSupport;
 import com.wantdo.domain.CusCollect;
 import com.wantdo.domain.CusLogistics;
+import com.wantdo.domain.CusPurchase;
 import com.wantdo.service.ICusCollectService;
 import com.wantdo.service.ICusLogisticsService;
 import com.wantdo.service.ICusPurchaseService;
@@ -19,11 +20,13 @@ public class CusBackstageAction extends ActionSupport {
 	private String variable;
 	private String varpage;
 	private CusLogistics cusLogistics;
+	private CusPurchase cusPurchase;
 	private CusCollect cusCollect;
 	private ICusLogisticsService cusLogisticsService;
 	private ICusCollectService cusCollectService;
 	private ICusPurchaseService cusPurchaseService;
 	private List<CusLogistics> logisticsList;
+	private List<CusPurchase> purchaseList;
 	private List<CusCollect> collectList;
 	private String cusRowID;
 	private int page;    //第几页             
@@ -34,17 +37,44 @@ public class CusBackstageAction extends ActionSupport {
 		super();
 		logisticsList=new ArrayList<CusLogistics>();
 		collectList=new ArrayList<CusCollect>();
+		purchaseList=new ArrayList<CusPurchase>();
 	}
 	@Override
 	public String execute() throws Exception {
 		//System.out.println("*********************");
 		System.out.println(variable);
 		System.out.println(varpage);
+		
+		//查询代发订单信息
+		if(variable.equals("purchase")){
+			variable=null;
+			purchaseList = cusPurchaseService.findAll();
+			return "purchase";
+		}
+		//代发订单详情
+		if(variable.equals("purchasedetail")){
+			variable=null;
+			purchaseList.clear();
+			System.out.println(cusRowID);
+			cusPurchase = cusPurchaseService.findById(Integer.parseInt(cusRowID));
+			purchaseList.add(getCusPurchase());
+			return "purchasedetail";
+		}
+		//插入采购处理意见
+		if(variable.equals("backresultpur")){
+			variable=null;
+			//System.out.println(cusPurchase.getBackresult());
+			cusPurchaseService.update(cusPurchase);
+			cusCollect.setBackresult(cusPurchase.getBackresult());
+			cusCollectService.save(cusCollect);
+			return "purchaseindex";
+		}
+		
 		//查询所有客服处理过的自发订单信息
 		if(variable.equals("logistics")){
 			variable=null;
 			logisticsList = cusLogisticsService.findAll();
-			return SUCCESS;
+			return "logistics";
 		}
 		//显示对应的自发订单详情
 		if(variable.equals("logisticsdetail")){
@@ -58,11 +88,20 @@ public class CusBackstageAction extends ActionSupport {
 		//插入物流处理意见
 		if(variable.equals("backresult")){
 			variable=null;
-			System.out.println(cusLogistics.getBackresult());
+			//System.out.println(cusLogistics.getBackresult());
 			cusLogisticsService.update(cusLogistics);
 			cusCollect.setBackresult(cusLogistics.getBackresult());
 			cusCollectService.save(cusCollect);
-			return SUCCESS;
+			return "logisticsindex";
+		}
+		//客服端查看处理结果详情
+		if(variable.equals("cuscollectdetail")){
+			variable=null;
+			//varpage = "cuscollect";
+			collectList.clear();
+			cusCollect = cusCollectService.findById(Integer.parseInt(cusRowID));
+			collectList.add(getCusCollect());
+			return "cuscollectdetail";
 		}
 		//客服端查看物流处理结果
 		if(varpage.equals("cuscollect")){
@@ -72,6 +111,7 @@ public class CusBackstageAction extends ActionSupport {
 			this.pageBean = cusCollectService.queryForPage(3, page);
 			return "cuscollect";
 		}
+		
 		return SUCCESS;
 	}
 	
@@ -149,5 +189,18 @@ public class CusBackstageAction extends ActionSupport {
 	public void setPageBean(PageBean pageBean) {
 		this.pageBean = pageBean;
 	}
+	public List<CusPurchase> getPurchaseList() {
+		return purchaseList;
+	}
+	public void setPurchaseList(List<CusPurchase> purchaseList) {
+		this.purchaseList = purchaseList;
+	}
+	public CusPurchase getCusPurchase() {
+		return cusPurchase;
+	}
+	public void setCusPurchase(CusPurchase cusPurchase) {
+		this.cusPurchase = cusPurchase;
+	}
+	
 	
 }

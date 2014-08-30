@@ -130,7 +130,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script src="<%=request.getContextPath()%>/js/ZeroClipboard.js"  type="text/javascript"></script>
 	<script type="text/javascript">
 	
-		function delHtmlTag (str)
+		/* function delHtmlTag (str)
 		{
 	          var str=str.replace (/<\/?[^>]*>/gim, "");//去掉所有的html标签
 	        var result=str.replace(/(\s*)|(\s*$)/g, "");//去掉前后空格    
@@ -169,6 +169,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			}
 		function load(){
 			document.getElementById("desc_8")
+		} */
+		function getRowID(rowID){
+			document.getElementById("cusRowID").value = rowID;
 		}
 	</script>
 
@@ -222,7 +225,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											<td><s:property value="#wspListPM.shopname"/></td>
 											<td><s:property value="#wspListPM.orderdate"/></td>
 											<td><s:property value="#wspListPM.backresult"/> </td>
-											<td class="opa"><input  class="btn" type="Submit" value="详情" /></td>
+											<td class="opa"><input  class="btn" type="Submit" value="详情" onclick="getRowID(<s:property value="#wspListPM.id"/>)" /></td>
   										</tr>
   									</s:iterator>           
   									
@@ -246,6 +249,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   									   </s:else> 
   									   
   						</ol>
+  						<input type="hidden" name="cusRowID"  id="cusRowID" value=""/> 
+						<input type="hidden" name="variable" id="variable" value="cuscollectdetail" />
 						<%-- <input type="hidden" name="cusLogistics.id"  id="cusLogistics.id" value="<s:property value="#wspListPM.id"/>"/>
 						<input type="hidden" name="variable" id="variable" value="logisticsdetail" /> --%>
   						<!-- <div class="opa">

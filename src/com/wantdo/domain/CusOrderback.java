@@ -34,6 +34,9 @@ public class CusOrderback  implements java.io.Serializable {
      private String openman;
      private String signman;
      private String remark2;
+     private String imgorder;
+     private String intact;
+     private String purresult;
 
 
     // Constructors
@@ -44,7 +47,13 @@ public class CusOrderback  implements java.io.Serializable {
 
     
     /** full constructor */
-    public CusOrderback(Date orderdate, String purid, String supplier, String goodsname, String barcode, String goodsid, String goodsproperty, String num, String price, String fare, String total, String remark1, String express, String waybill, String arrivalnum, String mistake, String condition, Date arrivaltime, String openman, String signman, String remark2) {
+	public CusOrderback(Date orderdate, String purid, String supplier,
+			String goodsname, String barcode, String goodsid,
+			String goodsproperty, String num, String price, String fare,
+			String total, String remark1, String express, String waybill,
+			String arrivalnum, String mistake, String condition,
+			Date arrivaltime, String openman, String signman, String remark2,
+			String imgorder, String intact,String purresult) {
         this.orderdate = orderdate;
         this.purid = purid;
         this.supplier = supplier;
@@ -66,6 +75,9 @@ public class CusOrderback  implements java.io.Serializable {
         this.openman = openman;
         this.signman = signman;
         this.remark2 = remark2;
+        this.imgorder = imgorder;
+        this.intact = intact;
+        this.purresult = purresult;
     }
 
    
@@ -246,13 +258,35 @@ public class CusOrderback  implements java.io.Serializable {
     public void setRemark2(String remark2) {
         this.remark2 = remark2;
     }
+
+
+	public String getImgorder() {
+		return imgorder;
+	}
+
+
+	public void setImgorder(String imgorder) {
+		this.imgorder = imgorder;
+	}
+
+
+	public String getIntact() {
+		return intact;
+	}
+
+
+	public void setIntact(String intact) {
+		this.intact = intact;
+	}
+
+
+	public String getPurresult() {
+		return purresult;
+	}
+
+
+	public void setPurresult(String purresult) {
+		this.purresult = purresult;
+	}
    
-
-
-
-
-
-
-
-
 }

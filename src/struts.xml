@@ -9,11 +9,11 @@
                 <interceptor-ref name="loginIntercepter" />  
             </interceptor-stack>
 	</interceptors>
-	<global-results>
+	<!-- <global-results>
 		<result name="sql">/WEB-INF/exception/sql.jsp</result>
 		<result name="null">/WEB-INF/exception/null.jsp</result>
 		<result name="all">/WEB-INF/exception/all.jsp</result>
-	</global-results>
+	</global-results> -->
 	<global-exception-mappings>
 		<exception-mapping result="sql" exception="java.sql.SQLException"></exception-mapping>
 		<exception-mapping result="null"
@@ -52,38 +52,50 @@
 			</result>
 		</action>
 		<action name="CusEditAction" class="CusEditAction" >
-			<interceptor-ref name="loginStack" />
+			<!-- <interceptor-ref name="loginStack" /> -->
 			<result>/WEB-INF/cusedit/list.jsp</result>
-			<result name = "login">/WEB-INF/cusedit/login.jsp</result>
+			<result name = "editing">/WEB-INF/cusedit/sort.jsp</result>
 			<result name = "wait">/WEB-INF/cusedit/cuswait.jsp</result>
 			<result name = "add">/WEB-INF/cusedit/add.jsp</result>
 			<result name = "update">/WEB-INF/cusedit/update.jsp</result>
 		</action>
 		<action name="loginaction" class="LoginAction">
 			<interceptor-ref name="loginStack" />
-			<result>/WEB-INF/cusedit/sort.jsp</result>
-			<result name = "login">/WEB-INF/cusedit/login.jsp</result>
+			<result name = "kefu">/WEB-INF/cusedit/login.jsp</result>
+			<result name = "wuliu">logisticsindex.jsp</result>
+			<result name = "caigou">purchaseindex.jsp</result>
 			<!-- <result name="input">/WEB-INF/content/login.jsp</result>
 			<result name="error">/WEB-INF/content/login.jsp</result> -->
 		</action>
 		<action name="CusShopsAction" class="CusShopsAction">
 			<interceptor-ref name="loginStack" />
 			<result>/WEB-INF/cusshops/list.jsp</result>
-			<result name = "login">/WEB-INF/cusshops/login.jsp</result>
+			<!-- <result name = "login">/WEB-INF/cusshops/login.jsp</result> -->
 			<result name = "wait">/WEB-INF/cusshops/cuswait.jsp</result>
 			<result name = "add">/WEB-INF/cusshops/add.jsp</result>
 			<result name = "update">/WEB-INF/cusshops/update.jsp</result>
 		</action>
 		<action name="CusBackstageAction" class="CusBackstageAction">
 			<!-- <interceptor-ref name="loginStack" /> -->
-			<result>/WEB-INF/cuslogistics/list.jsp</result>
+			<result name = "purchaseindex">/purchaseindex.jsp</result>
+			<result name = "logisticsindex">/logisticsindex.jsp</result>
+			<result name = "purchase">/WEB-INF/cuspurchase/list.jsp</result>
+			<result name = "purchasedetail">/WEB-INF/cuspurchase/purchasedetail.jsp</result>
+			<result name = "logistics">/WEB-INF/cuslogistics/list.jsp</result>
 			<result name = "logisticsdetail">/WEB-INF/cuslogistics/logisticsdetail.jsp</result>
 			<result name = "cuscollect">/WEB-INF/cuscollect/list.jsp</result>
+			<result name = "cuscollectdetail">/WEB-INF/cuscollect/cuscollectdetail.jsp</result>
 		</action>
 		<action name="CusBackAction" class="CusBackAction">
+			<interceptor-ref name="defaultStack" />
 			<!-- <interceptor-ref name="loginStack" /> -->
-			<result>/WEB-INF/cuspurchase/upload.jsp</result>
+			<result name = "upload">/WEB-INF/cuspurchase/upload.jsp</result>
 			<result name = "wait">/WEB-INF/cuspurchase/success.jsp</result>
+			<result name = "orderlist">/WEB-INF/cuslogistics/orderlist.jsp</result>
+			<result name = "orderdetail">/WEB-INF/cuslogistics/orderdetail.jsp</result>
+			<result name = "intact">/WEB-INF/cuspurchase/intact.jsp</result>
+			<result name = "intactdetail">/WEB-INF/cuspurchase/intactdetail.jsp</result>
+			<result name = "purcomment">/WEB-INF/cuslogistics/purcomment.jsp</result>
 		</action>
 	</package>
 </struts>    

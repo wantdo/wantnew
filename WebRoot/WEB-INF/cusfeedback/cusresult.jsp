@@ -615,7 +615,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
   			</div>
   			<div id="body_wrapper">
-  				<form action="CusSubAction" method="post"  id="cusForm" onkeydown="if(event.keyCode==13){return false;}">
+  				<form action="CusSubAction" method="post"  id="cusForm" onkeydown="if(event.keyCode==13){return false;}" enctype="multipart/form-data" >
   					<div id=page_title>
   						<h2>订单详情如下</h2>
   					</div>
@@ -909,14 +909,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   						</div>
   						<div class="opa">
   							<span>
-  							图片：<%-- <s:form action="CusBackAction" method="post" enctype="multipart/form-data" 
-					  					cssStyle="padding:5px;" onsubmit = "return CheckForm()">
-					  				<s:label value="上传文件(注：仅支持以xls,xlsx后缀的excel文件，请按照指定格式上传)">
-					  				</s:label>
-					  				<s:label cssStyle="height:0px;"/>
-					  				<s:file label="文件" name="imagekefu" cssStyle="width:100%;"></s:file>
-					  				<s:submit value="提交" cssStyle="width:70px;"/>
-					  			</s:form> --%>
+			  				<s:label value="上传图片(注：仅支持以jpg,png后缀的图片文件，请按照指定格式上传)" />
+			  				<s:label cssStyle="height:0px;"/>
+			  				<s:file label="图片" name="imgkefu" cssStyle="width:100%;" /> 
+			  				<input type="hidden" name="variable" id="variable" value="upload" />
+			  				
+			  				 <%--  <s:file name ="myFile" label ="Image File" /> 
+       						 <s:textfield name ="caption" label ="Caption" />    --%>     
   							</span>
   						</div>
   						<div class="opa">
@@ -926,21 +925,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   						</div>
   						<div class="opa">
   							<span>
-  								<span class="label">发货方式：</span>
+  								<span class="label">发货地址：</span>
   								<select name="cusOrdermst.goodsendtype" id="cusOrdermst.goodsendtype"
   									onchange="goodsendtypeChange()" >
   									<!-- <option selected value="">请选择:</option> -->
   									<s:if test='#array[8]=="1"'>
-  										<option selected value="自发">自发</option>
-  										<option value="代发">代发</option>
+  										<option selected value="王道本部">王道本部</option>
+  										<option value="供应商">供应商</option>
   									</s:if>
   									<s:if test='#array[8]=="2"'>
-  										<option selected value="代发">代发</option>
-  										<option value="自发">自发</option>
+  										<option selected value="供应商">供应商</option>
+  										<option value="王道本部">王道本部</option>
   									</s:if>
   								</select>
-  							<!-- 发货方式：<input class="btn" type="radio" id="cusOrdermst.goodsendtype" name="cusOrdermst.goodsendtype" <s:if test='#array[8]=="1"'>value="自发" checked="checked" </s:if> onchange="goodsendtypeChange()"/> 自发
-  							<input class="btn" type="radio" id="cusOrdermst.goodsendtype" name="cusOrdermst.goodsendtype" <s:if test='#array[8]=="2"'>value="代发" checked="checked" </s:if> onchange="goodsendtypeChange()"/> 代发 -->
   							</span>
   							<span id="zifaaddress" class="labelDis">
   									地址：<input style="width:700px" class="form-opp" type="text" name="cusOrdermst.address" id="cusOrdermst.zifaaddress"

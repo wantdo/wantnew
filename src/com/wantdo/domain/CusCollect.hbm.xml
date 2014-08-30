@@ -61,5 +61,8 @@
         <property name="backresult" type="java.lang.String">
             <column name="backresult" length="200" />
         </property>
+        <property name="image" type="java.lang.String">
+            <column name="image" length="200" />
+        </property>
     </class>
 </hibernate-mapping>
