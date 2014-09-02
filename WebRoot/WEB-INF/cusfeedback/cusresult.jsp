@@ -531,12 +531,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    }
 	    
 	    function goodsendtypeChange(){
-	    	if(document.getElementById("cusOrdermst.goodsendtype").value=="自发"){
+	    	if(document.getElementById("cusOrdermst.goodsendtype").value=="王道本部"){
 	    		document.getElementById("cusOrdermst.daifaaddress").disabled=true;
 	    		document.getElementById("daifaaddress").style.display="none";
 	    		document.getElementById("cusOrdermst.zifaaddress").disabled=false;
 	    		document.getElementById("zifaaddress").style.display="block";
-	    	}else if(document.getElementById("cusOrdermst.goodsendtype").value=="代发"){
+	    	}else if(document.getElementById("cusOrdermst.goodsendtype").value=="供应商"){
 	    		document.getElementById("cusOrdermst.zifaaddress").disabled=true;
 	    		document.getElementById("zifaaddress").style.display="none";
 	    		document.getElementById("cusOrdermst.daifaaddress").disabled=false;
