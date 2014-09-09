@@ -17,6 +17,10 @@ public interface ICusOrderbackDAO {
 	
 	public List findBySearch(String search);
 	
+	public List findBySupplier(String search);
+	
+	public List findByBarcode(String search);
+	
 	public void save(CusOrderback cusOrderback);
 	
 	public CusOrderback findById(Integer id);

@@ -22,7 +22,7 @@ import com.wantdo.service.ICusOrderbackService;
 import com.wantdo.utils.ExcelUtil;
 
 
-//²É¹º-->ÎïÁ÷
+//ï¿½É¹ï¿½-->ï¿½ï¿½ï¿½ï¿½
 public class CusBackAction extends ActionSupport {
 	
 	private String variable;
@@ -39,7 +39,10 @@ public class CusBackAction extends ActionSupport {
 	private File imgwuliu;
 	private String imgwuliuFileName;
 	private String imgpath;
-	private String search;
+	private String search1;
+	private String search2;
+	private String search3;
+	
 	
 	public CusBackAction() {
 		super();
@@ -49,26 +52,46 @@ public class CusBackAction extends ActionSupport {
 	}
 	@Override
 	public String execute() throws Exception {
-		System.out.println(search);
+		System.out.println(search1);
+		System.out.println(search2);
+		System.out.println(search3);
 		//System.out.println("*********************");
 		System.out.println(variable);
-		if(search !=null){
-			if(!search.equals("")){
+		if(search1 !=null){
+			if(!search1.equals("")){
 				variable = "orderlist";
 				orderList.clear();
-				orderList = cusOrderbackService.findBySearch(search);
-				search = null;
+				orderList = cusOrderbackService.findBySearch(search1);
+				search1 = null;
 				return "orderlist";
 			}
 		}
-		//²É¹º-->ÉÏ´«ExcelÒ³Ãæ
+		if(search2 !=null){
+			if(!search2.equals("")){
+				variable = "orderlist";
+				orderList.clear();
+				orderList = cusOrderbackService.findBySupplier(search2);
+				search2 = null;
+				return "orderlist";
+			}
+		}
+		 if(search3 !=null){
+			if(!search3.equals("")){
+				variable = "orderlist";
+				orderList.clear();
+				orderList = cusOrderbackService.findByBarcode(search3);
+				search3 = null;
+				return "orderlist";
+			}
+		}
+		//ï¿½É¹ï¿½-->ï¿½Ï´ï¿½ExcelÒ³ï¿½ï¿½
 		if(variable.equals("purchase")){
 			variable = null;
 			return "upload";
 		}
 		if(variable.equals("upload")){
 			variable = null;
-			//½âÎöÉÏ´«ExcelÎÄ¼þ
+			//ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½Excelï¿½Ä¼ï¿½
 			InputStream in=null;
 			OutputStream out=null;
 			try {
@@ -113,11 +136,11 @@ public class CusBackAction extends ActionSupport {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			//°Ñ½âÎöµÃµ½µÄÊý¾Ý·ÅÈëlistÖÐ
+			//ï¿½Ñ½ï¿½ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½Ý·ï¿½ï¿½ï¿½listï¿½ï¿½
 			List<String[]> list = excelUtil.getAllData(1);
 			//SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			
-			//Ñ­»·²åÈë¶ÔÏóÊôÐÔÖÐ£¬²¢´æÈëÊý¾Ý¿â
+			//Ñ­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½
 			for(int i = 2;i < list.size();i++){
 				CusOrderback cusOrderback = new CusOrderback();
 				cusOrderback.setOrderdate(sdf.parse(list.get(i)[0]));
@@ -150,7 +173,7 @@ public class CusBackAction extends ActionSupport {
 			orderList = cusOrderbackService.findLogIntact();
 			return "orderlist";
 		}
-		//ÏÔÊ¾¶ÔÓ¦idµÄ¶©µ¥ÏêÇé
+		//ï¿½ï¿½Ê¾ï¿½ï¿½Ó¦idï¿½Ä¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		if(variable.equals("orderdetail")){
 			variable=null;
 			orderList.clear();
@@ -159,13 +182,13 @@ public class CusBackAction extends ActionSupport {
 			orderList.add(getCusOrderback());
 			return "orderdetail";
 		}
-		//ÎïÁ÷-->ÊÕ»õÅÐ¶ÏÉÌÆ·ÆÆËðÇé¿ö²¢Ìí¼ÓÐÅÏ¢
+		//ï¿½ï¿½ï¿½ï¿½-->ï¿½Õ»ï¿½ï¿½Ð¶ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 		if(variable.equals("inspection")){
 			variable=null;
 			orderList.clear();
 			InputStream in=null;
 			OutputStream out=null;
-			//ÉÏ´«Í¼Æ¬
+			//ï¿½Ï´ï¿½Í¼Æ¬
 			if(imgwuliu != null){
 				try {
 					String uploadDir=ServletActionContext.getServletContext().getRealPath("/")+"uploadimg";
@@ -212,21 +235,21 @@ public class CusBackAction extends ActionSupport {
 			orderList = cusOrderbackService.findLogIntact();
 			return "orderlist"; 
 		}
-		//ÎïÁ÷-->²Ù×÷ÀúÊ·¼ÇÂ¼
+		//ï¿½ï¿½ï¿½ï¿½-->ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê·ï¿½ï¿½Â¼
 		if(variable.equals("history")){
 			variable = null;
 			orderList.clear();
 			orderList = cusOrderbackService.findLogHistory();
 			return "orderlist";
 		}
-		//²É¹º-->ÏÔÊ¾ÆÆËðÉÌÆ·ÁÐ±í
+		//ï¿½É¹ï¿½-->ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½Ð±ï¿½
 		if(variable.equals("intact")){
 			variable = null;
 			orderList.clear();
 			orderList = cusOrderbackService.findIntact();
 			return "intact";
 		}
-		//²É¹º-->ÆÆËðÉÌÆ·ÏêÇé
+		//ï¿½É¹ï¿½-->ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½
 		if(variable.equals("intactdetail")){
 			variable = null;
 			orderList.clear();
@@ -234,7 +257,7 @@ public class CusBackAction extends ActionSupport {
 			orderList.add(getCusOrderback());
 			return "intactdetail";
 		}
-		//²É¹º-->Ìí¼Ó´¦ÀíÒâ¼û
+		//ï¿½É¹ï¿½-->ï¿½ï¿½Ó´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		if(variable.equals("purresult")){
 			variable = null;
 			orderList.clear();
@@ -243,14 +266,14 @@ public class CusBackAction extends ActionSupport {
 			orderList = cusOrderbackService.findIntact();
 			return "intact";
 		}
-		//ÎïÁ÷-->²éÑ¯²É¹º´¦ÀíÒâ¼û
+		//ï¿½ï¿½ï¿½ï¿½-->ï¿½ï¿½Ñ¯ï¿½É¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		if(variable.equals("purcomment")){
 			variable = null;
 			orderList.clear();
 			orderList = cusOrderbackService.findPurresult();
 			return "purcomment";
 		}
-		//ÎïÁ÷-->È·ÈÏÉÌÆ·ÍêºÃ
+		//ï¿½ï¿½ï¿½ï¿½-->È·ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½
 		if(variable.equals("goodsintact")){
 			variable = null;
 			orderList.clear();
@@ -258,8 +281,8 @@ public class CusBackAction extends ActionSupport {
 			String signman = cusOrderback.getSignman();
 			cusOrderback = cusOrderbackService.findById(Integer.parseInt(cusRowID));
 			cusOrderback.setArrivalnum("1");
-			cusOrderback.setMistake("·ñ");
-			cusOrderback.setCondition("ÒÑÊÕµ½");
+			cusOrderback.setMistake("ï¿½ï¿½");
+			cusOrderback.setCondition("ï¿½ï¿½ï¿½Õµï¿½");
 			cusOrderback.setArrivaltime(new Date());
 			cusOrderback.setOpenman(openman);
 			cusOrderback.setSignman(signman);
@@ -357,11 +380,24 @@ public class CusBackAction extends ActionSupport {
 	public void setSdf(SimpleDateFormat sdf) {
 		this.sdf = sdf;
 	}
-	public String getSearch() {
-		return search;
+	public String getSearch1() {
+		return search1;
 	}
-	public void setSearch(String search) {
-		this.search = search;
+	public void setSearch1(String search1) {
+		this.search1 = search1;
 	}
+	public String getSearch2() {
+		return search2;
+	}
+	public void setSearch2(String search2) {
+		this.search2 = search2;
+	}
+	public String getSearch3() {
+		return search3;
+	}
+	public void setSearch3(String search3) {
+		this.search3 = search3;
+	}
+
 	
 }
