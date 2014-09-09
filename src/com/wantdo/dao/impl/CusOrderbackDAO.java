@@ -1,10 +1,16 @@
 package com.wantdo.dao.impl;
 
+import java.sql.SQLException;
 import java.util.List;
+
+import org.hibernate.HibernateException;
 import org.hibernate.LockMode;
+import org.hibernate.Query;
+import org.hibernate.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
+import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.wantdo.domain.CusOrderback;
@@ -218,6 +224,42 @@ public class CusOrderbackDAO extends HibernateDaoSupport implements ICusOrderbac
 			throw re;
 		}
 	}
+	
+	public List findLogIntact() {
+		log.debug("finding all CusOrderback instances");
+		try {
+			String queryString = "from CusOrderback as cusOrderback where cusOrderback.intact is null ";
+			return getHibernateTemplate().find(queryString);
+		} catch (RuntimeException re) {
+			log.error("find all failed", re);
+			throw re;
+		}
+	}
+	
+	/*public List findLogHistory() {
+		log.debug("finding all CusOrderback instances");
+		try {
+			
+			String queryString = "from CusOrderback as cusOrderback where cusOrderback.intact is not null and cusOrderback.purresult is null";
+			return getHibernateTemplate().find(queryString);
+		} catch (RuntimeException re) {
+			log.error("find all failed", re);
+			throw re;
+		}
+	}*/
+	
+	public List findLogHistory(){
+		List list = getHibernateTemplate().executeFind(new HibernateCallback(){
+			public Object doInHibernate(Session session) throws HibernateException,SQLException{
+				Query query = session.createQuery("from CusOrderback as cusOrderback where cusOrderback.intact is not null and cusOrderback.purresult is null order by arrivaltime desc ");
+				query.setFirstResult(0);
+				query.setMaxResults(30);
+				List list = query.list();
+				return list;
+			} 
+		}); 
+		return list; 
+	} 
 	
 	public List findPurresult() {
 		log.debug("finding all CusOrderback instances");

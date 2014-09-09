@@ -17,6 +17,14 @@ public class CusOrderbackService implements ICusOrderbackService {
 		return cusOrderbackDAO.findIntact();
 	}
 	@Override
+	public List findLogIntact() {
+		return cusOrderbackDAO.findLogIntact();
+	}
+	@Override
+	public List findLogHistory() {
+		return cusOrderbackDAO.findLogHistory();
+	}
+	@Override
 	public List findPurresult() {
 		return cusOrderbackDAO.findPurresult();
 	}
@@ -44,5 +52,6 @@ public class CusOrderbackService implements ICusOrderbackService {
 	public void setCusOrderbackDAO(ICusOrderbackDAO cusOrderbackDAO) {
 		this.cusOrderbackDAO = cusOrderbackDAO;
 	}
+	
 
 }

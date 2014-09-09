@@ -9,6 +9,10 @@ public interface ICusOrderbackDAO {
 	
 	public List findIntact();
 	
+	public List findLogIntact();
+	
+	public List findLogHistory();
+	
 	public List findPurresult();
 	
 	public List findBySearch(String search);

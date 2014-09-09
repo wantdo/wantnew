@@ -15,7 +15,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
   <head>
     
-    <title>采购</title><%-- <%=request.getSession().getAttribute("username") %>，您好 --%>
+    <title>采购</title><%=request.getSession().getAttribute("username") %>，您好
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">

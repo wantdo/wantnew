@@ -94,6 +94,17 @@ public class CusBackstageAction extends ActionSupport {
 			cusCollectService.save(cusCollect);
 			return "logisticsindex";
 		}
+		//物流拒收/客户自退
+		if(variable.equals("dishonor")){
+			variable=null;
+			return "dishonor";
+		}
+		//物流拒收/客户自退
+		if(variable.equals("dishonorimpl")){
+			variable=null;
+			cusCollectService.save(cusCollect);
+			return "logisticsindex";
+		}
 		//客服端查看处理结果详情
 		if(variable.equals("cuscollectdetail")){
 			variable=null;
@@ -111,6 +122,7 @@ public class CusBackstageAction extends ActionSupport {
 			this.pageBean = cusCollectService.queryForPage(3, page);
 			return "cuscollect";
 		}
+		
 		
 		return SUCCESS;
 	}

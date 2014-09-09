@@ -147,7 +147,7 @@ public class CusBackAction extends ActionSupport {
 		}
 		if(variable.equals("orderlist")){
 			variable = null;
-			orderList = cusOrderbackService.findAll();
+			orderList = cusOrderbackService.findLogIntact();
 			return "orderlist";
 		}
 		//显示对应id的订单详情
@@ -166,49 +166,58 @@ public class CusBackAction extends ActionSupport {
 			InputStream in=null;
 			OutputStream out=null;
 			//上传图片
-			try {
-				String uploadDir=ServletActionContext.getServletContext().getRealPath("/")+"uploadimg";
-				if (!(new File(uploadDir).isDirectory())) {
-					new File(uploadDir).mkdirs();
-					uploadDir=ServletActionContext.getServletContext().getRealPath("uploadimg");
-				}
-				
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss"); 
-				 
-				imgwuliuFileName = sdf.format(new Date())+imgwuliuFileName;
-				tempimg=new File(uploadDir+File.separator+imgwuliuFileName);
-				if (!tempimg.exists()) {
-					tempimg.createNewFile();
-				}
-				imgpath = "uploadimg/" + imgwuliuFileName;
-				in=new BufferedInputStream(new FileInputStream(imgwuliu));
-				out=new FileOutputStream(tempimg);
-				byte[] b=new byte[1024];
-				int len=0;
-				while ((len=in.read(b))!=-1) {
-					out.write(b,0,len);
-				}
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}finally{
+			if(imgwuliu != null){
 				try {
-					if (out!=null) {
-						out.close();
+					String uploadDir=ServletActionContext.getServletContext().getRealPath("/")+"uploadimg";
+					if (!(new File(uploadDir).isDirectory())) {
+						new File(uploadDir).mkdirs();
+						uploadDir=ServletActionContext.getServletContext().getRealPath("uploadimg");
 					}
-					if (in!=null) {
-						in.close();
+					
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss"); 
+					
+					imgwuliuFileName = sdf.format(new Date())+imgwuliuFileName;
+					tempimg=new File(uploadDir+File.separator+imgwuliuFileName);
+					if (!tempimg.exists()) {
+						tempimg.createNewFile();
 					}
-				} catch (IOException e) {
+					imgpath = "uploadimg/" + imgwuliuFileName;
+					in=new BufferedInputStream(new FileInputStream(imgwuliu));
+					out=new FileOutputStream(tempimg);
+					byte[] b=new byte[1024];
+					int len=0;
+					while ((len=in.read(b))!=-1) {
+						out.write(b,0,len);
+					}
+				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+				}finally{
+					try {
+						if (out!=null) {
+							out.close();
+						}
+						if (in!=null) {
+							in.close();
+						}
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
+				cusOrderback.setImgorder(imgpath);
 			}
 			cusOrderback.setArrivaltime(new Date());
-			cusOrderback.setImgorder(imgpath);
 			cusOrderbackService.update(cusOrderback);
-			orderList = cusOrderbackService.findAll();
+			orderList = cusOrderbackService.findLogIntact();
 			return "orderlist"; 
+		}
+		//物流-->操作历史记录
+		if(variable.equals("history")){
+			variable = null;
+			orderList.clear();
+			orderList = cusOrderbackService.findLogHistory();
+			return "orderlist";
 		}
 		//采购-->显示破损商品列表
 		if(variable.equals("intact")){
@@ -234,12 +243,30 @@ public class CusBackAction extends ActionSupport {
 			orderList = cusOrderbackService.findIntact();
 			return "intact";
 		}
-		//物流-->查询采购处理意见意见
+		//物流-->查询采购处理意见
 		if(variable.equals("purcomment")){
 			variable = null;
 			orderList.clear();
 			orderList = cusOrderbackService.findPurresult();
 			return "purcomment";
+		}
+		//物流-->确认商品完好
+		if(variable.equals("goodsintact")){
+			variable = null;
+			orderList.clear();
+			String openman = cusOrderback.getOpenman();
+			String signman = cusOrderback.getSignman();
+			cusOrderback = cusOrderbackService.findById(Integer.parseInt(cusRowID));
+			cusOrderback.setArrivalnum("1");
+			cusOrderback.setMistake("否");
+			cusOrderback.setCondition("已收到");
+			cusOrderback.setArrivaltime(new Date());
+			cusOrderback.setOpenman(openman);
+			cusOrderback.setSignman(signman);
+			cusOrderback.setIntact("101");
+			cusOrderbackService.update(cusOrderback);
+			orderList = cusOrderbackService.findLogIntact();
+			return "orderlist";
 		}
 
 		return SUCCESS;

@@ -207,9 +207,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   						<div class="noavatar">
   							<h3>订单详情</h3>
   						</div>
-  						<div class="noavatar">
+  						<!-- <div class="noavatar">
   							<div class="opa"><input type="text" name="search" value=""/><input class="btn" type="Submit" value="搜索快递单" onclick="return check()"/></div>
-  						</div>
+  						</div> -->
   						<ol id="option">
   							<table class="hovertable" >
   									<thead><tr onmouseover="this.style.backgroundColor='#ffff66';" onmouseout="this.style.backgroundColor='#d4e3e5';"><td>订货日期</td><td>采购订单号</td><td>供应商名称</td><td>商品名称</td><td>条形码</td><td>货号</td><td>事物特性</td><td>数量</td><td>单价</td><td>运费</td><td>总价</td><td>备注</td><td>快递公司</td><td>快递单号</td><td></td></tr></thead>
@@ -230,9 +230,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											<td><s:property value="#orderList.express"/></td>
 											<td><s:property value="#orderList.waybill"/></td>
 											<td class="opa">
-												<input  class="btn1" type="Submit" value="破损" onclick="getRowID(<s:property value="#orderList.id"/>)" />
-												<br></br>
-												<input  class="btn" type="Submit" value="完好" onclick="goodsintact(<s:property value="#orderList.id"/>)" />
+												<input  class="btn" type="Submit" value="修改" onclick="getRowID(<s:property value="#orderList.id"/>)" />
 											</td>
   										</tr>
 										<%-- <input type="hidden" name="orderList.orderdate"  value="<s:property value="#orderList.orderdate"/>"/> --%>
@@ -242,7 +240,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   						<input type="hidden" name="cusOrderback.openman" value='<%=request.getSession().getAttribute("username") %>' />
   						<input type="hidden" name="cusOrderback.signman" value='<%=request.getSession().getAttribute("username") %>' />
   						<input type="hidden" name="cusRowID"  id="cusRowID" value=""/> 
-  						<input type="hidden" name="variable" id="variable" value="orderdetail" />
+  						<input type="hidden" name="variable" id="variable" value="historydetail" />
   					</div>
   				</form>
   			</div>

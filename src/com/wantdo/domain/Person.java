@@ -11,6 +11,7 @@ public class Person implements java.io.Serializable {
 	private Integer id;
 	private String username;
 	private String password;
+	private String users;
 
 	// Constructors
 
@@ -19,9 +20,10 @@ public class Person implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Person(String username, String password) {
+	public Person(String username, String password,String users) {
 		this.username = username;
 		this.password = password;
+		this.users = users;
 	}
 
 	// Property accessors
@@ -48,6 +50,14 @@ public class Person implements java.io.Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getUsers() {
+		return users;
+	}
+
+	public void setUsers(String users) {
+		this.users = users;
 	}
 
 }

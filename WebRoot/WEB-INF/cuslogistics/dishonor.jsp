@@ -15,7 +15,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
   <head>
     
-    <title>订回详情</title><%=request.getSession().getAttribute("username") %>，您好
+    <title>物流</title><%=request.getSession().getAttribute("username") %>，您好
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -80,10 +80,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			padding:0.1em 0.75em;font-size:15px;font-weight:500;font-family:'Microsoft YaHei',微软雅黑,Verdana,arial,sans-serif;
 			text-transform:uppercase;position:relative;border:medium none;transition:all 0.5s ease 0s;
 			margin-left:2px;}
-		.opa .btn1{text-decoration:none;color:#FFF;background:none repeat scroll 0% 0% #F16D7E;border-radius:4px;
-			padding:0.1em 0.75em;font-size:15px;font-weight:500;font-family:'Microsoft YaHei',微软雅黑,Verdana,arial,sans-serif;
-			text-transform:uppercase;position:relative;border:medium none;transition:all 0.5s ease 0s;
-			margin-left:2px;}
 		.shopManager{vertical-align:middle;margin:1px;padding:0px;width:380px;height:26px;line-height:25px;
 			font:16px 'Microsoft YaHei',微软雅黑,Verdana,arial,sans-serif;}
 		.od_readonly{vertical-align:middle;margin:1px;padding:0px;width:98%;height:26px;line-height:25px;
@@ -134,7 +130,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script src="<%=request.getContextPath()%>/js/ZeroClipboard.js"  type="text/javascript"></script>
 	<script type="text/javascript">
 	
-		/* function delHtmlTag (str)
+		function delHtmlTag (str)
 		{
 	          var str=str.replace (/<\/?[^>]*>/gim, "");//去掉所有的html标签
 	        var result=str.replace(/(\s*)|(\s*$)/g, "");//去掉前后空格    
@@ -170,24 +166,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			  for (var i = 0; i < arr.length; i++) {
 			    arr[i].checked = false;
 			  };
-			} */
-		function getRowID(rowID){
-			document.getElementById("cusRowID").value = rowID;
-			form1.search.value = "";
-		}
-		function goodsintact(rowID){
-			document.getElementById("cusRowID").value = rowID;
-			form1.variable.value = "goodsintact";
-			form1.search.value = "";
-		}
-		function check(){
-			if(form1.search.value == ""){
-				alert("快递单号不能为空！");
-				return false;
-			}else{
-				return true;
 			}
-		}
 	</script>
 
   </head>
@@ -202,47 +181,45 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   				</div>
   			</div>
   			<div id="body_wrapper">
-  				<form action="CusBackAction" method="post" name = "form1">
+  				<form action="CusBackstageAction" method="post" name = "form1">
   					<div id="op">
   						<div class="noavatar">
-  							<h3>订单详情</h3>
-  						</div>
-  						<div class="noavatar">
-  							<div class="opa"><input type="text" name="search" value=""/><input class="btn" type="Submit" value="搜索快递单" onclick="return check()"/></div>
+  							<h3>拒收</h3>
   						</div>
   						<ol id="option">
   							<table class="hovertable" >
-  									<thead><tr onmouseover="this.style.backgroundColor='#ffff66';" onmouseout="this.style.backgroundColor='#d4e3e5';"><td>订货日期</td><td>采购订单号</td><td>供应商名称</td><td>商品名称</td><td>条形码</td><td>货号</td><td>事物特性</td><td>数量</td><td>单价</td><td>运费</td><td>总价</td><td>备注</td><td>快递公司</td><td>快递单号</td><td></td></tr></thead>
-  									<s:iterator value="orderList" id="orderList" >
-  										<tr onmouseover="this.style.backgroundColor='#ffff66';" onmouseout="this.style.backgroundColor='#d4e3e5';">
-											<td><s:property value="#orderList.orderdate"/></td>
-											<td><s:property value="#orderList.purid"/></td>
-											<td><s:property value="#orderList.supplier"/></td>
-											<td><s:property value="#orderList.goodsname"/></td>
-											<td><s:property value="#orderList.barcode"/></td>
-											<td><s:property value="#orderList.goodsid"/></td>
-											<td><s:property value="#orderList.goodsproperty"/></td>
-											<td><s:property value="#orderList.num"/></td>
-											<td><s:property value="#orderList.price"/></td>
-											<td><s:property value="#orderList.fare"/></td>
-											<td><s:property value="#orderList.total"/></td>
-											<td><s:property value="#orderList.remark1"/></td>
-											<td><s:property value="#orderList.express"/></td>
-											<td><s:property value="#orderList.waybill"/></td>
-											<td class="opa">
-												<input  class="btn1" type="Submit" value="破损" onclick="getRowID(<s:property value="#orderList.id"/>)" />
-												<br></br>
-												<input  class="btn" type="Submit" value="完好" onclick="goodsintact(<s:property value="#orderList.id"/>)" />
-											</td>
+  									<thead><tr><td>快递单号</td><td>收件人</td><td>手机号</td><td>地址</td><td>订单编号</td><td>平台</td><td>店铺名</td><td>网上订单编号</td></tr></thead>
+  										<tr>
+											<td><input type="text" name="cusCollect.waybill" /></td>
+											<td><input type="text" name="cusCollect.linkman" /></td>
+											<td><input type="text" name="cusCollect.handset" /></td>
+											<td><input type="text" name="cusCollect.recaddr" /></td>
+											<td><input type="text" name="cusCollect.relid" /></td>
+											<td><input type="text" name="cusCollect.sysname" /></td>
+											<td><input type="text" name="cusCollect.shopname" /></td>
+											<td><input type="text" name="cusCollect.ecid" /></td>
   										</tr>
-										<%-- <input type="hidden" name="orderList.orderdate"  value="<s:property value="#orderList.orderdate"/>"/> --%>
-  									</s:iterator>
   								</table>
   						</ol>
-  						<input type="hidden" name="cusOrderback.openman" value='<%=request.getSession().getAttribute("username") %>' />
-  						<input type="hidden" name="cusOrderback.signman" value='<%=request.getSession().getAttribute("username") %>' />
-  						<input type="hidden" name="cusRowID"  id="cusRowID" value=""/> 
-  						<input type="hidden" name="variable" id="variable" value="orderdetail" />
+  						<%-- <ol id="option">
+  							<img src ='<%=request.getContextPath()%>/<s:property value ="#logisticsList.imglog" /> ' />
+  						</ol> --%>
+  						<ol id="option">
+  						<table class="hovertable" >
+  							<thead><tr><td>反馈信息</td></tr></thead>
+  							<tr><td>
+  							<input type="radio" name="cusCollect.backresult" checked="checked" value="拒收" />拒收
+  							<input type="radio" name="cusCollect.backresult"  value="客户自退" />客户自退
+  							</td></tr>
+  						</table>
+  						</ol>
+  						<ol id="option">
+  						<div class="opa">
+  							<input  class="btn" type="Submit" value="提交" ></input>
+  							<input type="button" class="btn" onclick="history.go(-1)" value="返回"></input>
+  						</div>
+  						</ol>
+  						<input type="hidden" name="variable" id="variable" value="dishonorimpl" />
   					</div>
   				</form>
   			</div>

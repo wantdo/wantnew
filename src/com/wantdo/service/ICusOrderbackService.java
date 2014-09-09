@@ -9,6 +9,10 @@ public interface ICusOrderbackService {
 	
 	public List findIntact();
 	
+	public List findLogIntact();
+	
+	public List findLogHistory();
+	
 	public List findPurresult();
 	
 	public List findBySearch(String search);

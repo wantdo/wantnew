@@ -131,7 +131,8 @@ public class ServiceTest {
 		XmlBeanFactory factory=new XmlBeanFactory(new ClassPathResource("applicationContext.xml"));
 		ICusOrderbackService service=(ICusOrderbackService)factory.getBean("CusOrderbackService");
 		CusOrderback cusOrderback = new CusOrderback();
-		service.save(cusOrderback);
+		cusOrderback.setId(37);
+		service.update(cusOrderback);
 		//System.out.println(list.size());
 	}
 	

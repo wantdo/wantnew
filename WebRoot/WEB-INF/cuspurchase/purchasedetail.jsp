@@ -15,7 +15,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
   <head>
     
-    <title>采购详情</title><%-- <%=request.getSession().getAttribute("username") %>，您好 --%>
+    <title>采购详情</title><%=request.getSession().getAttribute("username") %>，您好
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -233,8 +233,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   						<table class="hovertable" >
   							<thead><tr><td>反馈信息</td></tr></thead>
   							<tr><td>
-  							<input type="radio" name="cusPurchase.backresult" value="拒收/客户自退" />拒收/客户自退
   							<input type="radio" name="cusPurchase.backresult" checked="checked" value="建议退款" />建议退款
+  							<input type="radio" name="cusPurchase.backresult"  value="换货" />换货
   							<input type="hidden" name="cusPurchase.id"  id="cusPurchase.id" value="<s:property value="#purchaseList.id"/>"/>
   							</td></tr>
   						</table>

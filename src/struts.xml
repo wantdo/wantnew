@@ -14,6 +14,7 @@
 		<result name="null">/WEB-INF/exception/null.jsp</result>
 		<result name="all">/WEB-INF/exception/all.jsp</result>
 	</global-results> -->
+	<!--  
 	<global-exception-mappings>
 		<exception-mapping result="sql" exception="java.sql.SQLException"></exception-mapping>
 		<exception-mapping result="null"
@@ -21,6 +22,7 @@
 		<exception-mapping result="all"
 			exception="java.lang.Exception"></exception-mapping>
 	</global-exception-mappings>
+	-->
 		<action name="CusFeedbackAction" class="CusFeedbackAction">
 			<interceptor-ref name="defaultStack">
 			</interceptor-ref>
@@ -64,6 +66,7 @@
 			<result name = "kefu">/WEB-INF/cusedit/login.jsp</result>
 			<result name = "wuliu">logisticsindex.jsp</result>
 			<result name = "caigou">purchaseindex.jsp</result>
+			<result name="error">/index.jsp</result>
 			<!-- <result name="input">/WEB-INF/content/login.jsp</result>
 			<result name="error">/WEB-INF/content/login.jsp</result> -->
 		</action>
@@ -85,6 +88,7 @@
 			<result name = "logisticsdetail">/WEB-INF/cuslogistics/logisticsdetail.jsp</result>
 			<result name = "cuscollect">/WEB-INF/cuscollect/list.jsp</result>
 			<result name = "cuscollectdetail">/WEB-INF/cuscollect/cuscollectdetail.jsp</result>
+			<result name = "dishonor">/WEB-INF/cuslogistics/dishonor.jsp</result>
 		</action>
 		<action name="CusBackAction" class="CusBackAction">
 			<interceptor-ref name="defaultStack" />
@@ -96,6 +100,9 @@
 			<result name = "intact">/WEB-INF/cuspurchase/intact.jsp</result>
 			<result name = "intactdetail">/WEB-INF/cuspurchase/intactdetail.jsp</result>
 			<result name = "purcomment">/WEB-INF/cuslogistics/purcomment.jsp</result>
+		</action>
+		<action name="CusOrderAction" class="CusOrderAction">
+			<result name = "orderlist">/WEB-INF/cuslogistics/orderlist.jsp</result>
 		</action>
 	</package>
 </struts>    

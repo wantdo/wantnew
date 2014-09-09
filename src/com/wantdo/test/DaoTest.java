@@ -17,10 +17,12 @@ import com.wantdo.dao.ICusOrderdtlDAO;
 import com.wantdo.dao.ICusOrdermstDAO;
 import com.wantdo.dao.ICusPurchaseDAO;
 import com.wantdo.dao.IEcEordermstDAO;
+import com.wantdo.dao.IPersonDAO;
 import com.wantdo.dao.IWspShopsDAO;
 import com.wantdo.domain.CusDesc;
 import com.wantdo.domain.CusDetail;
 import com.wantdo.domain.CusOrderdtl;
+import com.wantdo.domain.Person;
 
 public class DaoTest {
 
@@ -132,6 +134,13 @@ public class DaoTest {
 		ICusOrderbackDAO dao=(ICusOrderbackDAO)factory.getBean("CusOrderbackDAO");
 		List list=dao.findBySearch("123456789012");
 		System.out.println(list.size());
+	}
+	@Test
+	public void testPersonDAO()  throws Exception{
+		XmlBeanFactory factory=new XmlBeanFactory(new ClassPathResource("applicationContext.xml"));
+		IPersonDAO dao=(IPersonDAO)factory.getBean("PersonDAO");
+		Person person = new Person("kefu","kefu123","¿Í·þ");
+		System.out.println(dao.checkLogin(person));
 	}
 	
 }

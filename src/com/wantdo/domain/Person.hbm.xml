@@ -16,5 +16,8 @@
         <property name="password" type="java.lang.String">
             <column name="password" length="50" not-null="true" />
         </property>
+        <property name="users" type="java.lang.String">
+            <column name="users" length="20"  />
+        </property>
     </class>
 </hibernate-mapping>

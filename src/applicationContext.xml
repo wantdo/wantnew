@@ -48,6 +48,11 @@
 				<value>com/wantdo/domain/CusOrderback.hbm.xml</value>
 			</list>
 		</property></bean>
+	<bean id="CusOrderAction" class="com.wantdo.action.CusOrderAction">
+		<property name="cusOrderbackService">
+			<ref bean="CusOrderbackService"/>
+		</property>
+	</bean>
 	<bean id="CusBackAction" class="com.wantdo.action.CusBackAction">
 		<property name="cusOrderbackService">
 			<ref bean="CusOrderbackService"/>

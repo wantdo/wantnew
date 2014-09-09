@@ -40,15 +40,17 @@ public class LoginAction extends ActionSupport{
 	private Person person;
 	private IEcEordermstService ecEordermstService;
 	private List<CusDesc> proList;
+	private List<Person> list;
 	
 	public LoginAction() {
 		super();
 		proList=new ArrayList<CusDesc>();
 		person = new Person();
+		list=new ArrayList<Person>();
 	}
 	@Override
 	public String execute() throws Exception {
-		String result = person.getUsername();
+		//String result = person.getUsername();
 		
 		/*logger.info("Person [username="+person.getUsername()+
 				",password="+person.getPassword()+"]");*/
@@ -65,16 +67,33 @@ public class LoginAction extends ActionSupport{
 			/*HttpServletRequest request=ServletActionContext.getRequest();
 	        HttpSession session =request.getSession();
 	        session.setAttribute("username", person.getUsername());*/
-			ServletActionContext.getRequest().getSession().setAttribute("username", person.getUsername());
+			list = personService.getByUsername(person.getUsername());
+			ServletActionContext.getRequest().getSession().setAttribute("username", list.get(0).getUsers());
 			//System.out.println("----------------->–¥»Îsession ");
-			person = new Person();
+			if(person.getUsername().equals("wuliu")){
+				person = new Person();
+				return "wuliu";
+			}
+			if(person.getUsername().equals("wuliu1")){
+				person = new Person();
+				return "wuliu";
+			}
+			if(person.getUsername().equals("wuliu2")){
+				person = new Person();
+				return "wuliu";
+			}
+			if(person.getUsername().equals("kefu")){
+				person = new Person();
+				return "kefu";
+			}
+			if(person.getUsername().equals("caigou")){
+				person = new Person();
+				return "caigou";
+			}
 			//ActionContext.getContext().getSession().put("username", person.getUsername());
 			//System.out.println("----------------->–¥»Îsession "+ActionContext.getContext().getSession().get("username"));
-			return result;
 		}
-		
-		
-		return result;
+		return "error";
 	}
 
 	public Person getPerson() {

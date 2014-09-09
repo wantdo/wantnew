@@ -15,7 +15,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
   <head>
     
-    <title>订回详情</title><%-- <%=request.getSession().getAttribute("username") %>，您好 --%>
+    <title>订回详情</title><%=request.getSession().getAttribute("username") %>，您好
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -181,7 +181,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   				</div>
   			</div>
   			<div id="body_wrapper">
-  				<form action="CusBackAction" method="post" name = "form1">
+  				<form action="CusBackAction" method="post" name = "form1" enctype="multipart/form-data">
   					<div id="op">
   						<div class="noavatar">
   							<h3>订单详情</h3>
@@ -206,6 +206,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											<td><s:property value="#orderList.express"/></td>
 											<td><s:property value="#orderList.waybill"/></td>
   										</tr>
+  										<%-- <input type="hidden" name="cusOrderback.id"  value="<s:property value='#orderList.id'/>" /> --%>
   									</s:iterator>
   								</table>
   						</ol>
@@ -216,11 +217,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   										<tr>
 											<td><input type="text" name="cusOrderback.express" value="<s:property value='#orderList.express'/>"/></td>
 											<td><input type="text" name="cusOrderback.waybill" value="<s:property value='#orderList.waybill'/>"/></td>
-											<td><input type="text" name="cusOrderback.arrivalnum" /></td>
-											<td><input type="text" name="cusOrderback.mistake" /></td>
-											<td><input type="text" name="cusOrderback.condition" /></td>
-											<td><input type="text" name="cusOrderback.openman" /></td>
-											<td><input type="text" name="cusOrderback.signman" /></td>
+											<td><input type="text" name="cusOrderback.arrivalnum" value="1" /></td>
+											<!-- <td><input type="text" name="cusOrderback.mistake" value="否" /></td> -->
+											<td><select name="cusOrderback.mistake"><option selected value="否">否</option><option value="是">是</option></select></td>
+											<!-- <td><input type="text" name="cusOrderback.condition" value="已收到" /></td> -->
+											<td><select name="cusOrderback.condition"><option selected value="已收到">已收到</option><option value="未收到">未收到</option></select></td>
+											<td><input type="text" name="cusOrderback.openman" value='<%=request.getSession().getAttribute("username") %>' /></td>
+											<td><input type="text" name="cusOrderback.signman" value='<%=request.getSession().getAttribute("username") %>' /></td>
 											<td><input type="text" name="cusOrderback.remark2" /></td>
   										</tr>
   									</s:iterator>
@@ -239,13 +242,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   						<ol id="option">
   							 <table class="hovertable" ><thead><tr>
 			  				<s:label value="上传图片(注：仅支持以jpg,png后缀的图片文件，请按照指定格式上传)" />
-			  				<s:file label="图片" name="imgwl" cssStyle="width:100%;" /> 
+			  				<s:file label="图片" name="imgwuliu" cssStyle="width:100%;" /> 
   							</tr></thead></table> 
   						</ol>
   						<ol id="option">
   							<div class="opa">
-  								<input type="radio" name="cusOrderback.intact" checked="checked" value="101"/>完好（正常入库）
-  								<input type="radio" name="cusOrderback.intact" value="100"/>破损（需上传图片）
+  								<input type="radio" name="cusOrderback.intact" checked="checked" value="100"/>破损（需上传图片）
+  								<input type="radio" name="cusOrderback.intact"  value="101"/>完好（正常入库）
   							</div>
   						</ol>
   						<ol id="option">
