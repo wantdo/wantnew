@@ -22,7 +22,7 @@ import com.wantdo.service.ICusOrderbackService;
 import com.wantdo.utils.ExcelUtil;
 
 
-//²É¹º-->ÎïÁ÷
+//é‡‡è´­-->ç‰©æµ
 public class CusBackAction extends ActionSupport {
 	
 	private String variable;
@@ -39,7 +39,10 @@ public class CusBackAction extends ActionSupport {
 	private File imgwuliu;
 	private String imgwuliuFileName;
 	private String imgpath;
-	private String search;
+	private String search1;
+	private String search2;
+	private String search3;
+	
 	
 	public CusBackAction() {
 		super();
@@ -49,27 +52,47 @@ public class CusBackAction extends ActionSupport {
 	}
 	@Override
 	public String execute() throws Exception {
-		System.out.println(search);
+		System.out.println(search1);
+		System.out.println(search2);
+		System.out.println(search3);
 		//System.out.println("*********************");
 		System.out.println(variable);
-		//¿ìµİµ¥ºÅËÑË÷
-		if(search !=null){
-			if(!search.equals("")){
+		//å¿«é€’å•å·æœç´¢
+		if(search1 !=null){
+			if(!search1.equals("")){
 				variable = "orderlist";
 				orderList.clear();
-				orderList = cusOrderbackService.findBySearch(search);
-				search = null;
+				orderList = cusOrderbackService.findBySearch(search1);
+				search1 = null;
 				return "orderlist";
 			}
 		}
-		//²É¹º-->ÉÏ´«ExcelÒ³Ãæ
+		if(search2 !=null){
+			if(!search2.equals("")){
+				variable = "orderlist";
+				orderList.clear();
+				orderList = cusOrderbackService.findBySupplier(search2);
+				search2 = null;
+				return "orderlist";
+			}
+		}
+		 if(search3 !=null){
+			if(!search3.equals("")){
+				variable = "orderlist";
+				orderList.clear();
+				orderList = cusOrderbackService.findByBarcode(search3);
+				search3 = null;
+				return "orderlist";
+			}
+		}
+		//é‡‡è´­-->ä¸Šä¼ Excelé¡µé¢
 		if(variable.equals("purchase")){
 			variable = null;
 			return "upload";
 		}
 		if(variable.equals("upload")){
 			variable = null;
-			//½âÎöÉÏ´«ExcelÎÄ¼ş
+			//è§£æä¸Šä¼ Excelæ–‡ä»¶
 			InputStream in=null;
 			OutputStream out=null;
 			try {
@@ -114,11 +137,11 @@ public class CusBackAction extends ActionSupport {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			//°Ñ½âÎöµÃµ½µÄÊı¾İ·ÅÈëlistÖĞ
+			//æŠŠè§£æå¾—åˆ°çš„æ•°æ®æ”¾å…¥listä¸­
 			List<String[]> list = excelUtil.getAllData(1);
 			//SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			
-			//Ñ­»·²åÈë¶ÔÏóÊôĞÔÖĞ£¬²¢´æÈëÊı¾İ¿â
+			//å¾ªç¯æ’å…¥å¯¹è±¡å±æ€§ä¸­ï¼Œå¹¶å­˜å…¥æ•°æ®åº“
 			for(int i = 2;i < list.size();i++){
 				CusOrderback cusOrderback = new CusOrderback();
 				cusOrderback.setOrderdate(sdf.parse(list.get(i)[0]));
@@ -151,7 +174,7 @@ public class CusBackAction extends ActionSupport {
 			orderList = cusOrderbackService.findLogIntact();
 			return "orderlist";
 		}
-		//ÏÔÊ¾¶ÔÓ¦idµÄ¶©µ¥ÏêÇé
+		//æ˜¾ç¤ºå¯¹åº”idçš„è®¢å•è¯¦æƒ…
 		if(variable.equals("orderdetail")){
 			variable=null;
 			orderList.clear();
@@ -160,13 +183,13 @@ public class CusBackAction extends ActionSupport {
 			orderList.add(getCusOrderback());
 			return "orderdetail";
 		}
-		//ÎïÁ÷-->ÊÕ»õÅĞ¶ÏÉÌÆ·ÆÆËğÇé¿ö²¢Ìí¼ÓĞÅÏ¢
+		//ç‰©æµ-->æ”¶è´§åˆ¤æ–­å•†å“ç ´æŸæƒ…å†µå¹¶æ·»åŠ ä¿¡æ¯
 		if(variable.equals("inspection")){
 			variable=null;
 			orderList.clear();
 			InputStream in=null;
 			OutputStream out=null;
-			//ÉÏ´«Í¼Æ¬
+			//ä¸Šä¼ å›¾ç‰‡
 			if(imgwuliu != null){
 				try {
 					String uploadDir=ServletActionContext.getServletContext().getRealPath("/")+"uploadimg";
@@ -214,14 +237,14 @@ public class CusBackAction extends ActionSupport {
 			imgwuliu = null;
 			return "orderlist"; 
 		}
-		//ÎïÁ÷-->²Ù×÷ÀúÊ·¼ÇÂ¼£¬ÁĞ±í
+		//ç‰©æµ-->æ“ä½œå†å²è®°å½•ï¼Œåˆ—è¡¨
 		if(variable.equals("history")){
 			variable = null;
 			orderList.clear();
 			orderList = cusOrderbackService.findLogHistory();
 			return "historylist";
 		}
-		//ÎïÁ÷-->²Ù×÷ÀúÊ·¼ÇÂ¼£¬ÏêÇé
+		//ç‰©æµ-->æ“ä½œå†å²è®°å½•ï¼Œè¯¦æƒ…
 		if(variable.equals("historydetail")){
 			variable = null;
 			orderList.clear();
@@ -229,13 +252,13 @@ public class CusBackAction extends ActionSupport {
 			orderList.add(getCusOrderback());
 			return "historydetail";
 		}
-		//ÎïÁ÷-->²Ù×÷ÀúÊ·¼ÇÂ¼£¬¸üĞÂ
+		//ç‰©æµ-->æ“ä½œå†å²è®°å½•ï¼Œæ›´æ–°
 		if(variable.equals("historyupdate")){
 			variable = null;
 			orderList.clear();
 			InputStream in=null;
 			OutputStream out=null;
-			//ÉÏ´«Í¼Æ¬
+			//ä¸Šä¼ å›¾ç‰‡
 			if(imgwuliu != null){
 				try {
 					String uploadDir=ServletActionContext.getServletContext().getRealPath("/")+"uploadimg";
@@ -283,14 +306,14 @@ public class CusBackAction extends ActionSupport {
 			imgwuliu = null;
 			return "historylist";
 		}
-		//²É¹º-->ÏÔÊ¾ÆÆËğÉÌÆ·ÁĞ±í
+		//é‡‡è´­-->æ˜¾ç¤ºç ´æŸå•†å“åˆ—è¡¨
 		if(variable.equals("intact")){
 			variable = null;
 			orderList.clear();
 			orderList = cusOrderbackService.findIntact();
 			return "intact";
 		}
-		//²É¹º-->ÆÆËğÉÌÆ·ÏêÇé
+		//é‡‡è´­-->ç ´æŸå•†å“è¯¦æƒ…
 		if(variable.equals("intactdetail")){
 			variable = null;
 			orderList.clear();
@@ -298,7 +321,7 @@ public class CusBackAction extends ActionSupport {
 			orderList.add(getCusOrderback());
 			return "intactdetail";
 		}
-		//²É¹º-->Ìí¼Ó´¦ÀíÒâ¼û
+		//é‡‡è´­-->æ·»åŠ å¤„ç†æ„è§
 		if(variable.equals("purresult")){
 			variable = null;
 			orderList.clear();
@@ -307,14 +330,14 @@ public class CusBackAction extends ActionSupport {
 			orderList = cusOrderbackService.findIntact();
 			return "intact";
 		}
-		//ÎïÁ÷-->²éÑ¯²É¹º´¦ÀíÒâ¼û
+		//ç‰©æµ-->æŸ¥è¯¢é‡‡è´­å¤„ç†æ„è§
 		if(variable.equals("purcomment")){
 			variable = null;
 			orderList.clear();
 			orderList = cusOrderbackService.findPurresult();
 			return "purcomment";
 		}
-		//ÎïÁ÷-->È·ÈÏÉÌÆ·ÍêºÃ
+		//ç‰©æµ-->ç¡®è®¤å•†å“å®Œå¥½
 		if(variable.equals("goodsintact")){
 			variable = null;
 			orderList.clear();
@@ -322,8 +345,8 @@ public class CusBackAction extends ActionSupport {
 			String signman = cusOrderback.getSignman();
 			cusOrderback = cusOrderbackService.findById(Integer.parseInt(cusRowID));
 			cusOrderback.setArrivalnum("1");
-			cusOrderback.setMistake("·ñ");
-			cusOrderback.setCondition("ÒÑÊÕµ½");
+			cusOrderback.setMistake("å¦");
+			cusOrderback.setCondition("å·²æ”¶åˆ°");
 			cusOrderback.setArrivaltime(new Date());
 			cusOrderback.setOpenman(openman);
 			cusOrderback.setSignman(signman);
@@ -421,11 +444,24 @@ public class CusBackAction extends ActionSupport {
 	public void setSdf(SimpleDateFormat sdf) {
 		this.sdf = sdf;
 	}
-	public String getSearch() {
-		return search;
+	public String getSearch1() {
+		return search1;
 	}
-	public void setSearch(String search) {
-		this.search = search;
+	public void setSearch1(String search1) {
+		this.search1 = search1;
 	}
+	public String getSearch2() {
+		return search2;
+	}
+	public void setSearch2(String search2) {
+		this.search2 = search2;
+	}
+	public String getSearch3() {
+		return search3;
+	}
+	public void setSearch3(String search3) {
+		this.search3 = search3;
+	}
+
 	
 }

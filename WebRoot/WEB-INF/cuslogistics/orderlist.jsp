@@ -180,11 +180,33 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			form1.variable.value = "goodsintact";
 			form1.search.value = "";
 		}
-		function check(){
-			if(form1.search.value == ""){
+		function check1(){
+			if(form1.search1.value == ""){
 				alert("快递单号不能为空！");
 				return false;
 			}else{
+				form1.search2.value="";
+				form1.search3.value="";
+				return true;
+			}
+		}
+		function check2(){
+			if(form1.search2.value == ""){
+				alert("供应商不能为空！");
+				return false;
+			}else{
+				form1.search1.value="";
+				form1.search3.value="";
+				return true;
+			}
+		}
+		function check3(){
+			if(form1.search3.value == ""){
+				alert("条形码不能为空！");
+				return false;
+			}else{
+				form1.search1.value="";
+				form1.search2.value="";
 				return true;
 			}
 		}
@@ -208,7 +230,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   							<h3>订单详情</h3>
   						</div>
   						<div class="noavatar">
-  							<div class="opa"><input type="text" name="search" value=""/><input class="btn" type="Submit" value="搜索快递单" onclick="return check()"/></div>
+  							<div class="opa"><input type="text" name="search1" value=""/><input class="btn" type="Submit" value="搜索快递单" onclick="return check1()"/>
+  							<input type="text" name="search2" value=""/><input class="btn" type="Submit" value="搜索供应商" onclick="return check2()"/>
+  							<input type="text" name="search3" value=""/><input class="btn" type="Submit" value="搜索条形码" onclick="return check3()"/></div>
   						</div>
   						<ol id="option">
   							<table class="hovertable" >

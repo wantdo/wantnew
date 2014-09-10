@@ -282,6 +282,29 @@ public class CusOrderbackDAO extends HibernateDaoSupport implements ICusOrderbac
 			throw re;
 		}
 	}
+	
+	public List findBySupplier(String search) {
+		log.debug("finding all CusOrderback instances");
+		try {
+			String queryString = "from CusOrderback as cusOrderback where cusOrderback.supplier = '"+search+"' ";
+			return getHibernateTemplate().find(queryString);
+		} catch (RuntimeException re) {
+			log.error("find all failed", re);
+			throw re;
+		}
+	}
+	
+	public List findByBarcode(String search) {
+		log.debug("finding all CusOrderback instances");
+		try {
+			String queryString = "from CusOrderback as cusOrderback where cusOrderback.barcode = '"+search+"' ";
+			return getHibernateTemplate().find(queryString);
+		} catch (RuntimeException re) {
+			log.error("find all failed", re);
+			throw re;
+		}
+	}
+
 
 	public CusOrderback merge(CusOrderback detachedInstance) {
 		log.debug("merging CusOrderback instance");

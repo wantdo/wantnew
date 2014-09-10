@@ -33,6 +33,14 @@ public class CusOrderbackService implements ICusOrderbackService {
 		return cusOrderbackDAO.findBySearch(search);
 	}
 	@Override
+	public List findBySupplier(String search) {
+		return cusOrderbackDAO.findBySupplier(search);
+	}
+	@Override
+	public List findByBarcode(String search) {
+		return cusOrderbackDAO.findByBarcode(search);
+	}
+	@Override
 	public void save(CusOrderback cusOrderback) {
 		cusOrderbackDAO.save(cusOrderback);
 	}
