@@ -97,6 +97,8 @@
 			<result name = "wait">/WEB-INF/cuspurchase/success.jsp</result>
 			<result name = "orderlist">/WEB-INF/cuslogistics/orderlist.jsp</result>
 			<result name = "orderdetail">/WEB-INF/cuslogistics/orderdetail.jsp</result>
+			<result name = "historylist">/WEB-INF/cuslogistics/historylist.jsp</result>
+			<result name = "historydetail">/WEB-INF/cuslogistics/historydetail.jsp</result>
 			<result name = "intact">/WEB-INF/cuspurchase/intact.jsp</result>
 			<result name = "intactdetail">/WEB-INF/cuspurchase/intactdetail.jsp</result>
 			<result name = "purcomment">/WEB-INF/cuslogistics/purcomment.jsp</result>

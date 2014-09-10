@@ -52,6 +52,7 @@ public class CusBackAction extends ActionSupport {
 		System.out.println(search);
 		//System.out.println("*********************");
 		System.out.println(variable);
+		//快递单号搜索
 		if(search !=null){
 			if(!search.equals("")){
 				variable = "orderlist";
@@ -210,14 +211,77 @@ public class CusBackAction extends ActionSupport {
 			cusOrderback.setArrivaltime(new Date());
 			cusOrderbackService.update(cusOrderback);
 			orderList = cusOrderbackService.findLogIntact();
+			imgwuliu = null;
 			return "orderlist"; 
 		}
-		//物流-->操作历史记录
+		//物流-->操作历史记录，列表
 		if(variable.equals("history")){
 			variable = null;
 			orderList.clear();
 			orderList = cusOrderbackService.findLogHistory();
-			return "orderlist";
+			return "historylist";
+		}
+		//物流-->操作历史记录，详情
+		if(variable.equals("historydetail")){
+			variable = null;
+			orderList.clear();
+			cusOrderback = cusOrderbackService.findById(Integer.parseInt(cusRowID));
+			orderList.add(getCusOrderback());
+			return "historydetail";
+		}
+		//物流-->操作历史记录，更新
+		if(variable.equals("historyupdate")){
+			variable = null;
+			orderList.clear();
+			InputStream in=null;
+			OutputStream out=null;
+			//上传图片
+			if(imgwuliu != null){
+				try {
+					String uploadDir=ServletActionContext.getServletContext().getRealPath("/")+"uploadimg";
+					if (!(new File(uploadDir).isDirectory())) {
+						new File(uploadDir).mkdirs();
+						uploadDir=ServletActionContext.getServletContext().getRealPath("uploadimg");
+					}
+					
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss"); 
+					
+					imgwuliuFileName = sdf.format(new Date())+imgwuliuFileName;
+					tempimg=new File(uploadDir+File.separator+imgwuliuFileName);
+					if (!tempimg.exists()) {
+						tempimg.createNewFile();
+					}
+					imgpath = "uploadimg/" + imgwuliuFileName;
+					in=new BufferedInputStream(new FileInputStream(imgwuliu));
+					out=new FileOutputStream(tempimg);
+					byte[] b=new byte[1024];
+					int len=0;
+					while ((len=in.read(b))!=-1) {
+						out.write(b,0,len);
+					}
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}finally{
+					try {
+						if (out!=null) {
+							out.close();
+						}
+						if (in!=null) {
+							in.close();
+						}
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				cusOrderback.setImgorder(imgpath);
+			}
+			//cusOrderback.setArrivaltime(new Date());
+			cusOrderbackService.update(cusOrderback);
+			orderList = cusOrderbackService.findLogHistory();
+			imgwuliu = null;
+			return "historylist";
 		}
 		//采购-->显示破损商品列表
 		if(variable.equals("intact")){

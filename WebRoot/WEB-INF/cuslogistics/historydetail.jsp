@@ -80,10 +80,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			padding:0.1em 0.75em;font-size:15px;font-weight:500;font-family:'Microsoft YaHei',微软雅黑,Verdana,arial,sans-serif;
 			text-transform:uppercase;position:relative;border:medium none;transition:all 0.5s ease 0s;
 			margin-left:2px;}
-		.opa .btn1{text-decoration:none;color:#FFF;background:none repeat scroll 0% 0% #F16D7E;border-radius:4px;
-			padding:0.1em 0.75em;font-size:15px;font-weight:500;font-family:'Microsoft YaHei',微软雅黑,Verdana,arial,sans-serif;
-			text-transform:uppercase;position:relative;border:medium none;transition:all 0.5s ease 0s;
-			margin-left:2px;}
 		.shopManager{vertical-align:middle;margin:1px;padding:0px;width:380px;height:26px;line-height:25px;
 			font:16px 'Microsoft YaHei',微软雅黑,Verdana,arial,sans-serif;}
 		.od_readonly{vertical-align:middle;margin:1px;padding:0px;width:98%;height:26px;line-height:25px;
@@ -171,23 +167,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			    arr[i].checked = false;
 			  };
 			} */
-		function getRowID(rowID){
-			document.getElementById("cusRowID").value = rowID;
-			form1.search.value = "";
-		}
-		function goodsintact(rowID){
-			document.getElementById("cusRowID").value = rowID;
-			form1.variable.value = "goodsintact";
-			form1.search.value = "";
-		}
-		function check(){
-			if(form1.search.value == ""){
-				alert("快递单号不能为空！");
-				return false;
-			}else{
-				return true;
-			}
-		}
 	</script>
 
   </head>
@@ -202,17 +181,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   				</div>
   			</div>
   			<div id="body_wrapper">
-  				<form action="CusBackAction" method="post" name = "form1">
+  				<form action="CusBackAction" method="post" name = "form1" enctype="multipart/form-data">
   					<div id="op">
   						<div class="noavatar">
   							<h3>订单详情</h3>
   						</div>
-  						<!-- <div class="noavatar">
-  							<div class="opa"><input type="text" name="search" value=""/><input class="btn" type="Submit" value="搜索快递单" onclick="return check()"/></div>
-  						</div> -->
   						<ol id="option">
   							<table class="hovertable" >
-  									<thead><tr onmouseover="this.style.backgroundColor='#ffff66';" onmouseout="this.style.backgroundColor='#d4e3e5';"><td>订货日期</td><td>采购订单号</td><td>供应商名称</td><td>商品名称</td><td>条形码</td><td>货号</td><td>事物特性</td><td>数量</td><td>单价</td><td>运费</td><td>总价</td><td>备注</td><td>快递公司</td><td>快递单号</td><td></td></tr></thead>
+  									<thead><tr onmouseover="this.style.backgroundColor='#ffff66';" onmouseout="this.style.backgroundColor='#d4e3e5';"><td>订货日期</td><td>采购订单号</td><td>供应商名称</td><td>商品名称</td><td>条形码</td><td>货号</td><td>事物特性</td><td>数量</td><td>单价</td><td>运费</td><td>总价</td><td>备注</td><td>快递公司</td><td>快递单号</td></tr></thead>
   									<s:iterator value="orderList" id="orderList" >
   										<tr onmouseover="this.style.backgroundColor='#ffff66';" onmouseout="this.style.backgroundColor='#d4e3e5';">
 											<td><s:property value="#orderList.orderdate"/></td>
@@ -229,16 +205,76 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											<td><s:property value="#orderList.remark1"/></td>
 											<td><s:property value="#orderList.express"/></td>
 											<td><s:property value="#orderList.waybill"/></td>
-											<td class="opa">
-												<input  class="btn" type="Submit" value="修改" onclick="getRowID(<s:property value="#orderList.id"/>)" />
-											</td>
   										</tr>
-										<%-- <input type="hidden" name="orderList.orderdate"  value="<s:property value="#orderList.orderdate"/>"/> --%>
+  										<%-- <input type="hidden" name="cusOrderback.id"  value="<s:property value='#orderList.id'/>" /> --%>
   									</s:iterator>
   								</table>
   						</ol>
-  						<input type="hidden" name="cusRowID"  id="cusRowID" value=""/> 
-  						<input type="hidden" name="variable" id="variable" value="historydetail" />
+  						<ol id="option">
+  							<table class="hovertable" >
+  									<thead><tr><td>快递公司</td><td>快递单号</td><td>实到数量</td><td>是否到错</td><td>状态</td><td>拆收人</td><td>发货组签收人</td><td>备注2</td></tr></thead>
+  									<s:iterator value="orderList" id="orderList" >
+  										<tr>
+											<td><input type="text" name="cusOrderback.express" value="<s:property value='#orderList.express'/>"/></td>
+											<td><input type="text" name="cusOrderback.waybill" value="<s:property value='#orderList.waybill'/>"/></td>
+											<td><input type="text" name="cusOrderback.arrivalnum" value="<s:property value='#orderList.arrivalnum'/>" /></td>
+											<td><select name="cusOrderback.mistake">
+													<s:if test='#orderList.mistake=="否"'>
+														<option selected value="否">否</option>
+														<option value="是">是</option>
+													</s:if>
+													<s:if test='#orderList.mistake=="是"'>
+														<option selected value="是">是</option>
+														<option value="否">否</option>
+													</s:if>
+												</select>
+											</td>
+											<td><select name="cusOrderback.condition">
+													<s:if test='#orderList.condition== "已收到"'>
+														<option selected value="已收到">已收到</option>
+														<option value="未收到">未收到</option>
+													</s:if>
+													<s:if test='#orderList.condition== "未收到"'>
+														<option selected value="未收到">未收到</option>
+														<option value="已收到">已收到</option>
+													</s:if>
+												</select>
+											</td>
+											<td><input type="text" name="cusOrderback.openman" value='<s:property value='#orderList.openman'/>' /></td>
+											<td><input type="text" name="cusOrderback.signman" value='<s:property value='#orderList.signman'/>' /></td>
+											<td><input type="text" name="cusOrderback.remark2" value="<s:property value='#orderList.remark2'/>" /></td>
+  										</tr>
+  									</s:iterator>
+  								</table>
+  						</ol>
+  						<ol id="option">
+  							<img src ='<%=request.getContextPath()%>/<s:property value ="#orderList.imgorder" /> ' />
+  						</ol>
+  						<ol id="option">
+  							 <table class="hovertable" ><thead><tr>
+			  				<s:label value="上传图片(注：仅支持以jpg,png后缀的图片文件，请按照指定格式上传)" />
+			  				<s:file label="图片" name="imgwuliu" cssStyle="width:100%;" /> 
+  							</tr></thead></table> 
+  						</ol>
+  						<ol id="option">
+  							<div class="opa">
+  								<s:if test='#orderList.intact == "100"'>
+  									<input type="radio" name="cusOrderback.intact" checked="checked" value="100"/>破损（需上传图片）
+  									<input type="radio" name="cusOrderback.intact"  value="101"/>完好（正常入库）
+  								</s:if>
+  								<s:if test='#orderList.intact == "101"'>
+  									<input type="radio" name="cusOrderback.intact" value="100"/>破损（需上传图片）
+  									<input type="radio" name="cusOrderback.intact" checked="checked" value="101"/>完好（正常入库）
+  								</s:if>
+  							</div>
+  						</ol>
+  						<ol id="option">
+	  						<div class="opa">
+	  							<input  class="btn" type="Submit" value="提交" ></input>
+	  							<input type="button" class="btn" onclick="history.go(-1)" value="返回"></input>
+	  						</div>
+  						</ol>
+  						<input type="hidden" name="variable" id="variable" value="historyupdate" />
   					</div>
   				</form>
   			</div>
