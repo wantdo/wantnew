@@ -190,11 +190,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   				<form action="CusBackAction" method="post" name = "form1">
   					<div id="op">
   						<div class="noavatar">
-  							<h3>采购破损处理意见</h3>
+  							<h3>退货状态</h3>
   						</div>
   						<ol id="option">
   							<table class="hovertable" >
-  									<thead><tr onmouseover="this.style.backgroundColor='#ffff66';" onmouseout="this.style.backgroundColor='#d4e3e5';"><td>订货日期</td><td>采购订单号</td><td>供应商名称</td><td>商品名称</td><td>条形码</td><td>货号</td><td>事物特性</td><td>快递公司</td><td>快递单号</td><td>到货时间</td><td>完好情况</td><td></td></tr></thead>
+  									<thead><tr onmouseover="this.style.backgroundColor='#ffff66';" onmouseout="this.style.backgroundColor='#d4e3e5';"><td>订货日期</td><td>采购订单号</td><td>供应商名称</td><td>商品名称</td><td>条形码</td><td>货号</td><td>事物特性</td><td>快递公司</td><td>快递单号</td><td>到货时间</td><td>完好情况</td><td>处理意见</td><td>状态</td><td></td></tr></thead>
   									<s:iterator value="orderList" id="orderList" >
   										<tr onmouseover="this.style.backgroundColor='#ffff66';" onmouseout="this.style.backgroundColor='#d4e3e5';">
 											<td><s:property value="#orderList.orderdate"/></td>
@@ -207,20 +207,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											<td><s:property value="#orderList.express"/></td>
 											<td><s:property value="#orderList.waybill"/></td>
 											<td><s:property value="#orderList.arrivaltime"/></td>
-											<%-- <td><s:property value="#orderList.intact"/></td> --%>
 											<td><s:if test="#orderList.intact == 100">破损</s:if></td>
-											<td class="opa"><input  class="btn" type="Submit" value="详情" onclick="getRowID(<s:property value="#orderList.id"/>)" /></td>
-											<%-- <s:if test="#orderList.backresult == null"><td style="color:red">（未处理）</td></s:if><s:else><td style="color:green">（已处理）</td></s:else> --%>
+											<s:if test="#orderList.purresult == 200"><td>申请退款</td></s:if><s:if test="#orderList.purresult == 201"><td>补货</td></s:if>
+											<td><s:property value="#orderList.status"/></td>
+											<s:if test='#orderList.purresult == 200 && #orderList.status == "退货中"'><td class="opa"><input  class="btn" type="Submit" value="退款已收" onclick="getRowID(<s:property value="#orderList.id"/>)" /></td></s:if>
+											<s:else><td></td></s:else>
   										</tr>
   									</s:iterator>
   								</table>
   						</ol>
 						<input type="hidden" name="cusRowID"  id="cusRowID" value=""/> 
-						<input type="hidden" name="variable" id="variable" value="intactdetail" />
-  					</div> 					
+						<input type="hidden" name="variable" id="variable" value="refund" />
+  					</div> 				
   					<div class="opa">
 						<input type="button" class="btn" onclick="history.go(-1)" value="返回"></input>
-					</div>
+					</div>	
   				</form>
   			</div>
   		</div>

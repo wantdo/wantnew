@@ -5,10 +5,10 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-<%-- <%if(null == request.getSession().getAttribute("username")){  
+<%if(null == request.getSession().getAttribute("username")){  
            response.getWriter().write("<script>window.location.href = 'index.jsp'</script>");  
        }  
-     %> --%>
+     %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -221,6 +221,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<input type="hidden" name="cusRowID"  id="cusRowID" value=""/> 
 						<input type="hidden" name="variable" id="variable" value="purchasedetail" />
   					</div> 					
+  					<div class="opa">
+						<input type="button" class="btn" onclick="history.go(-1)" value="返回"></input>
+					</div>
   				</form>
   			</div>
   		</div>

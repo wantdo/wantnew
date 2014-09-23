@@ -120,6 +120,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   			<div id="body_wrapper">
   				<a href = "CusShopsAction.action">编辑店铺信息</a>
   			</div>
+  			<div class="opa">
+				<input type="button" class="btn" onclick="history.go(-1)" value="返回"></input>
+			</div>
   		</div>
   </body>
 </html>

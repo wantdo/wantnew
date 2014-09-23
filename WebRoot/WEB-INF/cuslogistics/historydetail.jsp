@@ -5,10 +5,10 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-<%-- <%if(null == request.getSession().getAttribute("username")){  
+<%if(null == request.getSession().getAttribute("username")){  
            response.getWriter().write("<script>window.location.href = 'index.jsp'</script>");  
        }  
-     %> --%>
+     %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

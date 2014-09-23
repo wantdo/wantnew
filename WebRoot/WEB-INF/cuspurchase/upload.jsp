@@ -68,5 +68,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   			</s:form>
   		</fieldset>
   	</div>
+  	<div class="opa" align="center">
+		<input type="button" class="btn" onclick="history.go(-1)" value="返回"></input>
+	</div>
   </body>
 </html>

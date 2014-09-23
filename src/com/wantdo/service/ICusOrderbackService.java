@@ -15,6 +15,8 @@ public interface ICusOrderbackService {
 	
 	public List findPurresult();
 	
+	public List findStatus();
+	
 	public List findBySearch(String search);
 	
 	public List findBySupplier(String search);

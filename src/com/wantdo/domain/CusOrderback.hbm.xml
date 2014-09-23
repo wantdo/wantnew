@@ -82,5 +82,8 @@
         <property name="purresult" type="java.lang.String">
             <column name="purresult" />
         </property>
+        <property name="status" type="java.lang.String">
+            <column name="status" />
+        </property>
     </class>
 </hibernate-mapping>

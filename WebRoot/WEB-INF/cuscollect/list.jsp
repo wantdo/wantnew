@@ -261,7 +261,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   							<input type="button" class="btn" onclick="history.go(-1)" value="返回"></input>
   						</div> -->
   					
-  					</div> 					
+  					</div> 			
+  					<div class="opa">
+						<input type="button" class="btn" onclick="history.go(-1)" value="返回"></input>
+					</div>		
   				</form>
   			</div>
   		</div>

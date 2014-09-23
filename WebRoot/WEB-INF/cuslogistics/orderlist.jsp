@@ -5,10 +5,10 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-<%-- <%if(null == request.getSession().getAttribute("username")){  
+<%if(null == request.getSession().getAttribute("username")){  
            response.getWriter().write("<script>window.location.href = 'index.jsp'</script>");  
        }  
-     %> --%>
+     %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -254,7 +254,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											<td><s:property value="#orderList.express"/></td>
 											<td><s:property value="#orderList.waybill"/></td>
 											<td class="opa">
-												<input  class="btn1" type="Submit" value="破损" onclick="getRowID(<s:property value="#orderList.id"/>)" />
+												<input  class="btn1" type="Submit" value="详情" onclick="getRowID(<s:property value="#orderList.id"/>)" />
 												<br></br>
 												<input  class="btn" type="Submit" value="完好" onclick="goodsintact(<s:property value="#orderList.id"/>)" />
 											</td>
@@ -268,6 +268,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   						<input type="hidden" name="cusRowID"  id="cusRowID" value=""/> 
   						<input type="hidden" name="variable" id="variable" value="orderdetail" />
   					</div>
+  					<div class="opa">
+						<input type="button" class="btn" onclick="history.go(-1)" value="返回"></input>
+					</div>
   				</form>
   			</div>
   		</div>

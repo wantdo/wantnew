@@ -102,6 +102,9 @@
 			<result name = "intact">/WEB-INF/cuspurchase/intact.jsp</result>
 			<result name = "intactdetail">/WEB-INF/cuspurchase/intactdetail.jsp</result>
 			<result name = "purcomment">/WEB-INF/cuslogistics/purcomment.jsp</result>
+			<result name = "statuslog">/WEB-INF/cuslogistics/statuslog.jsp</result>
+			<result name = "statuspur">/WEB-INF/cuspurchase/statuspur.jsp</result>
+			<result name = "statusreceipt">/WEB-INF/cuspurchase/statusreceipt.jsp</result>
 		</action>
 		<action name="CusOrderAction" class="CusOrderAction">
 			<result name = "orderlist">/WEB-INF/cuslogistics/orderlist.jsp</result>

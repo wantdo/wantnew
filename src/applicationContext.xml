@@ -48,32 +48,32 @@
 				<value>com/wantdo/domain/CusOrderback.hbm.xml</value>
 			</list>
 		</property></bean>
-	<bean id="CusOrderAction" class="com.wantdo.action.CusOrderAction">
+	<bean id="CusOrderAction" class="com.wantdo.action.CusOrderAction" scope="prototype">
 		<property name="cusOrderbackService">
 			<ref bean="CusOrderbackService"/>
 		</property>
 	</bean>
-	<bean id="CusBackAction" class="com.wantdo.action.CusBackAction">
+	<bean id="CusBackAction" class="com.wantdo.action.CusBackAction" scope="prototype">
 		<property name="cusOrderbackService">
 			<ref bean="CusOrderbackService"/>
 		</property>
 	</bean>
-	<bean id="CusOrderbackService" class="com.wantdo.service.impl.CusOrderbackService">
+	<bean id="CusOrderbackService" class="com.wantdo.service.impl.CusOrderbackService" scope="prototype">
 	<property name="cusOrderbackDAO">
 		<ref bean="CusOrderbackDAO"/>
 	</property>
 	</bean>
-	<bean id="CusPurchaseService" class="com.wantdo.service.impl.CusPurchaseService">
+	<bean id="CusPurchaseService" class="com.wantdo.service.impl.CusPurchaseService" scope="prototype">
 	<property name="cusPurchaseDAO">
 		<ref bean="CusPurchaseDAO"/>
 	</property>
 	</bean>
-	<bean id="CusCollectService" class="com.wantdo.service.impl.CusCollectService">
+	<bean id="CusCollectService" class="com.wantdo.service.impl.CusCollectService" scope="prototype">
 	<property name="cusCollectDAO">
 		<ref bean="CusCollectDAO"/>
 	</property>
 	</bean>
-	<bean id="CusBackstageAction" class="com.wantdo.action.CusBackstageAction">
+	<bean id="CusBackstageAction" class="com.wantdo.action.CusBackstageAction" scope="prototype">
 		<property name="cusPurchaseService">
 			<ref bean="CusPurchaseService"/>
 		</property>
@@ -84,12 +84,12 @@
 			<ref bean="CusCollectService"/>
 		</property>
 	</bean>
-	<bean id="CusLogisticsService" class="com.wantdo.service.impl.CusLogisticsService">
+	<bean id="CusLogisticsService" class="com.wantdo.service.impl.CusLogisticsService" scope="prototype">
 	<property name="cusLogisticsDAO">
 		<ref bean="CusLogisticsDAO"/>
 	</property>
 	</bean>
-	<bean id="CusShopsAction" class="com.wantdo.action.CusShopsAction">
+	<bean id="CusShopsAction" class="com.wantdo.action.CusShopsAction" scope="prototype">
 		<property name="cusShopsService">
 			<ref bean="CusShopsService"/>
 		</property>
@@ -97,12 +97,12 @@
 			<ref bean="WspShopsService"/>
 		</property>
 	</bean>
-	<bean id="CusShopsService" class="com.wantdo.service.impl.CusShopsService">
+	<bean id="CusShopsService" class="com.wantdo.service.impl.CusShopsService" scope="prototype">
 		<property name="cusShopsDAO">
 			<ref bean="CusShopsDAO"/>
 		</property>
 	</bean>
-	<bean id="LoginAction" class="com.wantdo.action.LoginAction">
+	<bean id="LoginAction" class="com.wantdo.action.LoginAction" scope="prototype">
 		<property name="personService">
 			<ref bean="PersonService"/>
 		</property>
@@ -110,12 +110,12 @@
 			<ref bean="EcEordermstService"/>
 		</property>
 	</bean>
-	<bean id="PersonDAO" class="com.wantdo.dao.impl.PersonDAO">
+	<bean id="PersonDAO" class="com.wantdo.dao.impl.PersonDAO" scope="prototype">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
-	<bean id="PersonService" class="com.wantdo.service.impl.PersonService">
+	<bean id="PersonService" class="com.wantdo.service.impl.PersonService" scope="prototype">
 		<property name="personDAO">
 			<ref bean="PersonDAO"/>
 		</property>
@@ -164,7 +164,7 @@
 		</property>
 	</bean>
 	<bean id="WspOrdermstDAO"
-		class="com.wantdo.dao.impl.WspOrdermstDAO">
+		class="com.wantdo.dao.impl.WspOrdermstDAO" >
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>

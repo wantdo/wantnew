@@ -264,7 +264,17 @@ public class CusOrderbackDAO extends HibernateDaoSupport implements ICusOrderbac
 	public List findPurresult() {
 		log.debug("finding all CusOrderback instances");
 		try {
-			String queryString = "from CusOrderback as cusOrderback where cusOrderback.purresult is not null ";
+			String queryString = "from CusOrderback as cusOrderback where cusOrderback.purresult is not null and cusOrderback.status is null ";
+			return getHibernateTemplate().find(queryString);
+		} catch (RuntimeException re) {
+			log.error("find all failed", re);
+			throw re;
+		}
+	}
+	public List findStatus() {
+		log.debug("finding all CusOrderback instances");
+		try {
+			String queryString = "from CusOrderback as cusOrderback where cusOrderback.status is not null ";
 			return getHibernateTemplate().find(queryString);
 		} catch (RuntimeException re) {
 			log.error("find all failed", re);

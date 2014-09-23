@@ -103,6 +103,7 @@ public class CusBackstageAction extends ActionSupport {
 		if(variable.equals("dishonorimpl")){
 			variable=null;
 			cusCollectService.save(cusCollect);
+			cusCollect = null;
 			return "logisticsindex";
 		}
 		//客服端查看处理结果详情
@@ -112,6 +113,7 @@ public class CusBackstageAction extends ActionSupport {
 			collectList.clear();
 			cusCollect = cusCollectService.findById(Integer.parseInt(cusRowID));
 			collectList.add(getCusCollect());
+			cusCollect = null;
 			return "cuscollectdetail";
 		}
 		//客服端查看物流处理结果
@@ -119,7 +121,7 @@ public class CusBackstageAction extends ActionSupport {
 			//variable=null;
 			//varpage = null;
 			collectList = cusCollectService.findAll();
-			this.pageBean = cusCollectService.queryForPage(3, page);
+			this.pageBean = cusCollectService.queryForPage(10, page);
 			return "cuscollect";
 		}
 		

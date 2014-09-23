@@ -37,6 +37,7 @@ public class CusOrderback  implements java.io.Serializable {
      private String imgorder;
      private String intact;
      private String purresult;
+     private String status;
 
 
     // Constructors
@@ -53,7 +54,7 @@ public class CusOrderback  implements java.io.Serializable {
 			String total, String remark1, String express, String waybill,
 			String arrivalnum, String mistake, String condition,
 			Date arrivaltime, String openman, String signman, String remark2,
-			String imgorder, String intact,String purresult) {
+			String imgorder, String intact,String purresult,String status) {
         this.orderdate = orderdate;
         this.purid = purid;
         this.supplier = supplier;
@@ -78,6 +79,7 @@ public class CusOrderback  implements java.io.Serializable {
         this.imgorder = imgorder;
         this.intact = intact;
         this.purresult = purresult;
+        this.status = status;
     }
 
    
@@ -287,6 +289,16 @@ public class CusOrderback  implements java.io.Serializable {
 
 	public void setPurresult(String purresult) {
 		this.purresult = purresult;
+	}
+
+
+	public String getStatus() {
+		return status;
+	}
+
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
    
 }

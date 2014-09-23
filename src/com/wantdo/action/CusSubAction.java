@@ -124,6 +124,8 @@ public class CusSubAction extends ActionSupport {
 					cusOrdermst.getAddress(), imgpath);
 			cusPurchaseService.save(cusPurchase);
 		}
+		imgkefu = null;
+		imgpath = null;
 		if (cusDtlList != null) {
 			List<CusOrderdtl> nullList = new ArrayList<CusOrderdtl>();
 			nullList.add(null);

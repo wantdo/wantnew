@@ -5,10 +5,10 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-<%-- <%if(null == request.getSession().getAttribute("username")){  
+<%if(null == request.getSession().getAttribute("username")){  
            response.getWriter().write("<script>window.location.href = 'index.jsp'</script>");  
        }  
-     %> --%>
+     %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -125,6 +125,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   			</div>
   			<div id="body_wrapper">
   				<a href = "CusBackAction.action?variable=purcomment">采购-->物流（采购处理建议）</a>
+  			</div>
+  			<div id="body_wrapper">
+  				<a href = "CusBackAction.action?variable=statuslog">采购-->物流（退货状态）</a>
   			</div>
   			<div id="body_wrapper">
   				<a href = "CusBackstageAction.action?variable=dishonor">物流-->客服</a>

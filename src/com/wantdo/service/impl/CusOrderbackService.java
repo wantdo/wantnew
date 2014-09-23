@@ -29,6 +29,10 @@ public class CusOrderbackService implements ICusOrderbackService {
 		return cusOrderbackDAO.findPurresult();
 	}
 	@Override
+	public List findStatus() {
+		return cusOrderbackDAO.findStatus();
+	}
+	@Override
 	public List findBySearch(String search) {
 		return cusOrderbackDAO.findBySearch(search);
 	}
